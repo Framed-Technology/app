@@ -257,7 +257,7 @@ const InvestmentRiskResults = ({
       setRenderChart(true);
     };
     readData();
-  }, []);
+  }, [investmentId]);
 
   if (!renderChart) {
     return <Skeleton w="full" height={"120px"} opacity={0.3} rounded={0} />;
