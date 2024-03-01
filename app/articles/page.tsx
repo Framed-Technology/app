@@ -51,14 +51,16 @@ const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
         <Heading fontSize={"xl"}>{article.Title}</Heading>
         <Text>Quick Description Should go here?</Text>
       </Flex>
-      <Image
-        src="https://picsum.photos/300/200"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{ width: "100%", height: "auto" }}
-        alt="Article Thumbnail"
-      />
+      <Box minH={150} w="full">
+        <Image
+          src="https://picsum.photos/300/200"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "100%", height: "auto" }}
+          alt="Article Thumbnail"
+        />
+      </Box>
       <Flex
         flexDir={"row"}
         justifyContent={"space-between"}
