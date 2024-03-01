@@ -20,7 +20,7 @@ const Articles = async () => {
         borderWidth={2}
         borderColor={"black"}
       >
-        <SimpleGrid minChildWidth="200px" spacing="30px">
+        <SimpleGrid minChildWidth="200px" spacing="20px">
           {articles.data.map((content) => (
             <ArticleCard
               key={content.id}
