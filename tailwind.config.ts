@@ -9,9 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors
+      colors,
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;
