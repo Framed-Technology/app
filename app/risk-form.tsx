@@ -49,12 +49,13 @@ const investments = [
   {
     id: "sandp500",
     name: "S&P500",
-    description: "An index that tracks the 500 largest companies in the US ",
+    description: "An index that tracks the 500 largest companies in the US",
   },
   {
     id: "corportatebonds",
     name: "Corporate Bonds",
     description: "Debt issued by companies",
+    rvol: 16.65,
   },
   {
     id: "tesla",
@@ -232,7 +233,7 @@ const InvestmentRiskResults = ({
       count: number;
     }[]
   >([]);
-  const [renderChart, setRenderChart] = useState(false)
+  const [renderChart, setRenderChart] = useState(false);
   useEffect(() => {
     const readData = async () => {
       const res = await readPerceivedInvestmentRisk(investmentId);
@@ -245,51 +246,56 @@ const InvestmentRiskResults = ({
         };
       });
       setData(resWithZeros);
-      setRenderChart(true)
+      setRenderChart(true);
     };
     readData();
   }, []);
 
   if (!renderChart) {
-    return <Skeleton w="full" height={"120px"} opacity={0.3} rounded={0}/>
+    return <Skeleton w="full" height={"120px"} opacity={0.3} rounded={0} />;
   }
 
   return (
-      <Flex w={"full"} h={120} gap={0} flexDir={"column"}>
-        <ResponsiveContainer width="100%" height={"100%"}>
-          <AreaChart
-            data={data}
-            margin={{
-              top: 0,
-              right: 0,
-              left: 0,
-              bottom: 0,
-            }}
+    <Flex w={"full"} h={120} gap={0} flexDir={"column"}>
+      <ResponsiveContainer width="100%" height={"100%"}>
+        <AreaChart
+          data={data}
+          margin={{
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <Area
+            name="Community"
+            type="monotone"
+            dataKey="count"
+            stroke={colors.hollywood[400]}
+            fill={colors.hollywood[400]}
+            fillOpacity={0.3}
+            strokeWidth={2}
+          />
+          <XAxis
+            name={"Risk"}
+            dataKey={"riskLevel"}
+            domain={[1, 12]}
+            tick={false}
+          />
+          <Tooltip />
+          <Legend layout="horizontal" verticalAlign="top" align="right" />
+          <ReferenceLine
+            x={userRisk}
+            strokeWidth={2}
+            stroke={colors.hollywood[600]}
           >
-            <Area
-              name="Community"
-              type="monotone"
-              dataKey="count"
-              stroke={colors.hollywood[400]}
-              fill={colors.hollywood[400]}
-              fillOpacity={0.3}
-              strokeWidth={2}
-            />
-            <XAxis name={"Risk"} dataKey={"riskLevel"} domain={[1, 12]} tick={false} />
-            <Tooltip />
-            <Legend layout="horizontal" verticalAlign="top" align="right" />
-            <ReferenceLine
-              x={userRisk}
-              strokeWidth={2}
-              stroke={colors.hollywood[600]}
-            >
-              <Label color="#fff" position={"bottom"}>
-                You
-              </Label>
-            </ReferenceLine>
-          </AreaChart>
-        </ResponsiveContainer>
-      </Flex>
+            <Label color="#fff" position={"bottom"}>
+              You
+            </Label>
+          </ReferenceLine>
+        </AreaChart>
+      </ResponsiveContainer>
+    </Flex>
   );
 };
 

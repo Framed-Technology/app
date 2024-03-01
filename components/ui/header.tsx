@@ -25,6 +25,7 @@ const Header = () => {
           maxW={1060}
           px={4}
           m={"auto"}
+          flexDir={{base: "column", sm: "row"}}
         >
           <Logo />
           <Nav />
