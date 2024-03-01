@@ -156,7 +156,7 @@ const InvestmentCard = ({
     py={8}
     px={4}
     w={"full"}
-    gap={{base: 12, md: 8}}
+    gap={{ base: 12, md: 8 }}
     bg={"pink-salmon.500"}
     shadow={"5px 5px 0 black"}
     borderColor={"black"}
@@ -181,7 +181,11 @@ const InvestmentCard = ({
         {investment.description}
       </Text>
     </Flex>
-    <Flex w={{base: "90%", md: "70%"}} justifyContent={"center"}>
+    <Flex
+      w={{ base: "100%", md: "70%" }}
+      px={{ base: 2, md: 0 }}
+      justifyContent={"center"}
+    >
       {children}
     </Flex>
   </Flex>

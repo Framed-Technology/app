@@ -23,7 +23,7 @@ export default function RootLayout({
         <Providers>
           <Flex flexDir={"column"} w={"full"}>
             <Header />
-            <main className="max-w-[1060px] m-auto pt-[100px] pb-4 w-full">
+            <main className="max-w-[1060px] m-auto px-4 pt-[100px] pb-4 w-full">
               {children}
             </main>
           </Flex>

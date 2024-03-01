@@ -4,7 +4,6 @@ import React from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 
-
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
 
 const Header = () => {
@@ -25,7 +24,7 @@ const Header = () => {
           maxW={1060}
           px={4}
           m={"auto"}
-          flexDir={{base: "column", sm: "row"}}
+          flexDir={{ base: "column", sm: "row" }}
         >
           <Logo />
           <Nav />
@@ -54,14 +53,20 @@ const Logo = () => (
 const Nav = () => (
   <Box className="translate-y-6">
     <Flex gap={4}>
-      <Link href={"/tools"}>
-        <Button className="hover:scale-110" colorScheme="pink-salmon">Tools</Button>
-      </Link>
       <Link href={"/articles"}>
-        <Button className="hover:scale-110" colorScheme="pink-salmon">Articles</Button>
+        <Button className="hover:scale-110" colorScheme="pink-salmon">
+          Articles
+        </Button>
+      </Link>
+      <Link href={"/tools"}>
+        <Button className="hover:scale-110" colorScheme="pink-salmon">
+          Tools
+        </Button>
       </Link>
       <Link href={"/community"}>
-        <Button className="hover:scale-110" colorScheme="pink-salmon">Community</Button>
+        <Button className="hover:scale-110" colorScheme="pink-salmon">
+          Community
+        </Button>
       </Link>
     </Flex>
   </Box>
