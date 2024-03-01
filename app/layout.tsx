@@ -24,7 +24,7 @@ export default function RootLayout({
         <Providers>
           <Flex flexDir={"column"} w={"full"}>
             <Header />
-            <main className="max-w-[1060px] m-auto px-4 pt-[50px] lg:pt-[100px] pb-4 w-full">
+            <main className="max-w-[1060px] m-auto px-4 pt-[70px] lg:pt-[100px] pb-4 w-full">
               {children}
               <SpeedInsights />
             </main>
