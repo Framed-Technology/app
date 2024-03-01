@@ -29,8 +29,8 @@ const Article = async (props: Props) => {
       gap={4}
     >
       <Flex
-        flexDir={"row"}
-        justifyContent={"space-between"}
+        flexDir={{base: "column", md: "row"}}
+        justifyContent={{base: "start", md: "space-between"}}
         alignItems={"start"}
         borderBottomWidth={2}
         borderColor={"gray.200"}
