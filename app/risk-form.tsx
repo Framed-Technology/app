@@ -55,7 +55,6 @@ const investments = [
     id: "corportatebonds",
     name: "Corporate Bonds",
     description: "Debt issued by companies",
-    rvol: 16.65,
   },
   {
     id: "tesla",
@@ -153,31 +152,36 @@ const InvestmentCard = ({
   investment: Investment;
 }) => (
   <Flex
-    minH={200}
-    p={8}
+    minH={250}
+    py={8}
+    px={4}
     w={"full"}
-    gap={4}
+    gap={{base: 12, md: 8}}
     bg={"pink-salmon.500"}
     shadow={"5px 5px 0 black"}
     borderColor={"black"}
     borderWidth={2}
     alignItems={"center"}
-    justifyContent={"space-between"}
+    justifyContent={{ base: "center", md: "space-between" }}
+    flexDir={{ base: "column", md: "row" }}
   >
-    <Flex w={"30%"} flexDir={"column"}>
-      <Text color={"black"} fontSize={"2xl"} fontWeight={500}>
+    <Flex
+      w={{ base: "100%", md: "30%" }}
+      textAlign={{ base: "center", md: "left" }}
+      flexDir={"column"}
+    >
+      <Text
+        color={"black"}
+        fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
+        fontWeight={500}
+      >
         {investment.name}
       </Text>
-      <Text
-        display={{ base: "none", lg: "block" }}
-        color={"white"}
-        fontSize={"xl"}
-        fontWeight={400}
-      >
+      <Text color={"white"} fontSize={"xl"} fontWeight={400}>
         {investment.description}
       </Text>
     </Flex>
-    <Flex w={"70%"} justifyContent={"center"}>
+    <Flex w={{base: "90%", md: "70%"}} justifyContent={"center"}>
       {children}
     </Flex>
   </Flex>
@@ -188,9 +192,9 @@ const InvestmentRiskSlider = (props: InvestmentRiskSliderProps) => {
     <Slider
       id={props.investment.id}
       defaultValue={0}
-      {...props.inputProps}
       min={1}
       max={12}
+      {...props.inputProps}
     >
       <SliderTrack rounded={"full"} h={4} bg="pink-salmon.400">
         <SliderFilledTrack bg="hollywood.500" />
