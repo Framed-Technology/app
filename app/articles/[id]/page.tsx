@@ -58,7 +58,7 @@ const Article = async (props: Props) => {
         </Flex>
       </Flex>
       <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-        {JSON.stringify(article.articleMarkdown)}
+        {article.articleMarkdown}
       </Markdown>
     </Flex>
   );
