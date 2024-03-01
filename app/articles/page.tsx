@@ -28,6 +28,8 @@ const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
   <Link href={`/articles/${id}`}>
     <Flex
       className="transition hover:scale-105 hover:bg-hollywood-500"
+      borderColor={"black"}
+      borderWidth={2}
       textColor={"white"}
       flexDir={"column"}
       p={6}
