@@ -1,6 +1,7 @@
 import RiskForm from "@/app/risk-form";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import Image from "next/image";
+import platypusWalking from "../public/platypus-walking.svg"
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
 const Interest = () => (
   <Flex justifyContent={"center"} alignItems={"center"} w="full" p={4}>
     <Image
-      src="platypus-walking.svg"
+      src={platypusWalking}
       alt="Platypus Walking"
       width={500}
       height={500}

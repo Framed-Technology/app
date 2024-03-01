@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
+import platypusLogo from "../../public/platypus.svg"
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
 
@@ -38,7 +39,7 @@ const Logo = () => (
   <Link href={"/"}>
     <Box position={"relative"}>
       <Image
-        src={"platypus.svg"}
+        src={platypusLogo}
         height={100}
         width={100}
         alt="Magenta Platypus"
