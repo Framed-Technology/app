@@ -38,7 +38,7 @@ const Article = async (props: Props) => {
         pb={2}
       >
         <Box>
-          <Heading>{article.Title}</Heading>
+          <Heading>{article.title}</Heading>
           <Text>The same description should go here</Text>
           <Text fontSize={"small"} fontStyle={"italic"}>
             {new Date(article.publishedAt).toDateString()}
@@ -51,11 +51,14 @@ const Article = async (props: Props) => {
           gap={2}
           pt={2}
         >
-          <Avatar src="https://bit.ly/ryan-florence" size={"sm"} />
+          <Avatar
+            src={article.authorAvatar ?? "https://bit.ly/ryan-florence"}
+            size={"sm"}
+          />
         </Flex>
       </Flex>
       <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-        {article.Content}
+        {JSON.stringify(article.articleMarkdown)}
       </Markdown>
     </Flex>
   );

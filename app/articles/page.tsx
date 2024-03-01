@@ -48,8 +48,8 @@ const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
       shadow={"5px 5px 0 black"}
     >
       <Flex flexDir={"column"}>
-        <Heading fontSize={"xl"}>{article.Title}</Heading>
-        <Text>Quick Description Should go here?</Text>
+        <Heading fontSize={"xl"}>{article.title}</Heading>
+        <Text>{article.description}</Text>
       </Flex>
       <Box minH={150} w="full">
         <Image

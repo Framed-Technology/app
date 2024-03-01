@@ -1,13 +1,20 @@
 export type StrapiContentResponse<T> = {
-    data: {
-        id: number,
-        attributes: T
-    }[]
-}
+  data: {
+    id: number;
+    attributes: T;
+  }[];
+};
 
-export type Article = {
-  Title: string;
-  Content: string;
-  Image?: any;
+type Content = {
   publishedAt: string;
 };
+
+export type Article =
+  | {
+      title: string;
+      description: string;
+      articleMarkdown: string;
+      thumbnail?: any;
+      authorAvatar?: any;
+    }
+  & Content;
