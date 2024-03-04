@@ -395,7 +395,11 @@ const PerceivedRiskRadar = ({
         };
       });
       setRiskAverages(data);
-      ref.current?.scrollIntoView({ block: 'start',  behavior: 'smooth' });
+      ref.current?.scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
     };
     readData();
   }, []);

@@ -9,7 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Framed.",
+  title: "framed.",
   description: "Context for Young Investors",
 };
 
