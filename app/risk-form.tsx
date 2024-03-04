@@ -104,10 +104,14 @@ const RiskForm = ({}) => {
         const data = Object.keys(values).map((investmentId) => {
           return { investmentId, userRisk: values[investmentId], sessionId };
         });
-        // TODO: Handle this for possible errors.
-        await insertPerceivedInvestmentRisk(data);
-        setSubmitting(false);
-        setIsSubmitted(true);
+        try {
+          await insertPerceivedInvestmentRisk(data);
+          setIsSubmitted(true);
+        } catch (err) {
+          console.error("Error occured while submitting form:", err);
+        } finally {
+          setSubmitting(false);
+        }
       }}
     >
       {(formik) => (
@@ -352,15 +356,19 @@ const InvestmentRiskResults = ({
             domain={[1, 12]}
             tick={false}
           />
-          <YAxis dataKey={"count"} label={"Votes"} tick={false} />
-          <Tooltip />
-          <Legend layout="horizontal" verticalAlign="top" align="right" />
+          <YAxis
+            dataKey={"count"}
+            label={"Votes"}
+            tick={false}
+            rotate={-35}
+            textAnchor="end"
+          />
           <ReferenceLine
             x={userRisk}
             strokeWidth={2}
             stroke={colors["picton-blue"][400]}
           >
-            <Label color="#fff" position={"bottom"}>
+            <Label color="#fff" position={"top"}>
               You
             </Label>
           </ReferenceLine>
