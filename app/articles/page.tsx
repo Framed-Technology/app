@@ -20,7 +20,10 @@ const Articles = async () => {
         borderWidth={2}
         borderColor={"black"}
       >
-        <SimpleGrid minChildWidth="200px" spacing="20px">
+        <SimpleGrid
+          minChildWidth={{ base: "250px", md: "350px" }}
+          spacing="20px"
+        >
           {articles.data.map((content) => (
             <ArticleCard
               key={content.id}
@@ -35,7 +38,7 @@ const Articles = async () => {
 };
 
 const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
-  <Link href={`/articles/${id}`}>
+  <Link href={`/articles/${id}`} className="h-full">
     <Flex
       className="transition hover:scale-[102%] hover:bg-hollywood-500"
       borderColor={"black"}
@@ -46,6 +49,8 @@ const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
       gap={4}
       bg={colors["pink-salmon"][400]}
       shadow={"5px 5px 0 black"}
+      h={"full"}
+      justifyContent={"space-between"}
     >
       <Flex flexDir={"column"}>
         <Heading fontSize={"xl"}>{article.title}</Heading>
