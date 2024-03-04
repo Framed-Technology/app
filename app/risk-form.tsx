@@ -219,7 +219,7 @@ const InvestmentCard = ({
   <Card>
     <Flex
       minH={200}
-      px={4}
+      p={4}
       w={"full"}
       gap={{ base: 12, md: 8 }}
       alignItems={"center"}
@@ -405,9 +405,15 @@ const PerceivedRiskRadar = ({
   }, []);
 
   return (
-    <Flex ref={ref} w={"full"} h={400} gap={0} flexDir={"column"}>
-      <ResponsiveContainer width="100%" height={"100%"}>
-        <RadarChart outerRadius={150} height={400} data={riskAverages}>
+    <Flex
+      ref={ref}
+      w={"full"}
+      h={{ base: 200, md: 300 }}
+      gap={0}
+      flexDir={"column"}
+    >
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart data={riskAverages}>
           <PolarGrid />
           <PolarAngleAxis dataKey="name" />
           <Radar
