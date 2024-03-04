@@ -1,6 +1,12 @@
 "use client";
 
-import React, { ComponentProps, Suspense, useEffect, useState } from "react";
+import React, {
+  ComponentProps,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   Box,
   Button,
@@ -126,16 +132,12 @@ const RiskForm = ({}) => {
                   minH={200}
                   px={4}
                   w={"full"}
-                  gap={{ base: 12, md: 8 }}
+                  gap={8}
                   alignItems={"center"}
-                  justifyContent={{ base: "center", md: "space-between" }}
-                  flexDir={{ base: "column", md: "row" }}
+                  justifyContent={"center"}
+                  flexDir={"column"}
                 >
-                  <Flex
-                    w={{ base: "100%", md: "30%" }}
-                    textAlign={{ base: "center", md: "left" }}
-                    flexDir={"column"}
-                  >
+                  <Flex w="full" textAlign={"center"} flexDir={"column"}>
                     <Text
                       color={"black"}
                       fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
@@ -148,8 +150,10 @@ const RiskForm = ({}) => {
                     </Text>
                   </Flex>
                   <Flex
-                    w={{ base: "100%", md: "70%" }}
-                    textAlign={{ base: "center", md: "left" }}
+                    w="full"
+                    textAlign="center"
+                    alignContent={"center"}
+                    justifyContent={"center"}
                     flexDir={"column"}
                   >
                     <PerceivedRiskRadar userRisks={formik.values} />
@@ -379,6 +383,7 @@ const PerceivedRiskRadar = ({
         user: number;
       }[]
   >();
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const readData = async () => {
       const res = await readPerceivedInvestmentRiskAverages();
@@ -390,30 +395,35 @@ const PerceivedRiskRadar = ({
         };
       });
       setRiskAverages(data);
+      ref.current?.scrollIntoView({ block: 'start',  behavior: 'smooth' });
     };
     readData();
   }, []);
 
   return (
-    <RadarChart outerRadius={90} width={500} height={250} data={riskAverages}>
-      <PolarGrid />
-      <PolarAngleAxis dataKey="name" />
-      <Radar
-        name="You"
-        dataKey="user"
-        stroke={colors["picton-blue"][400]}
-        fill={colors["picton-blue"][400]}
-        fillOpacity={0.6}
-      />
-      <Radar
-        name="Community"
-        dataKey="average"
-        stroke={colors.hollywood[400]}
-        fill={colors.hollywood[400]}
-        fillOpacity={0.6}
-      />
-      <Legend />
-    </RadarChart>
+    <Flex ref={ref} w={"full"} h={400} gap={0} flexDir={"column"}>
+      <ResponsiveContainer width="100%" height={"100%"}>
+        <RadarChart outerRadius={150} height={400} data={riskAverages}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="name" />
+          <Radar
+            name="You"
+            dataKey="user"
+            stroke={colors["picton-blue"][400]}
+            fill={colors["picton-blue"][400]}
+            fillOpacity={0.6}
+          />
+          <Radar
+            name="Community"
+            dataKey="average"
+            stroke={colors.hollywood[400]}
+            fill={colors.hollywood[400]}
+            fillOpacity={0.6}
+          />
+          <Legend />
+        </RadarChart>
+      </ResponsiveContainer>
+    </Flex>
   );
 };
 
