@@ -5,12 +5,6 @@ import {
   Box,
   Button,
   Flex,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Select,
   Skeleton,
   Slider,
   SliderFilledTrack,
@@ -29,14 +23,22 @@ import {
   ReferenceLine,
   Label,
   Tooltip,
+  YAxis,
+  PolarAngleAxis,
+  PolarGrid,
+  PolarRadiusAxis,
+  Radar,
+  RadarChart,
 } from "recharts";
 import { colors } from "@/theme";
 import {
-  InvestmentRisk,
   insertPerceivedInvestmentRisk,
   readPerceivedInvestmentRisk,
+  readPerceivedInvestmentRiskAverages,
 } from "./actions";
+import { FaDownload } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
+import Card from "@/components/ui/card";
 
 type Investment = { id: string; name: string; description: string };
 
@@ -72,6 +74,14 @@ const investments = [
     description: "Debt issues by the US Goverment",
   },
 ];
+
+const investmentNameMap = investments.reduce<{ [id: string]: string }>(
+  (p, c) => {
+    p[c.id] = c.name;
+    return p;
+  },
+  {}
+);
 
 const initialValues = investments.reduce<{ [key: string]: number }>((p, c) => {
   p[c.id] = 1;
@@ -110,6 +120,44 @@ const RiskForm = ({}) => {
               Find out how your precieved risk compares to everyone else!
             </Text>
 
+            {isSubmitted && (
+              <Card>
+                <Flex
+                  minH={200}
+                  px={4}
+                  w={"full"}
+                  gap={{ base: 12, md: 8 }}
+                  alignItems={"center"}
+                  justifyContent={{ base: "center", md: "space-between" }}
+                  flexDir={{ base: "column", md: "row" }}
+                >
+                  <Flex
+                    w={{ base: "100%", md: "30%" }}
+                    textAlign={{ base: "center", md: "left" }}
+                    flexDir={"column"}
+                  >
+                    <Text
+                      color={"black"}
+                      fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
+                      fontWeight={500}
+                    >
+                      Summary
+                    </Text>
+                    <Text color={"white"} fontSize={"xl"} fontWeight={400}>
+                      Your Risk Radar
+                    </Text>
+                  </Flex>
+                  <Flex
+                    w={{ base: "100%", md: "70%" }}
+                    textAlign={{ base: "center", md: "left" }}
+                    flexDir={"column"}
+                  >
+                    <PerceivedRiskRadar userRisks={formik.values} />
+                  </Flex>
+                </Flex>
+              </Card>
+            )}
+
             {investments.map((investment, key) => (
               <InvestmentCard key={key} investment={investment}>
                 {isSubmitted ? (
@@ -129,14 +177,27 @@ const RiskForm = ({}) => {
                 )}
               </InvestmentCard>
             ))}
-            <Button
-              isLoading={formik.isSubmitting}
-              isDisabled={isSubmitted}
-              type="submit"
-              colorScheme="hollywood"
-            >
-              Submit
-            </Button>
+
+            {isSubmitted ? (
+              <Button
+                rightIcon={<FaDownload />}
+                onClick={() => {
+                  alert("Export Functionality Coming Soon");
+                }}
+                colorScheme="picton-blue"
+              >
+                Export Data
+              </Button>
+            ) : (
+              <Button
+                isLoading={formik.isSubmitting}
+                isDisabled={isSubmitted}
+                type="submit"
+                colorScheme="hollywood"
+              >
+                Submit
+              </Button>
+            )}
           </Flex>
         </form>
       )}
@@ -151,44 +212,41 @@ const InvestmentCard = ({
   children: React.ReactNode;
   investment: Investment;
 }) => (
-  <Flex
-    minH={250}
-    py={8}
-    px={4}
-    w={"full"}
-    gap={{ base: 12, md: 8 }}
-    bg={"pink-salmon.500"}
-    shadow={"5px 5px 0 black"}
-    borderColor={"black"}
-    borderWidth={2}
-    alignItems={"center"}
-    justifyContent={{ base: "center", md: "space-between" }}
-    flexDir={{ base: "column", md: "row" }}
-  >
+  <Card>
     <Flex
-      w={{ base: "100%", md: "30%" }}
-      textAlign={{ base: "center", md: "left" }}
-      flexDir={"column"}
+      minH={200}
+      px={4}
+      w={"full"}
+      gap={{ base: 12, md: 8 }}
+      alignItems={"center"}
+      justifyContent={{ base: "center", md: "space-between" }}
+      flexDir={{ base: "column", md: "row" }}
     >
-      <Text
-        color={"black"}
-        fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
-        fontWeight={500}
+      <Flex
+        w={{ base: "100%", md: "30%" }}
+        textAlign={{ base: "center", md: "left" }}
+        flexDir={"column"}
       >
-        {investment.name}
-      </Text>
-      <Text color={"white"} fontSize={"xl"} fontWeight={400}>
-        {investment.description}
-      </Text>
+        <Text
+          color={"black"}
+          fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
+          fontWeight={500}
+        >
+          {investment.name}
+        </Text>
+        <Text color={"white"} fontSize={"xl"} fontWeight={400}>
+          {investment.description}
+        </Text>
+      </Flex>
+      <Flex
+        w={{ base: "100%", md: "70%" }}
+        px={{ base: 2, md: 0 }}
+        justifyContent={"center"}
+      >
+        {children}
+      </Flex>
     </Flex>
-    <Flex
-      w={{ base: "100%", md: "70%" }}
-      px={{ base: 2, md: 0 }}
-      justifyContent={"center"}
-    >
-      {children}
-    </Flex>
-  </Flex>
+  </Card>
 );
 
 const InvestmentRiskSlider = (props: InvestmentRiskSliderProps) => {
@@ -285,17 +343,18 @@ const InvestmentRiskResults = ({
             strokeWidth={2}
           />
           <XAxis
-            name={"Risk"}
+            label={"Risk Level"}
             dataKey={"riskLevel"}
             domain={[1, 12]}
             tick={false}
           />
+          <YAxis dataKey={"count"} label={"Votes"} tick={false} />
           <Tooltip />
           <Legend layout="horizontal" verticalAlign="top" align="right" />
           <ReferenceLine
             x={userRisk}
             strokeWidth={2}
-            stroke={colors.hollywood[600]}
+            stroke={colors["picton-blue"][400]}
           >
             <Label color="#fff" position={"bottom"}>
               You
@@ -304,6 +363,57 @@ const InvestmentRiskResults = ({
         </AreaChart>
       </ResponsiveContainer>
     </Flex>
+  );
+};
+
+const PerceivedRiskRadar = ({
+  userRisks,
+}: {
+  userRisks: { [key: string]: number };
+}) => {
+  const [riskAverages, setRiskAverages] = useState<
+    | undefined
+    | {
+        investmentId: string | null;
+        average: number;
+        user: number;
+      }[]
+  >();
+  useEffect(() => {
+    const readData = async () => {
+      const res = await readPerceivedInvestmentRiskAverages();
+      const data = res.map((itm) => {
+        return {
+          ...itm,
+          name: investmentNameMap[itm.investmentId!],
+          user: userRisks[itm.investmentId!],
+        };
+      });
+      setRiskAverages(data);
+    };
+    readData();
+  }, []);
+
+  return (
+    <RadarChart outerRadius={90} width={500} height={250} data={riskAverages}>
+      <PolarGrid />
+      <PolarAngleAxis dataKey="name" />
+      <Radar
+        name="You"
+        dataKey="user"
+        stroke={colors["picton-blue"][400]}
+        fill={colors["picton-blue"][400]}
+        fillOpacity={0.6}
+      />
+      <Radar
+        name="Community"
+        dataKey="average"
+        stroke={colors.hollywood[400]}
+        fill={colors.hollywood[400]}
+        fillOpacity={0.6}
+      />
+      <Legend />
+    </RadarChart>
   );
 };
 

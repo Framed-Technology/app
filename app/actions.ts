@@ -20,5 +20,14 @@ export async function readPerceivedInvestmentRisk(investmentId: string) {
     .from(riskTable)
     .where(eq(riskTable.investmentId, investmentId))
     .groupBy(riskTable.userRisk, riskTable.investmentId);
-    
+}
+
+export async function readPerceivedInvestmentRiskAverages() {
+  return await db
+    .select({
+      investmentId: riskTable.investmentId,
+      average: sql<number>`cast(avg(${riskTable.userRisk}) as float)`,
+    })
+    .from(riskTable)
+    .groupBy(riskTable.investmentId);
 }
