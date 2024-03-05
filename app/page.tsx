@@ -10,7 +10,6 @@ export default function Home() {
       gap={12}
       justifyContent={"center"}
       alignItems={"center"}
-      px={4}
     >
       <Flex
         flexDir={{ base: "column", lg: "row" }}
