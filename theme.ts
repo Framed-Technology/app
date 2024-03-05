@@ -57,6 +57,8 @@ const components = {
     baseStyle: {
       shadow: "5px 5px 0 black",
       rounded: 0,
+      borderWidth: 2,
+      borderColor: "black",
     },
   },
 };

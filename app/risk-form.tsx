@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  ComponentProps,
-  Suspense,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ComponentProps, useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -28,11 +22,9 @@ import {
   AreaChart,
   ReferenceLine,
   Label,
-  Tooltip,
   YAxis,
   PolarAngleAxis,
   PolarGrid,
-  PolarRadiusAxis,
   Radar,
   RadarChart,
 } from "recharts";
@@ -46,7 +38,7 @@ import { FaDownload } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 import Card from "@/components/ui/card";
 
-type Investment = { id: string; name: string; description: string };
+type Investment = { id: string; name: string; description: string, link: string };
 
 type InvestmentRiskSliderProps = {
   investment: Investment;
@@ -55,29 +47,40 @@ type InvestmentRiskSliderProps = {
 
 const investments = [
   {
-    id: "sandp500",
+    id: "SPY",
     name: "S&P500",
     description: "An index that tracks the 500 largest companies in the US",
+    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
   },
   {
-    id: "corportatebonds",
-    name: "Corporate Bonds",
+    id: "NZB",
+    name: "Corporate Bond ETF",
     description: "Debt issued by companies",
+    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
   },
   {
-    id: "tesla",
+    id: "TSLA",
     name: "Tesla Inc.",
     description: "Equity in Tesla Motors",
+    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
   },
   {
-    id: "microsoft",
-    name: "Microsoft",
+    id: "AMZN",
+    name: "Amazon Inc.",
     description: "Equity in Microsoft",
+    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
   },
   {
-    id: "govermentbonds",
-    name: "Government Bonds",
+    id: "NGB",
+    name: "Government Bond ETF",
     description: "Debt issues by the US Goverment",
+    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
+  },
+  {
+    id: "BTC",
+    name: "Bitcoin",
+    description: "Debt issues by the US Goverment",
+    link: "https://www.investopedia.com/terms/g/government-bond.asp",
   },
 ];
 
@@ -235,6 +238,9 @@ const InvestmentCard = ({
         textAlign={{ base: "center", md: "left" }}
         flexDir={"column"}
       >
+        <Text fontStyle={"italic"} fontSize={{ base: "xs", md: "sm", lg: "md" }}>
+          {investment.id}
+        </Text>
         <Text
           color={"black"}
           fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
@@ -245,6 +251,11 @@ const InvestmentCard = ({
         <Text color={"white"} fontSize={"xl"} fontWeight={400}>
           {investment.description}
         </Text>
+        <a className="hover:underline text-white/50" href={investment.link} target="_blank">
+          <Text fontSize={{ base: "xs", md: "sm", lg: "md" }}>
+            Not sure what this is?
+          </Text>
+        </a>
       </Flex>
       <Flex
         w={{ base: "100%", md: "70%" }}

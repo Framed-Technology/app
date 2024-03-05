@@ -11,6 +11,7 @@ export default function Home() {
       justifyContent={"center"}
       alignItems={"center"}
       px={4}
+      pt={6}
     >
       <Flex
         flexDir={{ base: "column", lg: "row" }}
