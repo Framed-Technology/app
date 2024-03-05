@@ -5,6 +5,7 @@ import "./globals.css";
 import { Flex } from "@chakra-ui/react";
 import Header from "@/components/ui/header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Footer from "@/components/ui/footer";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -22,12 +23,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <Providers>
-          <Flex flexDir={"column"} w={"full"}>
+          <Flex flexDir={"column"} w={"full"} minH={"100vh"}>
             <Header />
-            <div className="max-w-[1200px] m-auto px-4 pt-[70px] lg:pt-[100px] pb-4 w-full">
+            <div className="flex-1 h-full max-w-[1200px] black m-auto px-4 py-[70px] lg:py-[100px] w-full">
               {children}
               <SpeedInsights />
             </div>
+            <Footer />
           </Flex>
         </Providers>
       </body>
