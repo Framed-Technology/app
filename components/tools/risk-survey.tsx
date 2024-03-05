@@ -73,8 +73,8 @@ const RiskSurvey = ({}) => {
               </Text>
               <Text fontSize={"lg"} textAlign={"center"}>
                 Rate each of the following investments riskiness on a scale from
-                Cash (0) to NFTs (12) to see how your percieved risk compared to
-                everyone elses!
+                Cash to NFTs to see how your percieved risk compared to everyone
+                elses!
               </Text>
             </Box>
 
