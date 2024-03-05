@@ -11,6 +11,8 @@ import InvestmentChart from "./investment-chart";
 import { investmentMap } from "@/static/investments";
 import InvestmentCard from "@/components/ui/investment-card";
 
+export const revalidate = 12
+
 type Props = {
   params: {
     resultId: string;
