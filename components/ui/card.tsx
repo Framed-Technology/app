@@ -1,5 +1,5 @@
 import { colors } from "@/theme";
-import { Box } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 
 const Card = ({ children }: { children: React.ReactNode }) => {

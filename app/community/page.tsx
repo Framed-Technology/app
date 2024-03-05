@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from "@chakra-ui/layout";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 
 const Community = () => {

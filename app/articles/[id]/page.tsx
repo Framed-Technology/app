@@ -1,6 +1,6 @@
 import React from "react";
 import { readArticleById } from "./actions";
-import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/avatar";
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";

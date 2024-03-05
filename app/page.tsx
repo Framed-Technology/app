@@ -1,4 +1,4 @@
-import RiskForm from "@/app/risk-form";
+import RiskSurvey from "@/components/tools/risk-survey";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import Image from "next/image";
 import platypusWalking from "../public/platypus-walking.svg"
@@ -11,18 +11,18 @@ export default function Home() {
       justifyContent={"center"}
       alignItems={"center"}
       px={4}
-      pt={6}
     >
       <Flex
         flexDir={{ base: "column", lg: "row" }}
         justifyContent={{ base: "none", lg: "space-between" }}
-        gap={{ base: 8, lg: 0 }}
-        alignItems={{ base: "center", lg: "start" }}
+        gap={{ base: 8, lg: 4 }}
+        alignItems={"center"}
+        py={8}
       >
         <Attention />
         <Interest />
       </Flex>
-      <RiskForm/>
+      <RiskSurvey/>
     </Flex>
   );
 }
@@ -52,7 +52,7 @@ const Attention = () => (
       fontWeight={"400"}
     >
       {
-        "We're on a mission to help young investors understand their portfolio risk. Do you understand yours?"
+        "We're on a mission to help young investors understand their portfolio risk."
       }
     </Heading>
   </Box>

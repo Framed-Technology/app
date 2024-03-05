@@ -22,7 +22,7 @@ const Header = () => {
           justifyContent={"space-between"}
           alignItems={"baseline"}
           mb={6}
-          maxW={1060}
+          maxW={1200}
           px={4}
           m={"auto"}
           flexDir={{ base: "column", sm: "row" }}
