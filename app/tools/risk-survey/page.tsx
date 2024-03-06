@@ -1,8 +1,11 @@
 import RiskSurvey from "@/components/tools/risk-survey";
 import { Flex, Text, Heading } from "@chakra-ui/react";
 import React from "react";
+import { readRiskSurveySubmissionCount } from "../../actions";
 
-const Page = () => {
+const Page = async () => {
+  const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
+
   return (
     <Flex flexDir={"column"} gap={4}>
       <Flex flexDir={"column"}>
@@ -12,7 +15,7 @@ const Page = () => {
           against everyone else who has used this tool.
         </Text>
       </Flex>
-      <RiskSurvey />
+      <RiskSurvey submissionCount={riskSurveySubmissionCount} />
     </Flex>
   );
 };

@@ -29,8 +29,9 @@ const initialValues = investments.reduce<{ [key: string]: number }>((p, c) => {
   return p;
 }, {});
 
-const RiskSurvey = ({}) => {
+const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+
   const router = useRouter();
   return (
     <Formik
@@ -68,10 +69,11 @@ const RiskSurvey = ({}) => {
             p={6}
           >
             <Box>
-              <Text fontWeight={500} fontSize={"xl"} textAlign={"center"}>
-                Frame your risk!
+              <Text fontWeight={500} fontSize={"2xl"} textAlign={"center"}>
+                Compare how you percieve risk against{" "}
+                <b className="text-hollywood-400">{submissionCount}</b> others!
               </Text>
-              <Text fontSize={"lg"} textAlign={"center"}>
+              <Text fontSize={"md"} textAlign={"center"} opacity={0.8}>
                 Rate each of the following investments riskiness on a scale from
                 Cash to NFTs to see how your percieved risk compared to everyone
                 elses!

@@ -26,7 +26,7 @@ const Articles = async () => {
 };
 
 const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
-  <Link href={`/articles/${id}`} className="h-full">
+  <Link href={`/articles/${id}`} className="h-full ">
     <Card>
       <Flex
         textColor={"white"}

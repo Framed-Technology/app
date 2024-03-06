@@ -1,9 +1,11 @@
 import RiskSurvey from "@/components/tools/risk-survey";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import Image from "next/image";
-import platypusWalking from "../public/platypus-walking.svg"
+import platypusWalking from "../public/platypus-walking.svg";
+import { readRiskSurveySubmissionCount } from "./actions";
 
-export default function Home() {
+export const Home = async () => {
+  const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
   return (
     <Flex
       flexDir={"column"}
@@ -21,10 +23,10 @@ export default function Home() {
         <Attention />
         <Interest />
       </Flex>
-      <RiskSurvey/>
+      <RiskSurvey submissionCount={riskSurveySubmissionCount} />
     </Flex>
   );
-}
+};
 
 const Interest = () => (
   <Flex justifyContent={"center"} alignItems={"center"} w="full" p={4}>
@@ -42,10 +44,15 @@ const Attention = () => (
     textAlign={{ base: "center", lg: "left" }}
     maxW={{ base: "100%", lg: 600 }}
   >
-    <Heading as="h1" size={{ base: "xl", sm: "2xl", md: "3xl" }}>
+    <Heading
+      as="h1"
+      size={{ base: "2xl", sm: "3xl", md: "4xl" }}
+      textColor={"picton-blue.400"}
+    >
       Your Finances Framed
     </Heading>
     <Heading
+      opacity={0.8}
       as="h2"
       size={{ base: "md", sm: "lg", md: "xl" }}
       fontWeight={"400"}
@@ -56,3 +63,5 @@ const Attention = () => (
     </Heading>
   </Box>
 );
+
+export default Home;
