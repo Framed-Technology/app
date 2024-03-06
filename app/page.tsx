@@ -4,7 +4,7 @@ import Image from "next/image";
 import platypusWalking from "../public/platypus-walking.svg";
 import { readRiskSurveySubmissionCount } from "./actions";
 
-export const Home = async () => {
+const Home = async () => {
   const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
   return (
     <Flex
