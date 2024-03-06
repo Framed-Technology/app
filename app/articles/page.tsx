@@ -11,28 +11,15 @@ const Articles = async () => {
   return (
     <Flex flexDir={"column"} gap={4}>
       <Heading>Articles</Heading>
-      <Flex
-        flexDir={"column"}
-        gap={4}
-        p={4}
-        bg={"lily-white.100"}
-        shadow={"5px 5px 0 black"}
-        borderWidth={2}
-        borderColor={"black"}
-      >
-        <SimpleGrid
-          minChildWidth={{ base: "250px", md: "350px" }}
-          spacing="20px"
-        >
-          {articles.data.map((content) => (
-            <ArticleCard
-              key={content.id}
-              id={content.id}
-              article={content.attributes}
-            />
-          ))}
-        </SimpleGrid>
-      </Flex>
+      <SimpleGrid minChildWidth={{ base: "250px", md: "350px" }} spacing="20px">
+        {articles.data.map((content) => (
+          <ArticleCard
+            key={content.id}
+            id={content.id}
+            article={content.attributes}
+          />
+        ))}
+      </SimpleGrid>
     </Flex>
   );
 };

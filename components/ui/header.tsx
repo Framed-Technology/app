@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
-import platypusLogo from "../../public/platypus.svg"
+import platypusLogo from "../../public/platypus.svg";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
 
@@ -55,17 +55,17 @@ const Nav = () => (
   <Box className="translate-y-6">
     <Flex gap={4}>
       <Link href={"/articles"}>
-        <Button className="hover:scale-110" colorScheme="pink-salmon">
+        <Button colorScheme="hollywood">
           Articles
         </Button>
       </Link>
       <Link href={"/tools"}>
-        <Button className="hover:scale-110" colorScheme="pink-salmon">
+        <Button colorScheme="hollywood">
           Tools
         </Button>
       </Link>
       <Link href={"/community"}>
-        <Button className="hover:scale-110" colorScheme="pink-salmon">
+        <Button colorScheme="hollywood">
           Community
         </Button>
       </Link>

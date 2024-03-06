@@ -34,7 +34,7 @@ const investments = [
     name: "Bitcoin",
     description: "Debt issues by the US Goverment",
     link: "https://www.investopedia.com/terms/g/government-bond.asp",
-  },
+  }
 ];
 
 const investmentMap = investments.reduce<{

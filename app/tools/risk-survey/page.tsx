@@ -7,7 +7,10 @@ const Page = () => {
     <Flex flexDir={"column"} gap={4}>
       <Flex flexDir={"column"}>
         <Heading>Risk Survey</Heading>
-        <Text>Copy copy copy</Text>
+        <Text>
+          Understand how you think about risk by framing your percieved risk
+          against everyone else who has used this tool.
+        </Text>
       </Flex>
       <RiskSurvey />
     </Flex>
