@@ -50,6 +50,12 @@ export const colors = {
     "700": "#92095c",
     "800": "#5b0035",
   },
+  constrast: {
+    "100": "#f50da3",
+    "200": "#46c3ea",
+    "300": "#92095c",
+    "400": "#046aa0",
+  },
 } as const;
 
 const components = {

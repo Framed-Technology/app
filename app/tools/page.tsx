@@ -22,17 +22,23 @@ const toolDescriptions = [
     path: "/tools/risk-survey",
     preview: "/tools/risk-survey.png",
   },
+  {
+    name: "Risk Calculator",
+    description:
+      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+    created: new Date("2024-03-08"),
+    path: "/tools/rvol-calculator",
+    preview: "/tools/rvol-calculator.png",
+  },
 ];
 
 const Tools = () => {
   return (
     <Flex flexDir={"column"} gap={4}>
       <Heading>Tools</Heading>
-      <SimpleGrid minChildWidth={{ base: "250px", md: "350px" }} spacing="20px">
         {toolDescriptions.map((tool, key) => (
           <Tool key={key} tool={tool} />
         ))}
-      </SimpleGrid>
     </Flex>
   );
 };

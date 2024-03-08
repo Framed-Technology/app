@@ -3,7 +3,7 @@ import { Flex, Text, Heading } from "@chakra-ui/react";
 import React from "react";
 import { readRiskSurveySubmissionCount } from "../../actions";
 
-const Page = async () => {
+const RiskSurveyPage = async () => {
   const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
 
   return (
@@ -20,4 +20,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default RiskSurveyPage;

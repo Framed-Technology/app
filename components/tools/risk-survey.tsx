@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ComponentProps, useEffect, useRef, useState } from "react";
+import React, { ComponentProps, useState } from "react";
 import {
   Box,
   Button,
@@ -33,29 +33,31 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const router = useRouter();
+
+  const handleSubmit = async (
+    values: { [key: string]: number },
+    { setSubmitting }: { setSubmitting: (b: boolean) => void }
+  ) => {
+    const resultId = uuidv4();
+    const data = Object.keys(values).map((investmentId) => {
+      return {
+        investmentId,
+        userRisk: values[investmentId],
+        sessionId: resultId,
+      };
+    });
+    try {
+      await insertPerceivedInvestmentRisk(data);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Error occured while submitting form:", err);
+    } finally {
+      setSubmitting(false);
+      router.push(`/tools/risk-survey/${resultId}`);
+    }
+  };
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={async (values, { setSubmitting }) => {
-        const resultId = uuidv4();
-        const data = Object.keys(values).map((investmentId) => {
-          return {
-            investmentId,
-            userRisk: values[investmentId],
-            sessionId: resultId,
-          };
-        });
-        try {
-          await insertPerceivedInvestmentRisk(data);
-          setIsSubmitted(true);
-        } catch (err) {
-          console.error("Error occured while submitting form:", err);
-        } finally {
-          setSubmitting(false);
-          router.push(`/tools/risk-survey/${resultId}`);
-        }
-      }}
-    >
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {(formik) => (
         <form className="w-full h-full" onSubmit={formik.handleSubmit}>
           <Flex
