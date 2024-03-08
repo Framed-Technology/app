@@ -43,7 +43,7 @@ NumberInputField.defaultProps = {
   bg: "white",
 };
 
-const PortfolioForm = () => {
+const RvolCalculator = () => {
   const [entries, setEntries] = useState([
     { ticker: "", holding: 0, id: uuidv4() },
   ]);
@@ -280,4 +280,4 @@ const PortfolioPieChart = ({
   );
 };
 
-export default PortfolioForm;
+export default RvolCalculator;
