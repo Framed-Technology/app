@@ -4,12 +4,14 @@ import {
   readPerceivedInvestmentRisks,
   readRiskBySessionId,
 } from "./actions";
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Card from "@/components/ui/card";
 import SummaryChart from "./summary-chart";
 import InvestmentChart from "./investment-chart";
 import { investmentMap } from "@/static/investments";
 import InvestmentCard from "@/components/ui/investment-card";
+import Link from "next/link";
+import { FaCalculator } from "react-icons/fa";
 
 export const dynamic = "force-dynamic";
 
@@ -68,6 +70,17 @@ const RiskSurveyResults = async (props: Props) => {
             Visualise where your precieved risk overlaps with the community
           </Text>
           <SummaryChart userRisks={userRisks} means={means} />
+        </Flex>
+        <Flex w="full" justifyContent={"end"}>
+          <Link href={`/tools/rvol-calculator`}>
+            <Button
+              rightIcon={<FaCalculator />}
+              w={{ base: "full", md: "fit-content" }}
+              colorScheme="picton-blue"
+            >
+              Risk Caclulator
+            </Button>
+          </Link>
         </Flex>
       </Card>
 
