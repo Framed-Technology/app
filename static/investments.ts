@@ -1,40 +1,62 @@
 const investments = [
   {
-    id: "SPY",
-    name: "S&P500",
-    description: "An index that tracks the 500 largest companies in the US",
-    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
+    id: "GOVT",
+    name: "Government Bond ETF",
+    description: "Seeks to track the investment results of an index composed of U.S. Treasury bonds",
+    link: "https://www.ig.com/en/bonds/what-are-government-bonds",
   },
   {
-    id: "NZB",
+    id: "VTC",
     name: "Corporate Bond ETF",
-    description: "Debt issued by companies",
-    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
+    description: "Seeks to track the investment results of an index composed of U.S. Corporate bonds",
+    link: "https://www.investor.gov/introduction-investing/investing-basics/investment-products/bonds-or-fixed-income-products",
   },
   {
-    id: "TSLA",
-    name: "Tesla Inc.",
-    description: "Equity in Tesla Motors",
-    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
+    id: "GLD",
+    name: "Gold ETF",
+    description: "Seeks to track the price of gold bullion in the over-the-counter (OTC) market",
+    link: "[https://www.investopedia.com/articles/investing/122515/gld-ishares-gold-trust-etf.asp#:~:text=GLD tracks the price of,tracking error of around 0.93%25](https://www.investopedia.com/articles/investing/122515/gld-ishares-gold-trust-etf.asp#:~:text=GLD%20tracks%20the%20price%20of,tracking%20error%20of%20around%200.93%25).",
   },
+  {
+    id: "SPY",
+    name: "S&P500 Index ETF",
+    description: "Seeks to track the investment results of an index composed of the 500 largest U.S. corporations",
+    link: "https://www.investopedia.com/articles/investing/090414/sp-500-etfs-what-every-investor-should-know.asp",
+  },
+  {
+    id: "EEM",
+    name: "Emerging Markets ETF",
+    description: "Seeks to track the investment results of an index composed of large- and mid-sized emerging market equities",
+    link: "https://www.investopedia.com/terms/e/emerging-market-etf.asp",
+  },
+  {
+    id: "USRT",
+    name: "REIT ETF",
+    description: "Seeks to track the investment results of an index composed of U.S. real estate equities",
+    link: "https://www.investor.gov/introduction-investing/investing-basics/investment-products/real-estate-investment-trusts-reits",
+
+  },
+
+  {
+    id: "JNJ",
+    name: "Johnson & Johnson",
+    description: "An Income Equity",
+    link: "https://corporatefinanceinstitute.com/resources/career-map/sell-side/capital-markets/income-stocks/",
+  },
+
   {
     id: "AMZN",
-    name: "Amazon Inc.",
-    description: "Equity in Microsoft",
-    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
+    name: "Amazon",
+    description: "A Growth Equity",
+    link: "https://corporatefinanceinstitute.com/resources/career-map/sell-side/capital-markets/growth-stocks/",
   },
+
   {
-    id: "NGB",
-    name: "Government Bond ETF",
-    description: "Debt issues by the US Goverment",
-    link: "https://www.investopedia.com/terms/c/corporatebond.asp",
+    id: "IBIT",
+    name: "Bitcoin ETF",
+    description: "Seeks to reflect generally the performance of the price of bitcoin",
+    link: "https://medium.com/free-code-camp/explain-bitcoin-like-im-five-73b4257ac833",
   },
-  {
-    id: "BTC",
-    name: "Bitcoin",
-    description: "Debt issues by the US Goverment",
-    link: "https://www.investopedia.com/terms/g/government-bond.asp",
-  }
 ];
 
 const investmentMap = investments.reduce<{
