@@ -72,10 +72,10 @@ const RiskSurveyResults = async (props: Props) => {
           <SummaryChart userRisks={userRisks} means={means} />
         </Flex>
         <Flex w="full" justifyContent={"end"}>
-          <Link href={`/tools/rvol-calculator`}>
+          <Link className="w-full md:w-fit" href={`/tools/rvol-calculator`}>
             <Button
               rightIcon={<FaCalculator />}
-              w={{ base: "full", md: "fit-content" }}
+              w="full"
               colorScheme="picton-blue"
             >
               Risk Caclulator

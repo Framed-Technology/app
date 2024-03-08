@@ -144,7 +144,15 @@ const RvolCalculator = () => {
         <Flex gap={4} p={4} flexDir={"column"} w="full">
           {entries.map((entry, key) => {
             return (
-              <Flex gap={4} key={key} w="full" justifyContent={"space-between"}>
+              <Flex
+                gap={4}
+                key={key}
+                w="full"
+                justifyContent={"space-between"}
+                flexDir={{ base: "column", sm: "row" }}
+                p={{ base: 4, sm: 0 }}
+                bg={{ base: "pink-salmon.400", sm: "transparent" }}
+              >
                 <Input
                   w="full"
                   placeholder="Investment"
@@ -181,7 +189,8 @@ const RvolCalculator = () => {
                   borderWidth={2}
                   borderColor={"black"}
                   shadow={"5px 5px 0 black"}
-                  w={200}
+                  w={{ base: "full", sm: 200 }}
+                  h="40px"
                   gap={1}
                   justifyContent={"center"}
                   alignItems={"center"}
