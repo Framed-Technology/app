@@ -1,18 +1,18 @@
 import { colors } from "@/theme";
-import { Box } from "@chakra-ui/react";
+import { Flex, FlexProps } from "@chakra-ui/react";
 import React from "react";
 
-const Card = ({ children }: { children: React.ReactNode }) => {
+const Card = (props: FlexProps) => {
   return (
-    <Box
+    <Flex
       bg={colors["pink-salmon"][500]}
       borderWidth={2}
       borderColor={"black"}
       shadow={"5px 5px 0 black"}
       p={4}
-    >
-      {children}
-    </Box>
+      flexDir={"column"}
+      {...props}
+    />
   );
 };
 

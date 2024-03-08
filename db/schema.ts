@@ -30,7 +30,7 @@ export const perceivedInvestmentRisk = pgTable("perceived_investment_risk", {
 export const portfolioRiskReturn = pgTable("portfolio_risk_return", {
   id: serial("id").primaryKey(),
   sessionId: text("session_id").notNull(),
-  portfolio: json("portfolio").notNull(),
+  portfolio: json("portfolio").notNull().$type<{ ticker: string, allocation: number }[]>(),
   rvol: doublePrecision("rvol").notNull(),
   ret: doublePrecision("ret").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),

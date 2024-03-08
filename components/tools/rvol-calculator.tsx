@@ -26,6 +26,7 @@ import { colors } from "@/theme";
 import Card from "../ui/card";
 import { calculateRvol, savePortfolioRiskReturn } from "./actions";
 import { useRouter } from "next/navigation";
+import PortfolioPie from "../ui/portfolio-pie";
 
 Input.defaultProps = {
   shadow: "5px 5px 0 black",
@@ -68,6 +69,17 @@ const RvolCalculator = () => {
     [entries]
   );
 
+  const allocations = useMemo(() => {
+    return entries
+      .filter((entry) => entry.holding > 0)
+      .map((entry) => {
+        return {
+          ticker: entry.ticker,
+          allocation: entry.holding / totalHolding,
+        };
+      });
+  }, [totalHolding]);
+
   const handleChange = (id: string, ticker: string, holding: number) => {
     setEntries(
       entries.map((entry) => {
@@ -90,16 +102,9 @@ const RvolCalculator = () => {
     try {
       const resultId = uuidv4();
       setLoading(true);
-      const allocations = entries
-        .filter((entry) => entry.holding > 0)
-        .map((entry) => {
-          return {
-            ticker: entry.ticker,
-            allocation: entry.holding / totalHolding,
-          };
-        });
+
       const riskReturn = await calculateRvol(allocations);
-      savePortfolioRiskReturn(
+      await savePortfolioRiskReturn(
         resultId,
         allocations,
         riskReturn.rvol,
@@ -132,7 +137,7 @@ const RvolCalculator = () => {
             See the composition of your portfolio
           </Text>
 
-          <PortfolioPieChart portfolioEntries={entries} />
+          <PortfolioPie allocations={allocations} />
         </Flex>
       </Card>
       <Card>
@@ -219,64 +224,6 @@ const RvolCalculator = () => {
         </Flex>
       </Card>
     </Flex>
-  );
-};
-
-const PortfolioPieChart = ({
-  portfolioEntries,
-}: {
-  portfolioEntries: {
-    ticker: string;
-    holding: number;
-    id: string;
-  }[];
-}) => {
-  const colorArray = Object.values(colors.constrast);
-
-  if (portfolioEntries.filter((e) => e.holding > 0).length === 0) {
-    return (
-      <Flex
-        h={300}
-        w="full"
-        p={4}
-        justifyContent={"center"}
-        alignItems={"center"}
-        flexDir={"column"}
-      >
-        <Text fontSize={"md"}>No Investments</Text>
-        <Text fontSize={"sm"} opacity={0.8}>
-          Add investments below to see investment breakdown
-        </Text>
-      </Flex>
-    );
-  }
-
-  return (
-    <Box h={300} w="full" p={4}>
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={200} height={200}>
-          <Pie
-            dataKey="holding"
-            data={portfolioEntries.map((entry) => {
-              return { ...entry, name: entry.ticker };
-            })}
-            paddingAngle={4}
-            outerRadius={80}
-            innerRadius={55}
-          >
-            {portfolioEntries.map((entry, index) => (
-              <Cell
-                key={entry.id}
-                fill={colorArray[index % colorArray.length]}
-                strokeWidth={2}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
-    </Box>
   );
 };
 
