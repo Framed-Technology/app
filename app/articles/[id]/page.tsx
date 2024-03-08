@@ -29,8 +29,8 @@ const Article = async (props: Props) => {
       gap={4}
     >
       <Flex
-        flexDir={{base: "column", md: "row"}}
-        justifyContent={{base: "start", md: "space-between"}}
+        flexDir={{ base: "column", md: "row" }}
+        justifyContent={{ base: "start", md: "space-between" }}
         alignItems={"start"}
         borderBottomWidth={2}
         borderColor={"gray.200"}
@@ -39,7 +39,7 @@ const Article = async (props: Props) => {
       >
         <Box>
           <Heading>{article.title}</Heading>
-          <Text>The same description should go here</Text>
+          <Text>{article.description}</Text>
           <Text fontSize={"small"} fontStyle={"italic"}>
             {new Date(article.publishedAt).toDateString()}
           </Text>
