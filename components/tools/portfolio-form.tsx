@@ -12,9 +12,8 @@ import {
   Box,
 } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
-import { Formik } from "formik";
 import { v4 as uuidv4 } from "uuid";
-import { FaPlus } from "react-icons/fa";
+import { FaCog, FaPlus } from "react-icons/fa";
 import {
   Cell,
   Legend,
@@ -25,6 +24,7 @@ import {
 } from "recharts";
 import { colors } from "@/theme";
 import Card from "../ui/card";
+import { calculateRvol } from "./actions";
 
 Input.defaultProps = {
   shadow: "5px 5px 0 black",
@@ -46,6 +46,8 @@ const PortfolioForm = () => {
   const [entries, setEntries] = useState([
     { ticker: "", holding: 0, id: uuidv4() },
   ]);
+
+  const [isLoading, setLoading] = useState(false);
 
   const totalHolding = useMemo(
     () =>
@@ -81,7 +83,26 @@ const PortfolioForm = () => {
     if (entries.length === 1) return;
     setEntries(entries.filter((entry) => entry.id !== id));
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      const allocations = entries
+        .filter((entry) => entry.holding > 0)
+        .map((entry) => {
+          return {
+            ticker: entry.ticker,
+            allocation: entry.holding / totalHolding,
+          };
+        });
+      const riskReturn = await calculateRvol(allocations);
+      alert(JSON.stringify(riskReturn));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Flex flexDir={"column"} gap={4}>
@@ -106,93 +127,87 @@ const PortfolioForm = () => {
         </Flex>
       </Card>
       <Card>
-        <Formik initialValues={{}} onSubmit={handleSubmit}>
-          {(formik) => (
-            <form onSubmit={formik.handleSubmit}>
-              <Flex gap={4} p={4} flexDir={"column"} w="full">
-                {entries.map((entry, key) => {
-                  return (
-                    <Flex
-                      gap={4}
-                      key={key}
-                      w="full"
-                      justifyContent={"space-between"}
+        <Flex gap={4} p={4} flexDir={"column"} w="full">
+          {entries.map((entry, key) => {
+            return (
+              <Flex gap={4} key={key} w="full" justifyContent={"space-between"}>
+                <Input
+                  w="full"
+                  placeholder="Investment"
+                  value={entry.ticker}
+                  onChange={(e) =>
+                    handleChange(entry.id, e.target.value, entry.holding)
+                  }
+                />
+                <InputGroup>
+                  <NumberInput
+                    defaultValue={0}
+                    min={0}
+                    textAlign={"right"}
+                    w={"full"}
+                    value={Number(entry.holding).toLocaleString()}
+                    onChange={(holding) =>
+                      handleChange(entry.id, entry.ticker, Number(holding))
+                    }
+                  >
+                    <NumberInputField textAlign={"right"} />
+                    <InputLeftElement
+                      pointerEvents="none"
+                      color="gray.300"
+                      fontSize="1.2em"
                     >
-                      <Input
-                        w="full"
-                        placeholder="Investment"
-                        value={entry.ticker}
-                        onChange={(e) =>
-                          handleChange(entry.id, e.target.value, entry.holding)
-                        }
-                      />
-                      <InputGroup>
-                        <NumberInput
-                          defaultValue={0}
-                          min={0}
-                          textAlign={"right"}
-                          w={"full"}
-                          value={Number(entry.holding).toLocaleString()}
-                          onChange={(holding) =>
-                            handleChange(
-                              entry.id,
-                              entry.ticker,
-                              Number(holding)
-                            )
-                          }
-                        >
-                          <NumberInputField textAlign={"right"} />
-                          <InputLeftElement
-                            pointerEvents="none"
-                            color="gray.300"
-                            fontSize="1.2em"
-                          >
-                            $
-                          </InputLeftElement>
-                        </NumberInput>
-                      </InputGroup>
+                      $
+                    </InputLeftElement>
+                  </NumberInput>
+                </InputGroup>
 
-                      <Flex
-                        cursor={"not-allowed"}
-                        bg={"white"}
-                        borderWidth={2}
-                        borderColor={"black"}
-                        shadow={"5px 5px 0 black"}
-                        w={200}
-                        gap={1}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                      >
-                        {totalHolding
-                          ? Math.round(
-                              100 * (Number(entry.holding) / totalHolding)
-                            )
-                          : 0}
-                        <Text>%</Text>
-                      </Flex>
-
-                      <Button
-                        colorScheme="red"
-                        isDisabled={entries.length === 1}
-                        onClick={() => handleRemoveEntry(entry.id)}
-                        minWidth={100}
-                      >
-                        Remove
-                      </Button>
-                    </Flex>
-                  );
-                })}
-                <Button
-                  colorScheme="picton-blue"
-                  onClick={handleAddEntry}
-                  rightIcon={<FaPlus />}
+                <Flex
+                  cursor={"not-allowed"}
+                  bg={"white"}
+                  borderWidth={2}
+                  borderColor={"black"}
+                  shadow={"5px 5px 0 black"}
+                  w={200}
+                  gap={1}
+                  justifyContent={"center"}
+                  alignItems={"center"}
                 >
-                  Add Investment
+                  {totalHolding
+                    ? Math.round(100 * (Number(entry.holding) / totalHolding))
+                    : 0}
+                  <Text>%</Text>
+                </Flex>
+
+                <Button
+                  colorScheme="red"
+                  isDisabled={entries.length === 1}
+                  onClick={() => handleRemoveEntry(entry.id)}
+                  minWidth={100}
+                >
+                  Remove
                 </Button>
               </Flex>
-            </form>
-          )}
-        </Formik>
+            );
+          })}
+          <Flex w="full" gap={2} justifyContent={"space-between"}>
+            <Button
+              rightIcon={<FaCog />}
+              colorScheme="hollywood"
+              onClick={handleSubmit}
+              isLoading={isLoading}
+            >
+              Calculate Risk
+            </Button>
+            <Button
+              colorScheme="picton-blue"
+              onClick={handleAddEntry}
+              rightIcon={<FaPlus />}
+              minW={100}
+            >
+              Add
+            </Button>
+          </Flex>
+        </Flex>
       </Card>
     </Flex>
   );

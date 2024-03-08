@@ -6,3 +6,8 @@ export const strapi = axios.create({
     Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
   },
 });
+
+export const tools = axios.create({
+  baseURL: process.env.TOOLS_URL,
+});
+

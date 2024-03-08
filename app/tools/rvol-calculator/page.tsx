@@ -9,7 +9,7 @@ const RvolCalculatorPage = () => {
         <Heading>Realized Volatility Calculator</Heading>
         <Text>
           Find out how much risk your current portfolio takes on as mesaured by
-          realised volatility.
+          realized volatility.
         </Text>
       </Flex>
       <RvolCalculator />

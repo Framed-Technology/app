@@ -36,7 +36,7 @@ const RiskSurveyResults = async (props: Props) => {
             target="_blank"
             className="hover:underline text-hollywood-400"
           >
-            realised volatility
+            realized volatility
           </a>
           .
         </Text>
