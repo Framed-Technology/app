@@ -30,11 +30,16 @@ const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
     <Card>
       <Flex
         textColor={"white"}
-        flexDir={"row"}
+        flexDir={{ base: "column-reverse", md: "row" }}
         gap={4}
         justifyContent={"space-between"}
       >
-        <Flex w={"60%"} flexDir={"column"} justifyContent={"space-between"}>
+        <Flex
+          w={{ base: "100%", md: "60%" }}
+          gap={2}
+          flexDir={"column"}
+          justifyContent={"space-between"}
+        >
           <Box>
             <Heading fontSize={"xl"}>{article.title}</Heading>
             <Text color={"black"}>{article.description}</Text>
@@ -49,7 +54,7 @@ const ArticleCard = ({ id, article }: { id: number; article: Article }) => (
             <Text>{new Date(article.publishedAt).toDateString()}</Text>
           </Flex>
         </Flex>
-        <Box w={"40%"}>
+        <Box w={{ base: "100%", md: "40%" }}>
           <Image
             src="https://picsum.photos/300/200"
             width={0}
