@@ -1,5 +1,5 @@
 import React from "react";
-import PortfolioForm from "./portfolio-form";
+import PortfolioForm from "./rvol-calculator";
 
 const RvolCalculator = () => {
   return <PortfolioForm />;
