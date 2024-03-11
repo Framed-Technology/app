@@ -122,9 +122,10 @@ const RvolCalculator = () => {
     <Flex flexDir={"column"} gap={4}>
       <Card>
         <Flex
+          flexDir={"column"}
           justifyContent={"center"}
           alignItems={"center"}
-          flexDir={"column"}
+          textAlign={"center"}
         >
           <Text
             color={"black"}
