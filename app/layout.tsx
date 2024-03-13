@@ -6,6 +6,7 @@ import { Flex } from "@chakra-ui/react";
 import Header from "@/components/ui/header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/ui/footer";
+import Script from "next/script";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -21,6 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src={`https://app.termly.io/resource-blocker/3d896551-04f9-41db-90da-88f68eb18dc6?autoBlock=on`}
+        />
+      </head>
       <body className={outfit.className}>
         <Providers>
           <Flex flexDir={"column"} w={"full"} minH={"100vh"}>
