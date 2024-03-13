@@ -4,7 +4,7 @@ import PortfolioPie from "@/components/ui/portfolio-pie";
 import Card from "@/components/ui/card";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import CommunityRiskReturnScatter from "./community-risk-return-scatter";
-import CopyButton from "@/components/ui/copy-url-button";
+import CopyUrlButton from "@/components/ui/copy-url-button";
 
 type Props = {
   params: {
@@ -106,9 +106,7 @@ const RiskCalculatorResults = async (props: Props) => {
           communityRiskReturns={allRiskReturns}
         />
       </Card>
-      <CopyButton colorScheme="hollywood" copyText={"TEst"}>
-        Copy Result Link
-      </CopyButton>
+      <CopyUrlButton colorScheme="hollywood">Copy Result Link</CopyUrlButton>
     </Flex>
   );
 };

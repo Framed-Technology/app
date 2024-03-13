@@ -12,6 +12,7 @@ import { investmentMap } from "@/static/investments";
 import InvestmentCard from "@/components/ui/investment-card";
 import Link from "next/link";
 import { FaCalculator } from "react-icons/fa";
+import CopyUrlButton from "@/components/ui/copy-url-button";
 
 export const dynamic = "force-dynamic";
 
@@ -95,6 +96,7 @@ const RiskSurveyResults = async (props: Props) => {
           />
         </InvestmentCard>
       ))}
+      <CopyUrlButton colorScheme="hollywood">Copy Result Link</CopyUrlButton>
     </Flex>
   );
 };
