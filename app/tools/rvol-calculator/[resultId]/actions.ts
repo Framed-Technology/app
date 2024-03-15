@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { portfolioRiskReturn as portfolioTable } from "@/db/schema";
+
 import { eq } from "drizzle-orm";
 
 export const readPortfolioRiskReturn = async (sessionId: string) => {

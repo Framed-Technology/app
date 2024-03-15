@@ -9,24 +9,15 @@ import {
   NumberInputField,
   InputGroup,
   InputLeftElement,
-  Box,
 } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FaCog, FaPlus } from "react-icons/fa";
-import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
-import { colors } from "@/theme";
 import Card from "../ui/card";
 import { calculateRvol, savePortfolioRiskReturn } from "./actions";
 import { useRouter } from "next/navigation";
 import PortfolioPie from "../ui/portfolio-pie";
+import TickerSelect from "./ticker-select";
 
 Input.defaultProps = {
   shadow: "5px 5px 0 black",
@@ -50,6 +41,7 @@ const RvolCalculator = () => {
   ]);
 
   const [isLoading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const totalHolding = useMemo(
@@ -118,6 +110,11 @@ const RvolCalculator = () => {
     }
   };
 
+  const formComplete = useMemo(
+    () => !entries.some((entry) => entry.holding === 0 || entry.ticker === ""),
+    [entries]
+  );
+
   return (
     <Flex flexDir={"column"} gap={4}>
       <Card>
@@ -154,13 +151,13 @@ const RvolCalculator = () => {
                 p={{ base: 4, sm: 0 }}
                 bg={{ base: "pink-salmon.400", sm: "transparent" }}
               >
-                <Input
-                  w="full"
+                <TickerSelect
                   placeholder="Investment"
+                  className="w-full"
                   value={entry.ticker}
-                  onChange={(e) =>
-                    handleChange(entry.id, e.target.value, entry.holding)
-                  }
+                  onChangeCustom={(ticker) => {
+                    handleChange(entry.id, ticker, entry.holding);
+                  }}
                 />
                 <InputGroup>
                   <NumberInput
@@ -215,6 +212,7 @@ const RvolCalculator = () => {
           })}
           <Flex w="full" gap={2} justifyContent={"space-between"}>
             <Button
+              isDisabled={!formComplete || entries.length === 1}
               rightIcon={<FaCog />}
               colorScheme="hollywood"
               onClick={handleSubmit}
@@ -223,6 +221,7 @@ const RvolCalculator = () => {
               Calculate Risk
             </Button>
             <Button
+              isDisabled={!formComplete}
               colorScheme="picton-blue"
               onClick={handleAddEntry}
               rightIcon={<FaPlus />}

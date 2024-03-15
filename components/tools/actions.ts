@@ -1,7 +1,8 @@
 "use server";
 import { tools } from "@/api";
 import { db } from "@/db";
-import { portfolioRiskReturn as potfolioTable } from "@/db/schema";
+import { portfolioRiskReturn as potfolioTable, tickerInfo } from "@/db/schema";
+import { TickerInfo } from "@/db/types";
 
 export const calculateRvol = async (
   allocations: {
@@ -37,6 +38,45 @@ export const savePortfolioRiskReturn = async (
         ret,
       },
     ]);
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const getTickerInfo = async (ticker: string): Promise<TickerInfo> => {
+  try {
+    const res = await tools.get("/tool/risk/ticker_info", {
+      params: {
+        ticker,
+      },
+    });
+    const data = res.data as TickerInfo;
+    await db.insert(tickerInfo).values({
+      ticker,
+      name: data.shortName,
+      info: data,
+    });
+
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const getTickerOptions = async (): Promise<
+  {
+    value: string;
+    label: string;
+  }[]
+> => {
+  try {
+    const options = await db
+      .select({
+        value: tickerInfo.ticker,
+        label: tickerInfo.name,
+      })
+      .from(tickerInfo);
+    return options;
   } catch (err) {
     throw err;
   }

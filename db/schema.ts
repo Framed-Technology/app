@@ -9,6 +9,7 @@ import {
   json,
 } from "drizzle-orm/pg-core";
 import { pgTable } from "drizzle-orm/pg-core";
+import { TickerInfo } from "./types";
 
 export const genderEnum = pgEnum("gender", [
   "Male",
@@ -34,4 +35,14 @@ export const portfolioRiskReturn = pgTable("portfolio_risk_return", {
   rvol: doublePrecision("rvol").notNull(),
   ret: doublePrecision("ret").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+
+export const tickerInfo = pgTable("ticker_info", {
+  id: serial("id").primaryKey(),
+  ticker: text("ticker").notNull(),
+  name: text("name").notNull(),
+  info: json("info").notNull().$type<TickerInfo>(),
+
+
 })
