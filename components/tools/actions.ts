@@ -3,6 +3,7 @@ import { tools } from "@/api";
 import { db } from "@/db";
 import { portfolioRiskReturn as potfolioTable, tickerInfo } from "@/db/schema";
 import { TickerInfo } from "@/db/types";
+import { sql } from "drizzle-orm";
 
 export const calculateRvol = async (
   allocations: {
