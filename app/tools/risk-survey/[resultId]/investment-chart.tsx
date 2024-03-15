@@ -10,14 +10,17 @@ import {
   YAxis,
   ReferenceLine,
   Label,
+  Tooltip,
 } from "recharts";
 
 const InvestmentChart = ({
   userRisk,
+  investmentRvol,
   investmentId,
   investmentVotes,
 }: {
   userRisk: number;
+  investmentRvol: number;
   investmentId: string;
   investmentVotes: {
     investmentId: string | null;
@@ -36,11 +39,12 @@ const InvestmentChart = ({
 
   return (
     <Flex w={"full"} h={175} gap={0} flexDir={"column"}>
+      {investmentRvol}
       <ResponsiveContainer width="100%" height={"100%"}>
         <AreaChart
           data={data}
           margin={{
-            top: 0,
+            top: 20,
             right: 0,
             left: 0,
             bottom: 0,
@@ -55,13 +59,16 @@ const InvestmentChart = ({
             fillOpacity={0.3}
             strokeWidth={2}
           />
+          <Tooltip />
           <XAxis
+            type="number"
             label={"Risk Level"}
             dataKey={"riskLevel"}
             domain={[1, 12]}
             tick={false}
           />
           <YAxis
+            type="number"
             dataKey={"count"}
             label={"Votes"}
             tick={false}
@@ -75,6 +82,15 @@ const InvestmentChart = ({
           >
             <Label color="#fff" position={"top"}>
               You
+            </Label>
+          </ReferenceLine>
+          <ReferenceLine
+            x={investmentRvol}
+            strokeWidth={2}
+            stroke={colors.hollywood["600"]}
+          >
+            <Label color="#fff" position={"top"}>
+              rVol
             </Label>
           </ReferenceLine>
         </AreaChart>

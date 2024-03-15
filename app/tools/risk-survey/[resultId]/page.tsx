@@ -89,6 +89,7 @@ const RiskSurveyResults = async (props: Props) => {
         <InvestmentCard key={key} investment={investmentMap[itm.investmentId!]}>
           <InvestmentChart
             userRisk={itm.riskLevel}
+            investmentRvol={investmentMap[itm.investmentId!].rvol}
             investmentId={itm.investmentId!}
             investmentVotes={votes.filter(
               (v) => v.investmentId === itm.investmentId

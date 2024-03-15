@@ -83,7 +83,7 @@ const TickerSelect = (props: Props) => {
       }}
       formatCreateLabel={(ticker: string) => (
         <Flex flexDir={"column"}>
-          <Text textColor={"gray.200"} fontSize={"sm"}>
+          <Text textColor={"black"} fontSize={"sm"}>
             Search for ticker:
           </Text>
           <Text fontWeight={600}>{ticker.toUpperCase()}</Text>
