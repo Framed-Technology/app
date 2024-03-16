@@ -1,8 +1,9 @@
 "use client";
 
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps, ComponentType, useEffect, useState } from "react";
 import { getTickerInfo, getTickerOptions } from "./actions";
 import CreatableSelect from "react-select/creatable";
+import { OptionProps, GroupBase, components, createFilter } from "react-select";
 import { colors } from "@/theme";
 import { Flex, Text } from "@chakra-ui/react";
 
@@ -31,15 +32,15 @@ const TickerSelect = (props: Props) => {
 
   useEffect(() => {
     const getOptions = async () => {
-        try {
-            setIsLoading(true)
-            const options = await getTickerOptions();
-            setInvestmentOptions(options);
-        } catch (err) {
-            alert("Error loading investments")
-        } finally {
-            setIsLoading(false)
-        }
+      try {
+        setIsLoading(true);
+        const options = await getTickerOptions();
+        setInvestmentOptions(options);
+      } catch (err) {
+        alert("Error loading investments");
+      } finally {
+        setIsLoading(false);
+      }
     };
     getOptions();
   }, []);
@@ -75,11 +76,6 @@ const TickerSelect = (props: Props) => {
           borderRadius: 0,
           boxShadow: state.isFocused ? "none" : "5px 5px 0 black",
         }),
-        option: (base, state) => ({
-          ...base,
-          backgroundColor: state.isFocused ? colors.hollywood[400] : "none",
-          color: state.isFocused ? "white" : "black",
-        }),
       }}
       formatCreateLabel={(ticker: string) => (
         <Flex flexDir={"column"}>
@@ -94,8 +90,27 @@ const TickerSelect = (props: Props) => {
       options={investmentOptions}
       onCreateOption={handleCreate}
       onChange={onChangeAdapter}
+      components={{ Option: CustomOption as any }}
+      filterOption={createFilter({ ignoreAccents: false })}
       {...rest}
     />
+  );
+};
+
+const CustomOption: ComponentType<
+  OptionProps<Option, boolean, GroupBase<Option>>
+> = ({ children, ...props }) => {
+  const { onMouseMove, onMouseOver, ...newInnerProps } = props.innerProps;
+  props.innerProps = newInnerProps;
+  return (
+    <components.Option {...props} className="hover:bg-hollywood-500 hover:text-white">
+      <Flex flexDir={"column"}>
+        <Text fontSize={"xs"}>
+          {props.data.value}
+        </Text>
+        <Text fontWeight={600}>{children}</Text>
+      </Flex>
+    </components.Option>
   );
 };
 
