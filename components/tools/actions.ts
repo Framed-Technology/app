@@ -3,7 +3,6 @@ import { tools } from "@/api";
 import { db } from "@/db";
 import { portfolioRiskReturn as potfolioTable, tickerInfo } from "@/db/schema";
 import { TickerInfo } from "@/db/types";
-import { sql } from "drizzle-orm";
 
 export const calculateRvol = async (
   allocations: {
@@ -44,16 +43,18 @@ export const savePortfolioRiskReturn = async (
   }
 };
 
-export const getTickerInfo = async (ticker: string): Promise<TickerInfo> => {
+export const getAndSaveTickerInfo = async (ticker: string): Promise<TickerInfo> => {
   try {
+    // get data from tools (which just hits yfinance)
     const res = await tools.get("/tool/risk/ticker_info", {
       params: {
         ticker,
       },
     });
     const data = res.data as TickerInfo;
+    // write to db
     await db.insert(tickerInfo).values({
-      ticker,
+      ticker: ticker.toUpperCase(),
       name: data.shortName,
       info: data,
     });

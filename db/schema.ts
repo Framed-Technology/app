@@ -43,6 +43,4 @@ export const tickerInfo = pgTable("ticker_info", {
   ticker: text("ticker").notNull(),
   name: text("name").notNull(),
   info: json("info").notNull().$type<TickerInfo>(),
-
-
 })

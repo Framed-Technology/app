@@ -54,20 +54,14 @@ const Logo = () => (
 const Nav = () => (
   <Box className="translate-y-6">
     <Flex gap={4}>
-      <Link href={"/articles"}>
-        <Button colorScheme="hollywood">
-          Articles
-        </Button>
+      <Link href={"/courses"}>
+        <Button colorScheme="hollywood">Courses</Button>
       </Link>
       <Link href={"/tools"}>
-        <Button colorScheme="hollywood">
-          Tools
-        </Button>
+        <Button colorScheme="hollywood">Tools</Button>
       </Link>
       <Link href={"/community"}>
-        <Button colorScheme="hollywood">
-          Community
-        </Button>
+        <Button colorScheme="hollywood">Community</Button>
       </Link>
     </Flex>
   </Box>

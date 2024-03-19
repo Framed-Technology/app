@@ -1,3 +1,5 @@
+import platypusLogo from "../../public/platypus.svg";
+
 export type StrapiContentResponse<T> = {
   data: {
     id: number;
@@ -5,16 +7,46 @@ export type StrapiContentResponse<T> = {
   }[];
 };
 
-type Content = {
+export type Content = {
   publishedAt: string;
 };
 
-export type Article =
+type PathLevel = "Level 1" | "Level 2" | "Level 3";
+
+export type Path =
   | {
+      slug: string;
       title: string;
       description: string;
-      articleMarkdown: string;
+      level: PathLevel;
+      isFree: boolean;
+      image?: any;
+      articles?: StrapiContentResponse<Article>
+    } & Content;
+
+export type Article =
+  | {
+      slug: string;
+      pathSlug: string;
+      index: number;
+      title: string;
+      subTitle: string;
+      description: string;
+      content: string;
+      minsToRead?: number;
       thumbnail?: any;
       authorAvatar?: any;
-    }
-  & Content;
+      authorName?: string;
+    } & Content;
+
+export type Post =
+  | {
+      slug: string;
+      title: string;
+      subTitle: string;
+      description: string;
+      content: string;
+      minsToRead?: number;
+      thumbnail?: any;
+      authorAvatar?: any;
+    } & Content;

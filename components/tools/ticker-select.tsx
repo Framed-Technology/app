@@ -1,10 +1,9 @@
 "use client";
 
 import { ComponentProps, ComponentType, useEffect, useState } from "react";
-import { getTickerInfo, getTickerOptions } from "./actions";
+import { getAndSaveTickerInfo, getTickerOptions } from "./actions";
 import CreatableSelect from "react-select/creatable";
 import { OptionProps, GroupBase, components, createFilter } from "react-select";
-import { colors } from "@/theme";
 import { Flex, Text } from "@chakra-ui/react";
 
 interface Option {
@@ -14,11 +13,12 @@ interface Option {
 
 type Props = Omit<
   ComponentProps<CreatableSelect>,
-  "isLoading | options | onCreateOption | onChange | value"
+  "isLoading | options | onCreateOption | onChange"
 > & {
   onChangeCustom: (ticker: string) => void;
-  value: string;
 };
+
+
 const TickerSelect = (props: Props) => {
   const { value, onChangeCustom, ...rest } = props;
 
@@ -28,6 +28,7 @@ const TickerSelect = (props: Props) => {
       label: string;
     }[]
   >([]);
+  
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const TickerSelect = (props: Props) => {
   const handleCreate = async (ticker: string) => {
     try {
       setIsLoading(true);
-      const tickerInfo = await getTickerInfo(ticker);
+      const tickerInfo = await getAndSaveTickerInfo(ticker);
       setInvestmentOptions([
         ...investmentOptions,
         { value: ticker.toUpperCase(), label: tickerInfo.shortName },
@@ -96,6 +97,7 @@ const TickerSelect = (props: Props) => {
     />
   );
 };
+
 
 const CustomOption: ComponentType<
   OptionProps<Option, boolean, GroupBase<Option>>
