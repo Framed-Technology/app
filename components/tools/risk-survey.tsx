@@ -62,7 +62,7 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
       {(formik) => (
         <form className="w-full h-full" onSubmit={formik.handleSubmit}>
           <CardContainer>
-            <Box paddingRight={20} paddingLeft={20} marginBottom={2}>
+            <Box paddingRight={{ base: 4, lg: 20 }} paddingLeft={{ base: 4, lg: 20 }} marginBottom={2}>
               <Text
                 fontWeight={500}
                 fontSize={"3xl"}

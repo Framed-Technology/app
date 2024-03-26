@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Open_Sans as OpenSansFont } from "next/font/google";
+import { Open_Sans as OpenSansFont} from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 import { Flex } from "@chakra-ui/react";
@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
 
-const OpenSans = OpenSansFont({ subsets: ["latin"] });
+export const OpenSans = OpenSansFont({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "framed.",

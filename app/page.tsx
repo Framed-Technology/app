@@ -3,6 +3,9 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import Image from "next/image";
 import platypusWalking from "../public/platypus-walking.svg";
 import { readRiskSurveySubmissionCount } from "./actions";
+import { Lato } from "next/font/google";
+
+const lato = Lato({ subsets: ["latin"], weight: "700" });
 
 const Home = async () => {
   const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
@@ -16,9 +19,10 @@ const Home = async () => {
       <Flex
         flexDir={{ base: "column", lg: "row" }}
         justifyContent={{ base: "none", lg: "space-between" }}
-        gap={{ base: 8, lg: 4 }}
+        gap={{ base: 12, lg: 4 }}
         alignItems={"center"}
-        py={8}
+        pt={16}
+        pb={{ base: 16, lg: 24 }}
       >
         <Attention />
         <Interest />
@@ -29,12 +33,13 @@ const Home = async () => {
 };
 
 const Interest = () => (
-  <Flex justifyContent={"center"} alignItems={"center"} w="full" p={4}>
+  <Flex justifyContent={{ base: "center", lg: "end" }} alignItems={"center"} 
+  maxW={{ base: "100%", lg: "40%" }} w="full">
     <Image
       src={platypusWalking}
       alt="Platypus Walking"
-      width={500}
-      height={500}
+      width={400}
+      height={400}
     />
   </Flex>
 );
@@ -42,23 +47,27 @@ const Interest = () => (
 const Attention = () => (
   <Box
     textAlign={{ base: "center", lg: "left" }}
-    maxW={{ base: "100%", lg: 600 }}
+    maxW={{ base: "100%", lg: "100%" }}
+    w="full"
   >
-    <Heading
+    <Heading style={lato.style}
       as="h1"
-      size={{ base: "2xl", sm: "3xl", md: "4xl" }}
+      size={{ base: "3xl", sm: "4xl"}}
+      fontSize={{lg:'92px'}}
       textColor={"picton-blue.400"}
+      marginBottom={4}
+      letterSpacing={-3}
+      fontWeight="bold"
     >
       Your Finances Framed
     </Heading>
     <Heading
-      opacity={0.8}
       as="h2"
-      size={{ base: "md", sm: "lg", md: "xl" }}
+      size={{ base: "sm", sm: "md", md: "lg" }}
       fontWeight={"400"}
     >
       {
-        "We're on a mission to help young investors understand their portfolio risk."
+        "We're on a mission to help young investors understand their portfolio risk"
       }
     </Heading>
   </Box>
