@@ -54,7 +54,7 @@ const RiskSurveyResults = async (props: Props) => {
           textAlign={"center"}
         >
           <Text
-            textColor={"white"}
+            textColor={"black"}
             opacity={0.5}
             fontSize={{ base: "xs", md: "sm", lg: "md" }}
           >
@@ -67,7 +67,7 @@ const RiskSurveyResults = async (props: Props) => {
           >
             Your Risk Map
           </Text>
-          <Text color={"white"} fontSize={"xl"} fontWeight={400}>
+          <Text color={"black"} fontSize={"xl"} fontWeight={400}>
             Visualise where your precieved risk overlaps with the community
           </Text>
           <SummaryChart userRisks={userRisks} means={means} />

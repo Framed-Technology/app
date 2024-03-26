@@ -18,6 +18,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
 import { Investment, investments } from "@/static/investments";
 import InvestmentCard from "../ui/investment-card";
+import CardContainer from "../ui/card-container";
 
 type InvestmentRiskSliderProps = {
   investment: Investment;
@@ -60,50 +61,45 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {(formik) => (
         <form className="w-full h-full" onSubmit={formik.handleSubmit}>
-          <Flex
-            flexDir={"column"}
-            gap={4}
-            w={"full"}
-            bg={"lily-white.100"}
-            shadow={"5px 5px 0 black"}
-            borderColor={"black"}
-            borderWidth={2}
-            p={6}
-          >
-            <Box>
-              <Text fontWeight={500} fontSize={"2xl"} textAlign={"center"}>
+          <CardContainer>
+            <Box paddingRight={20} paddingLeft={20} marginBottom={2}>
+              <Text
+                fontWeight={500}
+                fontSize={"3xl"}
+                textAlign={"center"}
+                marginBottom={4}
+              >
                 Compare how you percieve risk against{" "}
-                <b className="text-hollywood-400">{submissionCount}</b> others!
+                <b className="text-hollywood-400">{submissionCount}</b> others
               </Text>
               <Text fontSize={"md"} textAlign={"center"} opacity={0.8}>
                 Rate each of the following investments riskiness on a scale from
                 Cash to NFTs to see how your percieved risk compared to everyone
-                elses!
+                elses
               </Text>
             </Box>
-
-            {investments.map((investment, key) => (
-              <InvestmentCard key={key} investment={investment}>
-                <InvestmentRiskSlider
-                  investment={investment}
-                  inputProps={{
-                    value: formik.values[investment.id],
-                    onChange: (value: number) =>
-                      formik.setFieldValue(investment.id, value),
-                  }}
-                />
-              </InvestmentCard>
-            ))}
-
+              {investments.map((investment, key) => (
+                <InvestmentCard key={key} investment={investment}>
+                  <InvestmentRiskSlider
+                    investment={investment}
+                    inputProps={{
+                      value: formik.values[investment.id],
+                      onChange: (value: number) =>
+                        formik.setFieldValue(investment.id, value),
+                    }}
+                  />
+                </InvestmentCard>
+              ))}
             <Button
               isLoading={formik.isSubmitting}
               isDisabled={isSubmitted}
               type="submit"
               colorScheme="hollywood"
+              marginTop={2}
             >
               Submit
             </Button>
-          </Flex>
+          </CardContainer>
         </form>
       )}
     </Formik>
@@ -119,18 +115,28 @@ const InvestmentRiskSlider = (props: InvestmentRiskSliderProps) => {
       max={12}
       {...props.inputProps}
     >
-      <SliderTrack rounded={"full"} h={4} bg="pink-salmon.400">
+      <SliderTrack rounded={"full"} h={4} bg="hollywood.50">
         <SliderFilledTrack bg="hollywood.500" />
       </SliderTrack>
       <SliderThumb h={5} w={5} />
       <SliderMark mt={3} ml={-1} value={1}>
-        <Text fontWeight={500} textColor={"white"}>
+        <Text
+          fontWeight={400}
+          textColor={"black"}
+          opacity={0.8}
+          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
+        >
           Cash
         </Text>
       </SliderMark>
       <SliderMark mt={3} ml={-8} value={12}>
-        <Text fontWeight={500} textColor={"white"}>
-          NFTs
+        <Text
+          fontWeight={400}
+          textColor={"black"}
+          opacity={0.8}
+          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
+        >
+          Bitcoin
         </Text>
       </SliderMark>
       <SliderMark mt={-10} ml={-4} value={props.inputProps.value!}>

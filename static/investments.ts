@@ -17,7 +17,7 @@ const investments = [
   {
     id: "JNJ",
     name: "Johnson & Johnson",
-    description: "An Income Equity",
+    description: "An 'Income' Stock",
     rvol: 7.5,
     link: "https://corporatefinanceinstitute.com/resources/career-map/sell-side/capital-markets/income-stocks/",
   },
@@ -32,7 +32,7 @@ const investments = [
   {
     id: "AMZN",
     name: "Amazon",
-    description: "A Growth Stock",
+    description: "A 'Growth' Stock",
     rvol: 9.8,
     link: "https://corporatefinanceinstitute.com/resources/career-map/sell-side/capital-markets/growth-stocks/",
   },

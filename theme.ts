@@ -61,7 +61,7 @@ export const colors = {
 const components = {
   Button: {
     baseStyle: {
-      shadow: "5px 5px 0 black",
+      // shadow: "5px 5px 0 black",
       rounded: 0,
       borderWidth: 2,
       borderColor: "black",

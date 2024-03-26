@@ -49,7 +49,7 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
       <Flex flexDir={"column"}>
         <Text
           fontWeight={600}
-          textColor={"white"}
+          textColor={"black"}
           fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
         >
           {tool.name}
