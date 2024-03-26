@@ -55,6 +55,7 @@ const ArticleScroll = ({ articles }: { articles: ArticleProps[] }) => {
         {articles.map((a, key) => {
           return (
             <Box
+              key={key}
               p={4}
               opacity={key !== activeSlide ? 0.5 : 1}
               _hover={{ opacity: 1 }}
