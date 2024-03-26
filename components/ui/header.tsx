@@ -4,6 +4,9 @@ import React from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import platypusLogo from "../../public/platypus.svg";
+import { FaArrowRight, FaSign, FaUser } from "react-icons/fa";
+import SignUpButton from "./auth/signup-button";
+import AuthButton from "./auth/auth-button";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
 
@@ -23,12 +26,14 @@ const Header = () => {
           alignItems={"baseline"}
           mb={6}
           maxW={1100}
+          position={"relative"}
           px={4}
           m={"auto"}
           flexDir={{ base: "column", sm: "row" }}
         >
           <Logo />
           <Nav />
+          <AuthCta />
         </Flex>
       </Flex>
     </header>
@@ -66,5 +71,12 @@ const Nav = () => (
     </Flex>
   </Box>
 );
+
+const AuthCta = () => (
+  <Flex flexDir={"row"} gap={2} right={0} top={0} position={"absolute"} px={4}>
+    <AuthButton />
+  </Flex>
+);
+
 
 export default Header;
