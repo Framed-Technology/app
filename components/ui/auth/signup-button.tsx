@@ -1,19 +1,28 @@
 import { Button } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
-import { FaUser } from "react-icons/fa";
 
 type SignInButtonProps = {
   buttonText: string;
-  icon?: React.ReactElement;
+  size: string;
+  colorScheme: string;
+  leftIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement;
 };
 
-const SignUpButton = ({ buttonText, icon} : SignInButtonProps) => {
+const SignUpButton = ({
+  buttonText,
+  size,
+  colorScheme,
+  leftIcon,
+  rightIcon,
+}: SignInButtonProps) => {
   return (
     <Button
       onClick={() => signIn("google")}
-      size={"sm"}
-      colorScheme="picton-blue"
-      rightIcon={icon}
+      size={size}
+      colorScheme={colorScheme}
+      rightIcon={rightIcon}
+      leftIcon={leftIcon}
     >
       {buttonText}
     </Button>

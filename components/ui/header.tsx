@@ -33,7 +33,10 @@ const Header = () => {
         >
           <Logo />
           <Nav />
-          <AuthCta />
+          <Flex gap={2} alignItems="center" right={0} top={0} position={"absolute"} px={4}>
+            <AuthCta />
+            <SignUpCta />
+          </Flex>
         </Flex>
       </Flex>
     </header>
@@ -60,23 +63,49 @@ const Nav = () => (
   <Box className="translate-y-6">
     <Flex gap={4}>
       <Link href={"/courses"}>
-        <Button colorScheme="hollywood" shadow="5px 5px 0 black">Courses</Button>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Courses
+        </Button>
       </Link>
       <Link href={"/tools"}>
-        <Button colorScheme="hollywood" shadow="5px 5px 0 black">Tools</Button>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Tools
+        </Button>
       </Link>
       <Link href={"/community"}>
-        <Button colorScheme="hollywood" shadow="5px 5px 0 black">Community</Button>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Community
+        </Button>
       </Link>
     </Flex>
   </Box>
 );
 
 const AuthCta = () => (
-  <Flex flexDir={"row"} gap={2} right={0} top={0} position={"absolute"} px={4}>
-    <AuthButton buttonText="Sign-in" icon={<FaUser />} />
+    <Flex flexDir={"row"} gap={2} alignItems="center"> 
+    <AuthButton
+      size="sm"
+      colorScheme="picton-blue"
+      buttonText="Sign-in"
+      rightIcon={<FaUser />}
+    />
   </Flex>
 );
 
+const SignUpCta = () => {
+  return (
+    <Link href={"/signup"}>
+      <Button
+        colorScheme="glowstone"
+        flexDir={"row"}
+        gap={2}
+        px={2}
+        size="sm"
+      >
+        Sign-up
+      </Button>
+    </Link>
+  );
+};
 
 export default Header;
