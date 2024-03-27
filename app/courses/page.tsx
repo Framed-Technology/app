@@ -5,6 +5,7 @@ import {
   Text,
   Heading,
   SimpleGrid,
+  Button,
   Box,
   Avatar,
   Tag,
@@ -13,17 +14,18 @@ import { Path as PathProps } from "@/api/types";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/ui/card";
-
 import platypusLogo from "../../public/platypus.svg";
-import { FaLock } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 // TODO: update "article" to "learning path"
 
 const Paths = async () => {
   const paths = await readPaths();
   // return <pre>{JSON.stringify(paths, null, 2)}</pre>;
+
   return (
     <Flex flexDir={"column"} gap={4}>
+    <Banner/>
       <Heading fontSize={"lg"}>Learning paths</Heading>
       <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={4}>
         {paths.data.map((path, key) => (
@@ -57,34 +59,38 @@ const Path = ({
   return (
     <Link href={isFree ? `/courses/${slug}` : `/signup`}>
       <Card
+        variant={isFree ? "whiteShadow" : "gradient"}
         position={"relative"}
         flexDir={"row"}
         justifyContent={"space-between"}
       >
-        {!isFree && (
-          <Flex
-            zIndex={50}
-            className="bg-gray-100/60"
-            position={"absolute"}
-            top={0}
-            bottom={0}
-            left={0}
-            right={0}
-            justifyContent={"center"}
-            alignItems={"center"}
-          >
-            <FaLock size={60} className="text-gray-800/50" />
-          </Flex>
-        )}
         <Flex flexDir={"column"} gap={1}>
-          <Tag
-            w={"fit-content"}
-            size={"sm"}
-            colorScheme="hollywood"
-            letterSpacing={1}
-          >
-            {level}
-          </Tag>
+          <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Tag
+              w={"fit-content"}
+              size={"sm"}
+              bg="#FDB548"
+              letterSpacing={1}
+              mr={2}
+            >
+              {level}
+            </Tag>
+            {!isFree && (
+              <Tag
+                w={"fit-content"}
+                size={"sm"}
+                colorScheme="hollywood"
+                letterSpacing={1}
+                gap={2}
+                bg="#EA0091"
+                opacity={1}
+                zIndex={100}
+              >
+                Member-only
+                <FaStar size={16} style={{ color: "#FDB548" }} />
+              </Tag>
+            )}
+          </Flex>
           <Text fontWeight={600} fontSize={"xl"}>
             {title}
           </Text>
@@ -98,6 +104,27 @@ const Path = ({
         </Flex>
       </Card>
     </Link>
+  );
+};
+
+const Banner = () => {
+  return (
+    <Flex
+      bg="blue.500"
+      color="white"
+      alignItems="center"
+      justifyContent="center"
+      p={4}
+    >
+      <Heading fontSize="lg" mr={4}>
+        Get unlimited access for free
+      </Heading>
+      <Link href={"/signup"}>
+        <Button colorScheme="white" variant="outline">
+          Sign Up
+        </Button>
+      </Link>
+    </Flex>
   );
 };
 

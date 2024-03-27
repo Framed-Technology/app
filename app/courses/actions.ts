@@ -11,6 +11,11 @@ export const readArticles = async (): Promise<
 };
 
 export const readPaths = async (): Promise<StrapiContentResponse<Path>> => {
-  const res = await strapi.get("/api/paths?sort=publishedAt:desc&populate=*");
+  const res = await strapi.get("/api/paths", {
+    params: {
+      sort: "isFree:desc,level:asc",
+      populate: "*",
+    },
+  });
   return res.data;
 };

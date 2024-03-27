@@ -60,13 +60,13 @@ const Nav = () => (
   <Box className="translate-y-6">
     <Flex gap={4}>
       <Link href={"/courses"}>
-        <Button colorScheme="hollywood">Courses</Button>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">Courses</Button>
       </Link>
       <Link href={"/tools"}>
-        <Button colorScheme="hollywood">Tools</Button>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">Tools</Button>
       </Link>
       <Link href={"/community"}>
-        <Button colorScheme="hollywood">Community</Button>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">Community</Button>
       </Link>
     </Flex>
   </Box>
