@@ -121,20 +121,18 @@ const InvestmentRiskSlider = (props: InvestmentRiskSliderProps) => {
       <SliderThumb h={5} w={5} />
       <SliderMark mt={3} ml={-1} value={1}>
         <Text
-          fontWeight={400}
           textColor={"black"}
           opacity={0.8}
-          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
+          fontSize={"sm"}
         >
           Cash
         </Text>
       </SliderMark>
       <SliderMark mt={3} ml={-8} value={12}>
         <Text
-          fontWeight={400}
           textColor={"black"}
           opacity={0.8}
-          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
+          fontSize={"sm"}
         >
           Bitcoin
         </Text>

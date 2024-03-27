@@ -10,7 +10,7 @@ const SignUpButton = () => {
       colorScheme="picton-blue"
       rightIcon={<FaUser />}
     >
-      Sign-up
+      Sign-in
     </Button>
   );
 };
