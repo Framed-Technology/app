@@ -3,7 +3,7 @@ import { Flex, FlexProps } from "@chakra-ui/react";
 import React from "react";
 
 type CardProps = {
-  variant?: "whiteShadow" | "locked" | "active" | "gradient";
+  variant?: "whiteShadow" | "purpleHaze" | "active" | "gradient";
 } & FlexProps;
 
 const Card = (props: CardProps) => {
@@ -11,8 +11,8 @@ const Card = (props: CardProps) => {
   switch (variant) {
     case "whiteShadow":
       return <WhiteShadow {...rest} />;
-    case "locked":
-      return <Locked {...rest} />;
+    case "purpleHaze":
+      return <PurpleHaze {...rest} />;
     case "active":
       return <Active {...rest} />;
     case "gradient":
@@ -45,7 +45,7 @@ const WhiteShadow = ({ ...rest }: FlexProps) => {
   );
 };
 
-const Locked = ({ ...rest }: FlexProps) => {
+const PurpleHaze = ({ ...rest }: FlexProps) => {
   return (
     <Flex
       bg={"hollywood.50"}

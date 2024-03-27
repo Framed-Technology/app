@@ -23,17 +23,6 @@ const Paths = async () => {
   const paths = await readPaths();
   // return <pre>{JSON.stringify(paths, null, 2)}</pre>;
 
-  // Sort paths by isFree first and then by level
-  paths.data.sort((a, b) => {
-    if (a.attributes.isFree !== b.attributes.isFree) {
-      // Sort by isFree
-      return a.attributes.isFree ? -1 : 1; // Put free paths first
-    } else {
-      // Sort by level if isFree is the same
-      return a.attributes.level.localeCompare(b.attributes.level);
-    }
-  });
-
   return (
     <Flex flexDir={"column"} gap={4}>
     <Banner/>
@@ -70,7 +59,7 @@ const Path = ({
   return (
     <Link href={isFree ? `/courses/${slug}` : `/signup`}>
       <Card
-        variant={isFree ? "whiteShadow" : "locked"}
+        variant={isFree ? "whiteShadow" : "gradient"}
         position={"relative"}
         flexDir={"row"}
         justifyContent={"space-between"}

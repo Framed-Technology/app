@@ -56,6 +56,9 @@ export const colors = {
     "300": "#92095c",
     "400": "#046aa0",
   },
+  gradient: {
+    "400": "linear-gradient(90deg, rgba(111,84,162,1) 0%, rgba(178,118,203,1) 50%, rgba(220,42,145,1) 100%)",
+  },
 } as const;
 
 const components = {
