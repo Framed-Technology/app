@@ -4,9 +4,14 @@ import AuthMenu from "./auth-menu";
 import SignUpButton from "./signup-button";
 import { useSession  } from "next-auth/react";
 
-const AuthButton = () => {
+type AuthButtonProps = {
+  buttonText: string;
+  icon?: React.ReactElement;
+};
+
+const AuthButton = ({ buttonText, icon }: AuthButtonProps) => {
   const { data: session } = useSession();
-  return session ? <AuthMenu session={session} /> : <SignUpButton />;
+  return session ? <AuthMenu session={session} /> : <SignUpButton buttonText={buttonText} icon={icon}/>;
 };
 
 export default AuthButton;

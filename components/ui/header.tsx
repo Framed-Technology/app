@@ -74,7 +74,7 @@ const Nav = () => (
 
 const AuthCta = () => (
   <Flex flexDir={"row"} gap={2} right={0} top={0} position={"absolute"} px={4}>
-    <AuthButton />
+    <AuthButton buttonText="Sign-in" icon={<FaUser />} />
   </Flex>
 );
 
