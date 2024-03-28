@@ -35,8 +35,7 @@ const InvestmentCard = ({
         </Text>
         <Heading
           textColor={"black"}
-          fontSize={"2xl"}
-          fontWeight={"medium"}
+          size={"md"}
         >
           {investment.name}
         </Heading>

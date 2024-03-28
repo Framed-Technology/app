@@ -5,12 +5,15 @@ import {
   Button,
   Flex,
   Heading,
-  Link,
   SimpleGrid,
   Text,
+  Stack,
 } from "@chakra-ui/react";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
+import platypusWalking from "../../public/platypus-walking.svg";
+import platypus from "../../public/platypus.svg";
 import Image from "next/image";
 
 const toolDescriptions = [
@@ -21,6 +24,7 @@ const toolDescriptions = [
     created: new Date("2024-03-06"),
     path: "/tools/risk-survey",
     preview: "/tools/risk-survey.png",
+    image: platypusWalking,
   },
   {
     name: "Risk Calculator",
@@ -29,63 +33,62 @@ const toolDescriptions = [
     created: new Date("2024-03-08"),
     path: "/tools/rvol-calculator",
     preview: "/tools/rvol-calculator.png",
+    image: platypus,
   },
 ];
 
 const Tools = () => {
   return (
-    <Flex flexDir={"column"} gap={4}>
-      <Heading>Tools</Heading>
+    <Flex flexDir={"column"} gap={12}>
+      <Stack flexDir={"column"}>
+        <Heading size={"2xl"} marginBottom={4}>
+          Tools
+        </Heading>
+        <Heading fontSize="lg" fontWeight={"normal"}>
+          Some copy to describe what this page is all about
+        </Heading>
+      </Stack>
+      <Stack gap={6}>
         {toolDescriptions.map((tool, key) => (
           <Tool key={key} tool={tool} />
         ))}
+      </Stack>
     </Flex>
   );
 };
 
 const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
-  <Card>
-    <Flex flexDir={"column"} gap={8}>
-      <Flex flexDir={"column"}>
-        <Text
-          fontWeight={600}
-          textColor={"black"}
-          fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
-        >
-          {tool.name}
-        </Text>
-        <Text>{tool.description}</Text>
-      </Flex>
-      <Box
-        borderWidth={2}
-        borderColor={"black"}
-        maxW={{ base: 400, lg: 600 }}
-        m={"auto"}
-        position={"relative"}
+  <Link href={tool.path}>
+    <Card
+      variant={"whiteShadow"}
+      position={"relative"}
+      flexDir={"row"}
+      justifyContent={"space-between"}
+      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+    >
+      <Flex
+        flexDir="row"
+        justifyContent="space-between"
+        style={{ flex: 1 }}
+        gap={4}
       >
-        <Image
-          src={tool.preview}
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: "100%", height: "auto" }}
-          alt={`${tool.name} Preview`}
-        />
-        <Box position={"absolute"} top={0} bottom={0} left={0} right={0} />
-      </Box>
-      <Flex justifyContent={"center"} w={"full"}>
-        <Link href={tool.path} className="w-full md:w-fit">
-          <Button
-            w={"full"}
-            colorScheme="hollywood"
-            rightIcon={<FaArrowRight />}
-          >
+        <Flex flexDir={"column"} gap={4}>
+          <Heading size={"lg"} fontWeight={500}>
             {tool.name}
-          </Button>
-        </Link>
+          </Heading>
+          <Text fontSize={"md"}>{tool.description}</Text>
+        </Flex>
+        <Flex minW={"30%"} justifyContent={"center"}>
+          <Image
+            src={tool.image}
+            width={150}
+            height={150}
+            alt={`${tool.image}`}
+          />
+        </Flex>
       </Flex>
-    </Flex>
-  </Card>
+    </Card>
+  </Link>
 );
 
 export default Tools;

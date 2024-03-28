@@ -34,7 +34,7 @@ const Paths = async () => {
         <Heading size={"2xl"} marginBottom={4}>
           Learning paths
         </Heading>
-        <Heading fontSize="lg" fontWeight={"normal"}>
+        <Heading size="md" fontWeight={"normal"}>
           Some copy to describe what this page is all about
         </Heading>
       </Stack>
@@ -126,7 +126,7 @@ const Path = ({
                 </Tag>
               )}
             </Flex>
-            <Heading fontSize={"2xl"} fontWeight={"medium"}>
+            <Heading size={"md"}>
               {title}
             </Heading>
             <Text fontSize={"md"}>{description}</Text>

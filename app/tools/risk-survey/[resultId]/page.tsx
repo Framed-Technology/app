@@ -4,7 +4,20 @@ import {
   readPerceivedInvestmentRisks,
   readRiskBySessionId,
 } from "./actions";
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  SimpleGrid,
+  Stack,
+  Text,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
 import Card from "@/components/ui/card";
 import SummaryChart from "./summary-chart";
 import InvestmentChart from "./investment-chart";
@@ -13,8 +26,26 @@ import InvestmentCard from "@/components/ui/investment-card";
 import Link from "next/link";
 import { FaCalculator } from "react-icons/fa";
 import CopyUrlButton from "@/components/ui/copy-url-button";
+import CardContainer from "@/components/ui/card-container";
+import { colors } from "@/theme";
+import { Path as PathProps } from "@/api/types";
+import platypus from "../../../../public/platypus.svg";
+import platypusWalking from "../../../../public/platypus-walking.svg";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
+
+const toolDescriptions = [
+  {
+    name: "Risk Calculator",
+    description:
+      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+    created: new Date("2024-03-08"),
+    path: "/tools/rvol-calculator",
+    preview: "/tools/rvol-calculator.png",
+    image: platypus,
+  },
+];
 
 type Props = {
   params: {
@@ -28,10 +59,12 @@ const RiskSurveyResults = async (props: Props) => {
   const means = await readPerceivedInvestmentRiskAverages();
 
   return (
-    <Flex flexDir={"column"} gap={4}>
-      <Flex flexDir={"column"}>
-        <Heading>Risk Survery Results</Heading>
-        <Text>
+    <Flex flexDir={"column"} gap={12}>
+      <Stack flexDir={"column"}>
+        <Heading size={"xl"} marginBottom={4}>
+          Risk Survery Results
+        </Heading>
+        <Heading fontSize="lg" fontWeight={"normal"}>
           See how your percieved risk stacks up to everyone else who have filled
           out this form, and each investments{" "}
           <a
@@ -42,64 +75,220 @@ const RiskSurveyResults = async (props: Props) => {
             realized volatility
           </a>
           .
+        </Heading>
+      </Stack>
+      <CardContainer>
+        <Card>
+          <Flex
+            flexDir={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            w={"full"}
+            textAlign={"center"}
+          >
+            <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
+              Your Risk Map
+            </Heading>
+            <SummaryChart userRisks={userRisks} means={means} />
+          </Flex>
+        </Card>
+        <Stack gap={0}>
+          <Box as="span" flex="1" textAlign="start">
+            <Heading
+              size={"md"}
+              color="black"
+              borderWidth="1px"
+              borderStyle="solid"
+              borderColor="black"
+              borderBottom="0px"
+              padding={4}
+              bg="lily-white.100"
+            >
+              Individual Instruments
+            </Heading>
+          </Box>
+          <Accordion defaultIndex={[0]} allowMultiple borderBottom="0.5px">
+            {userRisks.map((itm, key) => (
+              <AccordionItem key={key}>
+                <AccordionButton
+                  borderTop="0.5px"
+                  borderStyle="solid"
+                  borderColor="gray"
+                  borderRight="1px"
+                  borderLeft="1px"
+                  _expanded={{
+                    bg: "lily-white.200",
+                    borderBottomWidth: "0px",
+                    borderStyle: "solid",
+                    borderColor: "black",
+                  }}
+                >
+                  <Box as="span" flex="1" textAlign="left">
+                    <Heading
+                      size="md"
+                      color="black"
+                      opacity={0.6}
+                      fontWeight={"normal"}
+                    >
+                      {investmentMap[itm.investmentId!].name}
+                    </Heading>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel p={0}>
+                  <Box mb={1} mt={0}>
+                    <InvestmentCard
+                      investment={investmentMap[itm.investmentId!]}
+                    >
+                      <InvestmentChart
+                        userRisk={itm.riskLevel}
+                        investmentRvol={investmentMap[itm.investmentId!].rvol}
+                        investmentId={itm.investmentId!}
+                        investmentVotes={votes.filter(
+                          (v) => v.investmentId === itm.investmentId
+                        )}
+                      />
+                    </InvestmentCard>
+                  </Box>
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Stack>
+        <Accordion allowMultiple bg="lily-white.100">
+          <AccordionItem>
+            <AccordionButton
+              borderWidth="1px"
+              borderStyle="solid"
+              borderColor="black"
+              _expanded={{
+                bg: "lily-white.200",
+                borderBottomWidth: "0px",
+              }}
+              py={0}
+            >
+              <Box as="span" flex="1" textAlign="start">
+                <Heading size={"md"} padding={4}>
+                  Methodology
+                </Heading>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel
+              p={4}
+              borderWidth="1px"
+              borderStyle="solid"
+              borderColor="black"
+            >
+              <Stack flexDir={"column"} gap={2}>
+                <Heading size={"sm"}>Calculation</Heading>
+                <Text fontSize={"md"} marginBottom={2}>
+                  Consectetur adipiscing elit. Proin elementum volutpat lectus
+                  in pellentesque. Phasellus lobortis libero ut scelerisque
+                  cursus. Praesent in suscipit justo. Phasellus tempus auctor
+                  orci, id euismod arcu egestas vitae. Suspendisse rutrum ante
+                  vitae auctor varius. Proin pharetra molestie metus et
+                  bibendum. Aliquam pulvinar faucibus felis, non semper metus
+                  aliquet molestie. In hac habitasse platea dictumst. Sed
+                  ultrices eget nisi at venenatis. Nullam id nunc eu sapien
+                  consequ
+                </Text>
+                <Heading size={"sm"}>What are you looking at</Heading>
+                <Text fontSize={"md"} marginBottom={2}>
+                  Consectetur adipiscing elit. Proin elementum volutpat lectus
+                  in pellentesque. Phasellus lobortis libero ut scelerisque
+                  cursus. Praesent in suscipit justo. Phasellus tempus auctor
+                  orci, id euismod arcu egestas vitae. Suspendisse rutrum ante
+                  vitae auctor varius. Proin pharetra molestie metus et
+                  bibendum. Aliquam pulvinar faucibus felis, non semper metus
+                  aliquet molestie. In hac habitasse platea dictumst. Sed
+                  ultrices eget nisi at venenatis. Nullam id nunc eu sapien
+                  consequ
+                </Text>
+              </Stack>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+        <CopyUrlButton colorScheme="hollywood" marginTop={2}>
+          Copy Result Link
+        </CopyUrlButton>
+      </CardContainer>
+      <Flex flexDir={"column"}>
+        <Heading size={"lg"} marginBottom={4} marginTop={8}>
+          Want to Learn More?
+        </Heading>
+        <Text fontSize="md">
+          Checkout two blog posts that will give you a feel of what to expect
         </Text>
       </Flex>
-      <Card>
-        <Flex
-          flexDir={"column"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          p={4}
-          w={"full"}
-          textAlign={"center"}
-        >
-          <Text
-            textColor={"black"}
-            opacity={0.5}
-            fontSize={{ base: "xs", md: "sm", lg: "md" }}
+        <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ sm: 4, lg: 6 }}>
+          <Stack gap={6}>
+            {toolDescriptions.map((tool, key) => (
+              <Tool key={key} tool={tool} />
+            ))}
+          </Stack>
+          <Card
+            variant={"whiteShadow"}
+            position={"relative"}
+            flexDir={"row"}
+            justifyContent={"space-between"}
+            style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
           >
-            Summary
-          </Text>
-          <Text
-            color={"black"}
-            fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
-            fontWeight={500}
-          >
-            Your Risk Map
-          </Text>
-          <Text color={"black"} fontSize={"xl"} fontWeight={400}>
-            Visualise where your precieved risk overlaps with the community
-          </Text>
-          <SummaryChart userRisks={userRisks} means={means} />
-        </Flex>
-        <Flex w="full" justifyContent={"end"}>
-          <Link className="w-full md:w-fit" href={`/tools/rvol-calculator`}>
-            <Button
-              rightIcon={<FaCalculator />}
-              w="full"
-              colorScheme="picton-blue"
+            <Flex
+              flexDir="row"
+              justifyContent="space-between"
+              style={{ flex: 1 }}
+              gap={4}
             >
-              Risk Caclulator
-            </Button>
-          </Link>
-        </Flex>
-      </Card>
-
-      {userRisks.map((itm, key) => (
-        <InvestmentCard key={key} investment={investmentMap[itm.investmentId!]}>
-          <InvestmentChart
-            userRisk={itm.riskLevel}
-            investmentRvol={investmentMap[itm.investmentId!].rvol}
-            investmentId={itm.investmentId!}
-            investmentVotes={votes.filter(
-              (v) => v.investmentId === itm.investmentId
-            )}
-          />
-        </InvestmentCard>
-      ))}
-      <CopyUrlButton colorScheme="hollywood">Copy Result Link</CopyUrlButton>
+              <Flex flexDir={"column"} gap={4}>
+                <Heading size={"md"}>Blog Post</Heading>
+                <Text fontSize={"md"} color={"red"}>Link with specific Blog-post-slug, make the blog page first</Text>
+              </Flex>
+              <Flex minW={"30%"} justifyContent={"center"}>
+                <Image
+                  src={platypusWalking}
+                  width={150}
+                  height={150}
+                  alt="Magenta Platypus Walking"
+                />
+              </Flex>
+            </Flex>
+          </Card>
+        </SimpleGrid>
     </Flex>
   );
 };
+
+const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
+  <Link href={tool.path}>
+    <Card
+      variant={"whiteShadow"}
+      position={"relative"}
+      flexDir={"row"}
+      justifyContent={"space-between"}
+      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+    >
+      <Flex
+        flexDir="row"
+        justifyContent="space-between"
+        style={{ flex: 1 }}
+        gap={4}
+      >
+        <Flex flexDir={"column"} gap={4}>
+          <Heading size={"md"}>{tool.name}</Heading>
+          <Text fontSize={"md"}>{tool.description}</Text>
+        </Flex>
+        <Flex minW={"30%"} justifyContent={"center"}>
+          <Image
+            src={tool.image}
+            width={150}
+            height={150}
+            alt={`${tool.image}`}
+          />
+        </Flex>
+      </Flex>
+    </Card>
+  </Link>
+);
 
 export default RiskSurveyResults;

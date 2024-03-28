@@ -70,7 +70,7 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
             >
               <Heading
                 fontWeight={500}
-                size={"xl"}
+                size={"lg"}
                 textAlign={"center"}
                 marginBottom={4}
               >
