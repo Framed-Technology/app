@@ -62,9 +62,9 @@ const Attention = () => (
       Your Finances Framed
     </Heading>
     <Heading
-      as="h2"
+      as="h4"
       size={{ base: "sm", sm: "md", md: "lg" }}
-      fontWeight={"400"}
+      fontWeight={"normal"}
     >
       {
         "We're on a mission to help young investors understand their portfolio risk"

@@ -31,7 +31,7 @@ export default function RootLayout({
         <Providers>
           <Flex flexDir={"column"} w={"full"} minH={"100vh"}>
             <Header />
-            <div className="flex-1 h-full max-w-[1100px] black m-auto px-4 py-[70px] lg:py-[100px] w-full">
+            <div className="flex-1 h-full max-w-[1100px] black m-auto px-4 pt-[80px] pb-[100px] lg:pt-[100px] lg:pb-[120px] w-full">
               {children}
               <SpeedInsights />
             </div>

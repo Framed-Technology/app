@@ -1,5 +1,5 @@
 import { Investment, investments } from "@/static/investments";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 import Card from "./card";
@@ -11,7 +11,7 @@ const InvestmentCard = ({
   children: React.ReactNode;
   investment: Investment;
 }) => (
-  <Card>
+  <Card p={6}>
     <Flex
       p={6}
       w={"full"}
@@ -23,28 +23,27 @@ const InvestmentCard = ({
       <Flex
         w={{ base: "100%", md: "30%" }}
         textAlign={{ base: "center", md: "left" }}
-        gap={{ base: 0.2, md: 0.5, lg: 1}}
+        gap={{ base: 0.5, md: 1, lg: 2}}
         flexDir={"column"}
       >
         <Text
           textColor={"black"}
           opacity={0.4}
-          fontSize={{ base: "xs", md: "xs", lg: "xs" }}
+          fontSize={"sm"}
         >
           {investment.id}
         </Text>
-        <Text
+        <Heading
           textColor={"black"}
-          fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
-          fontWeight={500}
+          fontSize={"2xl"}
+          fontWeight={"medium"}
         >
           {investment.name}
-        </Text>
+        </Heading>
         <Text
           color={"black"}
           opacity={0.8}
-          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
-          fontWeight={400}
+          fontSize={"md"}
         >
           {investment.description}
         </Text>
@@ -54,7 +53,7 @@ const InvestmentCard = ({
           target="_blank"
         >
           <Text
-            fontSize={{ base: "xs", md: "xs", lg: "xs" }}
+            fontSize={"sm"}
             textColor={"black"}
             opacity={0.4}
           >
