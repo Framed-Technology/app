@@ -23,7 +23,7 @@ const Card = (props: CardProps) => {
           bg={"lily-white.100"}
           borderWidth={1}
           borderColor={"black"}
-          p={4}
+          p={10}
           flexDir={"column"}
           {...rest}
         />
@@ -38,7 +38,7 @@ const WhiteShadow = ({ ...rest }: FlexProps) => {
       shadow={"5px 5px 0 black"}
       borderWidth={1}
       borderColor={"black"}
-      p={4}
+      p={10}
       flexDir={"column"}
       {...rest}
     />
@@ -52,7 +52,7 @@ const PurpleHaze = ({ ...rest }: FlexProps) => {
       opacity={0.5}
       borderWidth={1}
       borderColor={"black"}
-      p={4}
+      p={10}
       flexDir={"column"}
       {...rest}
     />
@@ -66,7 +66,7 @@ const Active = ({ ...rest }: FlexProps) => {
       shadow={"5px 5px 0 black"}
       borderWidth={1}
       borderColor={"black"}
-      p={4}
+      p={10}
       flexDir={"column"}
       {...rest}
     />
@@ -76,10 +76,10 @@ const Active = ({ ...rest }: FlexProps) => {
 const Gradient = ({ ...rest }: FlexProps) => {
   return (
     <Flex
-      bg="linear-gradient(90deg, rgba(111,84,162,1) 0%, rgba(178,118,203,1) 50%, rgba(220,42,145,1) 100%)"
+      bg="var(--gradient)"
       borderWidth={1}
       borderColor={"black"}
-      p={4}
+      p={10}
       flexDir={"column"}
       {...rest}
     />

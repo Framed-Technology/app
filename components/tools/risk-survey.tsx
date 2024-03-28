@@ -10,6 +10,7 @@ import {
   SliderMark,
   SliderThumb,
   SliderTrack,
+  Heading,
   Text,
 } from "@chakra-ui/react";
 import { Formik } from "formik";
@@ -62,34 +63,38 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
       {(formik) => (
         <form className="w-full h-full" onSubmit={formik.handleSubmit}>
           <CardContainer>
-            <Box paddingRight={{ base: 4, lg: 20 }} paddingLeft={{ base: 4, lg: 20 }} marginBottom={2}>
-              <Text
+            <Box
+              paddingRight={{ base: 4, lg: 20 }}
+              paddingLeft={{ base: 4, lg: 20 }}
+              marginBottom={2}
+            >
+              <Heading
                 fontWeight={500}
-                fontSize={"3xl"}
+                size={"xl"}
                 textAlign={"center"}
                 marginBottom={4}
               >
                 Compare how you percieve risk against{" "}
                 <b className="text-hollywood-400">{submissionCount}</b> others
-              </Text>
-              <Text fontSize={"md"} textAlign={"center"} opacity={0.8}>
+              </Heading>
+              <Text fontSize={"lg"} textAlign={"center"} opacity={0.8}>
                 Rate each of the following investments riskiness on a scale from
                 Cash to NFTs to see how your percieved risk compared to everyone
                 elses
               </Text>
             </Box>
-              {investments.map((investment, key) => (
-                <InvestmentCard key={key} investment={investment}>
-                  <InvestmentRiskSlider
-                    investment={investment}
-                    inputProps={{
-                      value: formik.values[investment.id],
-                      onChange: (value: number) =>
-                        formik.setFieldValue(investment.id, value),
-                    }}
-                  />
-                </InvestmentCard>
-              ))}
+            {investments.map((investment, key) => (
+              <InvestmentCard key={key} investment={investment}>
+                <InvestmentRiskSlider
+                  investment={investment}
+                  inputProps={{
+                    value: formik.values[investment.id],
+                    onChange: (value: number) =>
+                      formik.setFieldValue(investment.id, value),
+                  }}
+                />
+              </InvestmentCard>
+            ))}
             <Button
               isLoading={formik.isSubmitting}
               isDisabled={isSubmitted}
@@ -120,22 +125,12 @@ const InvestmentRiskSlider = (props: InvestmentRiskSliderProps) => {
       </SliderTrack>
       <SliderThumb h={5} w={5} />
       <SliderMark mt={3} ml={-1} value={1}>
-        <Text
-          fontWeight={400}
-          textColor={"black"}
-          opacity={0.8}
-          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
-        >
+        <Text textColor={"black"} opacity={0.8} fontSize={"sm"}>
           Cash
         </Text>
       </SliderMark>
       <SliderMark mt={3} ml={-8} value={12}>
-        <Text
-          fontWeight={400}
-          textColor={"black"}
-          opacity={0.8}
-          fontSize={{ base: "xs", md: "sm", lg: "sm" }}
-        >
+        <Text textColor={"black"} opacity={0.8} fontSize={"sm"}>
           Bitcoin
         </Text>
       </SliderMark>
