@@ -1,4 +1,5 @@
 import React from "react";
+import { readArticleBySlug } from "./actions";
 
 type Props = {
   params: {
@@ -6,9 +7,15 @@ type Props = {
   };
 };
 
-const Article = ({ params }: Props) => {
+const Article = async ({ params }: Props) => {
   const slug = params.slug;
-  return <div>Article: {slug}</div>;
+    const articleResponse = await readArticleBySlug(slug)
+    const articles = articleResponse.data
+    if (articles.length === 0) {
+      return <>404</>
+    }
+    const article = articles[0].attributes
+  return <div>Article: <pre>{JSON.stringify(article, null, 2)}</pre></div>;
 };
 
 export default Article;

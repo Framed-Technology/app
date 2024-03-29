@@ -34,12 +34,12 @@ const Paths = async () => {
         <Heading size={"2xl"} marginBottom={4}>
           Learning paths
         </Heading>
-        <Heading fontSize="lg" fontWeight={"normal"}>
+        <Heading size="md" fontWeight={"normal"}>
           Some copy to describe what this page is all about
         </Heading>
       </Stack>
       <Stack gap={6}>
-        <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ sm: 4, lg: 6 }}>
+        <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ base: 4, sm: 4, lg: 6 }}>
           {paths.data.map((path, key) => (
             <Path
               key={key}
@@ -101,13 +101,20 @@ const Path = ({
           gap={4}
         >
           <Flex flexDir={"column"} gap={2}>
-            <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Flex
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              flexWrap="wrap"
+              gap={2}
+            >
               <Tag
                 w={"fit-content"}
                 size={"sm"}
                 bg="glowstone.500"
                 letterSpacing={1}
                 mr={2}
+                maxWidth={{ base: "100%", md: "fit-content" }}
+                whiteSpace="nowrap"
               >
                 {level}
               </Tag>
@@ -120,21 +127,21 @@ const Path = ({
                   bg="hollywood.500"
                   opacity={1}
                   zIndex={100}
+                  maxWidth={{ base: "100%", md: "fit-content" }}
+                  whiteSpace="nowrap"
                 >
                   Member-only
                   <FaStar size={16} style={{ color: colors.glowstone[500] }} />
                 </Tag>
               )}
             </Flex>
-            <Heading fontSize={"2xl"} fontWeight={"medium"}>
-              {title}
-            </Heading>
+            <Heading size={"md"}>{title}</Heading>
             <Text fontSize={"md"}>{description}</Text>
             <Text textColor={"black"} fontSize={"xs"}>
               {numArticles} ARTICLE{numArticles > 1 && "S"}
             </Text>
           </Flex>
-          <Flex minW={"30%"} justifyContent={"center"}>
+          <Flex minW={"25%"} justifyContent={"center"}>
             <Image
               src={image}
               height={150}

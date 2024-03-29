@@ -50,3 +50,6 @@ export type Post =
       thumbnail?: any;
       authorAvatar?: any;
     } & Content;
+
+
+export type Blog = Article | Post
