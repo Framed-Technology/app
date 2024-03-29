@@ -2,6 +2,7 @@
 
 import { colors } from "@/theme";
 import { Flex } from "@chakra-ui/react";
+
 import {
   ResponsiveContainer,
   AreaChart,
@@ -39,7 +40,6 @@ const InvestmentChart = ({
 
   return (
     <Flex w={"full"} h={175} gap={0} flexDir={"column"}>
-      {investmentRvol}
       <ResponsiveContainer width="100%" height={"100%"}>
         <AreaChart
           data={data}
@@ -51,7 +51,7 @@ const InvestmentChart = ({
           }}
         >
           <Area
-            name="Community"
+            name="Community votes"
             type="monotone"
             dataKey="count"
             stroke={colors.hollywood[400]}
@@ -90,7 +90,7 @@ const InvestmentChart = ({
             stroke={colors.hollywood["600"]}
           >
             <Label color="#fff" position={"top"}>
-              rVol
+              rVol {investmentRvol}
             </Label>
           </ReferenceLine>
         </AreaChart>

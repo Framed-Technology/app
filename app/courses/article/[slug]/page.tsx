@@ -1,4 +1,5 @@
 import React from "react";
+import { readArticleBySlug } from "./actions";
 
 type Props = {
   params: {
@@ -6,61 +7,15 @@ type Props = {
   };
 };
 
-const Article = ({ params }: Props) => {
+const Article = async ({ params }: Props) => {
   const slug = params.slug;
-  return <div>Article: {slug}</div>;
+    const articleResponse = await readArticleBySlug(slug)
+    const articles = articleResponse.data
+    if (articles.length === 0) {
+      return <>404</>
+    }
+    const article = articles[0].attributes
+  return <div>Article: <pre>{JSON.stringify(article, null, 2)}</pre></div>;
 };
 
 export default Article;
-
-// "use client"
-
-// import React from "react";
-// import { Article as ArticleProps } from "@/api/types"; // Import the ArticleProps type
-// import { useClient } from "next/data-client"; // Import the useClient hook
-
-// type Props = {
-//   params: {
-//     slug: string;
-//   };
-// };
-
-// const fetchContentBySlug = async (slug: string): Promise<ArticleProps | null> => {
-//   try {
-//     // Perform API call to fetch content based on the provided slug
-//     // Replace this with your actual API call
-//     const response = await fetch(`/api/articles/${slug}`);
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch article");
-//     }
-//     const article: ArticleProps = await response.json();
-//     return article;
-//   } catch (error) {
-//     console.error("Error fetching article:", error);
-//     return null;
-//   }
-// };
-
-// const Article = ({ params }: Props) => {
-//   const { slug } = params;
-//   const { data: article, isLoading, isError } = useClient(fetchContentBySlug, slug); // Use the useClient hook
-
-//   if (isLoading) {
-//     return <p>Loading...</p>;
-//   }
-
-//   if (isError || !article) {
-//     return <p>Error fetching article.</p>;
-//   }
-
-//   return (
-//     <div>
-//       <h1>Article: {slug}</h1>
-//       <h2>{article.title}</h2>
-//       <p>{article.content}</p>
-//       {/* Render other properties of the article as needed */}
-//     </div>
-//   );
-// };
-
-// export default Article;

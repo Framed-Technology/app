@@ -15,7 +15,7 @@ type Props = {
 const Article = async (props: Props) => {
   const path = await readPathBySlug(props.params.slug);
 
-  if (path.data.length != 1) {
+  if (path.data.length !== 1) {
     return <>No articles for path</>;
   }
   const pathData = path.data[0].attributes;
