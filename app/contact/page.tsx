@@ -14,9 +14,11 @@ import {
   InputLeftElement,
   NumberInput,
   NumberInputField,
+  Textarea,
 } from "@chakra-ui/react";
 import Card from "@/components/ui/card";
 import { colors } from "@/theme";
+import { insertContact } from "./action";
 
 const aboutPageContent: ContactPageContentProps[] = [
   {
@@ -42,44 +44,26 @@ const aboutPageContent: ContactPageContentProps[] = [
   },
 ];
 
-// Input.defaultProps = {
-//   shadow: "5px 5px 0 black",
-//   rounded: 0,
-//   borderWidth: 2,
-//   borderColor: "black",
-//   bg: "white",
-// };
-
-// NumberInputField.defaultProps = {
-//   shadow: "5px 5px 0 black",
-//   rounded: 0,
-//   borderWidth: 2,
-//   borderColor: "black",
-//   bg: "white",
-// };
-
-interface ContactFormData {
-    name: string;
-    email: string;
-    message: string;
-  }
-  
-  const ContactForm: = ({ onSubmit } : ContactFormData) => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-  
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setName(e.target.value);
-    };
-  
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setEmail(e.target.value);
-    };
-  
-    const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setMessage(e.target.value);
-    };
+const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const canSubmit = name && message && email && email.includes("@");
+  const onSubmit = () => {
+    if (canSubmit) {
+      insertContact({
+        name,
+        email,
+        message,
+      });
+      setName("");
+      setEmail("");
+      setMessage("");
+    } else {
+      // TODO: sensible form logic (Formik)
+      alert("There was an error submitting your form...");
+    }
+  };
 
   return (
     <Center>
@@ -121,29 +105,31 @@ interface ContactFormData {
               <Heading fontSize="lg" fontWeight={"normal"}>
                 100% free. No credit card needed.
               </Heading>
-              <div>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={handleNameChange}
-                  placeholder="Name"
-                />
-                <br />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder="Email Address"
-                />
-                <br />
-                <textarea
-                  value={message}
-                  onChange={handleMessageChange}
-                  placeholder="Message"
-                ></textarea>
-                {/* <br />
-                <button onClick={handleSubmit}>Submit</button> */}
-              </div>
+              <Input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+              />
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address"
+              />
+              <Textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Message"
+              />
+              <Button
+                isDisabled={!canSubmit}
+                w="full"
+                colorScheme="hollywood"
+                onClick={onSubmit}
+              >
+                Submit
+              </Button>
             </Stack>
           </Card>
         </Stack>
@@ -169,6 +155,7 @@ const ContactPageContents = ({
         {content.texts.map((text, index) => (
           <Text key={index} fontSize={"md"}>
             {text}
+            <a href="mailto:jack.skerm@gmail.com">jack.skerm@gmail.com</a>
           </Text>
         ))}
       </Stack>

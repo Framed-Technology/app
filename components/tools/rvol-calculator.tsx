@@ -22,7 +22,6 @@ import { useRouter } from "next/navigation";
 import PortfolioPie from "../ui/portfolio-pie";
 import TickerSelect from "./ticker-select";
 import CardContainer from "../ui/card-container";
-import { colors } from "@/theme";
 
 Input.defaultProps = {
   shadow: "5px 5px 0 black",

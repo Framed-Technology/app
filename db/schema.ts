@@ -44,3 +44,25 @@ export const tickerInfo = pgTable("ticker_info", {
   name: text("name").notNull(),
   info: json("info").notNull().$type<TickerInfo>(),
 })
+
+export const contacts = pgTable("contacts", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  message: text("message").notNull(),
+})
+
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  iss: text("iss").notNull(),
+  sub: text("sub").notNull(),
+  email: text("email").notNull().unique(),
+  picture: text("picture"),
+  name: text("name"),
+  givenName: text("given_name"),
+  familyName: text("family_name"),
+  iat: text("iat"),
+  exp: text("exp"),
+})
+

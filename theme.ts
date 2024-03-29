@@ -68,7 +68,6 @@ export const colors = {
     "700": "#c07a2a",
     "800": "#97611f",
   },
-
 } as const;
 
 const components = {
@@ -78,7 +77,7 @@ const components = {
       borderWidth: 2,
       borderColor: "black",
     },
-  },
+  }
 };
 
 export default extendTheme({
