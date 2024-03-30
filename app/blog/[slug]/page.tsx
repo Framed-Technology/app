@@ -1,6 +1,6 @@
 import React from "react";
-import { readArticleBySlug } from "./actions";
-import ArticleContent from "@/components/ui/article-content";
+import { readPostBySlug } from "./actions";
+import PostContent from "@/components/ui/post-content";
 
 type PostProps = {
   params: {
@@ -10,9 +10,9 @@ type PostProps = {
 
 const PostPage = async ({ params }: PostProps) => {
   const slug = params.slug;
-  const postResponse = await readArticleBySlug(slug);
+  const postResponse = await readPostBySlug(slug);
   const post = postResponse.data[0].attributes;
-  return <ArticleContent content={post} />;
+  return <PostContent content={post} />;
 };
 
 export default PostPage;

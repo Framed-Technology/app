@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Open_Sans as OpenSansFont} from "next/font/google";
+import { Open_Sans as OpenSansFont } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Input, NumberInputField } from "@chakra-ui/react";
 import Header from "@/components/ui/header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
+
 
 export const OpenSans = OpenSansFont({ subsets: ["latin"] });
 

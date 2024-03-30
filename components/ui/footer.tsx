@@ -23,12 +23,20 @@ const Footer = () => {
         alt="Magenta Platypus"
       />
       <Flex gap={4}>
-        <Link className="hover:underline" href={"/privacy"}>
-          Privacy
+        <Link className="hover:underline" href={"/about"}>
+          About
+        </Link>
+        •
+        <Link className="hover:underline" href={"/blog"}>
+          Blog
         </Link>
         •
         <Link className="hover:underline" href={"/contact"}>
           Contact
+        </Link>
+        •
+        <Link className="hover:underline" href={"/legal"}>
+          Legal
         </Link>
       </Flex>
     </Flex>

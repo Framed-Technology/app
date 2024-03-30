@@ -4,8 +4,7 @@ import React from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import platypusLogo from "../../public/platypus.svg";
-import { FaArrowRight, FaSign, FaUser } from "react-icons/fa";
-import SignUpButton from "./auth/signup-button";
+import { FaUser } from "react-icons/fa";
 import AuthButton from "./auth/auth-button";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
@@ -33,9 +32,20 @@ const Header = () => {
         >
           <Logo />
           <Nav />
-          <Flex gap={2} alignItems="center" right={0} top={0} position={"absolute"} px={4}>
-            <AuthCta />
-            <SignUpCta />
+          <Flex
+            gap={2}
+            alignItems="center"
+            right={0}
+            top={0}
+            position={"absolute"}
+            px={4}
+          >
+            <AuthButton
+              size="md"
+              colorScheme="picton-blue"
+              buttonText="Sign-in"
+              rightIcon={<FaUser />}
+            />
           </Flex>
         </Flex>
       </Flex>
@@ -81,31 +91,5 @@ const Nav = () => (
   </Box>
 );
 
-const AuthCta = () => (
-    <Flex flexDir={"row"} gap={2} alignItems="center"> 
-    <AuthButton
-      size="sm"
-      colorScheme="picton-blue"
-      buttonText="Sign-in"
-      rightIcon={<FaUser />}
-    />
-  </Flex>
-);
-
-const SignUpCta = () => {
-  return (
-    <Link href={"/signup"}>
-      <Button
-        colorScheme="glowstone"
-        flexDir={"row"}
-        gap={2}
-        px={2}
-        size="sm"
-      >
-        Sign-up
-      </Button>
-    </Link>
-  );
-};
 
 export default Header;
