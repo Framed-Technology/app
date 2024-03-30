@@ -72,6 +72,11 @@ const Logo = () => (
 const Nav = () => (
   <Box className="translate-y-6">
     <Flex gap={4}>
+      <Link href={"/courses/waitlist"}>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Courses Waitlist
+        </Button>
+      </Link>
       <Link href={"/courses"}>
         <Button colorScheme="hollywood" shadow="5px 5px 0 black">
           Courses
@@ -82,6 +87,11 @@ const Nav = () => (
           Tools
         </Button>
       </Link>
+      <Link href={"/community/waitlist"}>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Community Waitlist
+        </Button>
+      </Link>
       <Link href={"/community"}>
         <Button colorScheme="hollywood" shadow="5px 5px 0 black">
           Community
@@ -90,6 +100,5 @@ const Nav = () => (
     </Flex>
   </Box>
 );
-
 
 export default Header;
