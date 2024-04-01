@@ -68,7 +68,7 @@ const About = () => {
             textAlign={"center"}
             opacity={0.6}
           >
-            Hey, I'm Nicolas
+            {"Hey, I'm Nicolas"}
           </Heading>
         </Stack>
         <Stack>
