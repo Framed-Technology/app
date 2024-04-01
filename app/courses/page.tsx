@@ -20,12 +20,15 @@ import platypusWalking from "../../public/platypus-walking.svg";
 import { FaStar } from "react-icons/fa";
 import { colors } from "@/theme";
 import Path from "./path";
+import { redirect } from "next/navigation";
 
 // TODO: update "article" to "learning path"
 
 const Paths = async () => {
   const paths = await readPaths();
   // return <pre>{JSON.stringify(paths, null, 2)}</pre>;
+
+redirect('/');
 
   return (
     <Flex flexDir={"column"} gap={12}>
@@ -74,8 +77,6 @@ const Paths = async () => {
     </Flex>
   );
 };
-
-
 
 const Banner = () => {
   return (
