@@ -12,7 +12,7 @@ const CardContainer = (props: FlexProps) => {
       shadow={"5px 5px 0 black"}
       borderColor={"black"}
       borderWidth={2}
-      p={12}
+      p={{base: 2, md: 12}}
       {...props}
     />
   );
