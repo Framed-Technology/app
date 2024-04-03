@@ -155,7 +155,7 @@ const ContactPageContents = ({
         {content.texts.map((text, index) => (
           <Text key={index} fontSize={"md"}>
             {text}
-            <a href="mailto:jack.skerm@gmail.com">jack.skerm@gmail.com</a>
+            <a href="mailto:nicolas@framed.technology"> nicolas@framed.technology</a>
           </Text>
         ))}
       </Stack>
