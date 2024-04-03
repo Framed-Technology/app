@@ -3,6 +3,8 @@ import { Flex, Text, Heading, Stack } from "@chakra-ui/react";
 import React from "react";
 import { readRiskSurveySubmissionCount } from "../../actions";
 
+export const dynamic = "force-dynamic";
+
 const RiskSurveyPage = async () => {
   const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
 
