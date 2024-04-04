@@ -66,10 +66,10 @@ const SummaryChart = ({
             fillOpacity={0.6}
           />
           <Radar
-            name="Investment rVol"
+            name="Realised Volatility"
             dataKey="investmentRvol"
-            stroke={colors.glowstone[400]}
-            fill={colors.glowstone[400]}
+            stroke={colors.glowstone[500]}
+            fill={colors.glowstone[600]}
             fillOpacity={0.6}
           />
           <Legend />

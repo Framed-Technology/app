@@ -1,10 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import { Flex, Text, Heading, Input, Button, Stack } from "@chakra-ui/react";
+import { Flex, Text, Heading, Input, Button, Stack, SimpleGrid } from "@chakra-ui/react";
 import Card from "@/components/ui/card";
 import { colors } from "@/theme";
 import { insertCommunityInterest } from "./action";
+import Link from "next/link";
+import platypus from "../../../public/platypus.svg";
+import platypusWalking from "../../../public/platypus-walking.svg";
+import Image from "next/image";
+
+const toolDescriptions = [
+  {
+    name: "Risk Calculator",
+    description:
+      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+    created: new Date("2024-03-08"),
+    path: "/tools/rvol-calculator",
+    preview: "/tools/rvol-calculator.png",
+    image: platypus,
+  },
+];
+
 
 const CommunityWaitlist = () => {
   const [name, setName] = useState("");
@@ -42,7 +59,7 @@ const CommunityWaitlist = () => {
         flexDir={{ base: "column", md: "row" }}
         border="0px"
         gap={8}
-        minHeight={{md: "400px"}}
+        minHeight={{ md: "400px" }}
       >
         <Stack flexDir={"column"} width="100%" justifyContent={"center"}>
           <Heading size={"xl"} color={"white"}>
@@ -67,11 +84,18 @@ const CommunityWaitlist = () => {
           maxWidth={{ base: "100%", md: "45%" }}
           justifyContent={"center"}
         >
-          
           {registered ? (
-            <Heading size={"md"} fontWeight={"normal"} opacity={0.8} textAlign={"center"}>
-              Success!<br/>You are on the list
-            </Heading>
+            <Stack>
+              <Heading size={"lg"} textAlign={"center"}>
+                {"Thanks!"}
+              </Heading>
+              <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
+                {"You're on the wait-list"}
+              </Heading>
+              <Heading size={"md"} fontWeight={"normal"} textAlign={"center"} opacity={0.8}>
+                {"We'll let you know when this is ready"}
+              </Heading>
+            </Stack>
           ) : (
             <>
               <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
@@ -107,7 +131,95 @@ const CommunityWaitlist = () => {
           )}
         </Card>
       </Card>
+      {registered && <FurtherLearningSection />}
     </Flex>
+  );
+};
+
+const FurtherLearningSection = () => {
+  return (
+    <Flex flexDir={"column"} gap={12} marginTop={8}>
+      <Stack gap={4}>
+        <Heading size={"lg"}>...In the meantime...</Heading>
+        <Text fontSize="md">
+          Checkout two blog posts that will give you a feel of what to expect
+        </Text>
+      </Stack>
+      <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ base: 4, sm: 4, lg: 6 }}>
+        <Stack gap={6}>
+          {toolDescriptions.map((tool, key) => (
+            <Tool key={key} tool={tool} />
+          ))}
+        </Stack>
+        <BlogCard />
+      </SimpleGrid>
+    </Flex>
+  );
+};
+
+const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
+  <Link href={tool.path}>
+    <Card
+      variant={"whiteShadow"}
+      position={"relative"}
+      flexDir={"row"}
+      justifyContent={"space-between"}
+      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+    >
+      <Flex
+        flexDir="row"
+        justifyContent="space-between"
+        style={{ flex: 1 }}
+        gap={4}
+      >
+        <Flex flexDir={"column"} gap={4}>
+          <Heading size={"md"}>{tool.name}</Heading>
+          <Text fontSize={"md"}>{tool.description}</Text>
+        </Flex>
+        <Flex minW={"30%"} justifyContent={"center"}>
+          <Image
+            src={tool.image}
+            width={150}
+            height={150}
+            alt={`${tool.image}`}
+          />
+        </Flex>
+      </Flex>
+    </Card>
+  </Link>
+);
+
+const BlogCard = () => {
+  return (
+    <Card
+      variant={"whiteShadow"}
+      position={"relative"}
+      flexDir={"row"}
+      justifyContent={"space-between"}
+      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+    >
+      <Flex
+        flexDir="row"
+        justifyContent="space-between"
+        style={{ flex: 1 }}
+        gap={4}
+      >
+        <Flex flexDir={"column"} gap={4}>
+          <Heading size={"md"}>Blog Post</Heading>
+          <Text fontSize={"md"} color={"red"}>
+            Link with specific Blog-post-slug, make the blog page first
+          </Text>
+        </Flex>
+        <Flex minW={"30%"} justifyContent={"center"}>
+          <Image
+            src={platypusWalking}
+            width={150}
+            height={150}
+            alt="Magenta Platypus Walking"
+          />
+        </Flex>
+      </Flex>
+    </Card>
   );
 };
 

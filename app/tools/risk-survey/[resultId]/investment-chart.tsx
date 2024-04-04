@@ -14,6 +14,34 @@ import {
   Tooltip,
 } from "recharts";
 
+type CustomTooltipProps = {
+  active?: boolean;
+  payload?: {
+    value: number;
+    payload: any;
+  }[];
+};
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
+  if (active && payload && payload.length) {
+    const xValue = payload[0].payload.riskLevel;
+    const yValue = payload[0].value;
+    return (
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "4px",
+          border: "1px solid #ccc",
+        }}
+      >
+        <p>'Risk' Level: {xValue}</p>
+        <p>Community votes: {yValue}</p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const InvestmentChart = ({
   userRisk,
   investmentRvol,
@@ -59,10 +87,10 @@ const InvestmentChart = ({
             fillOpacity={0.3}
             strokeWidth={2}
           />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <XAxis
             type="number"
-            label={"Risk Level"}
+            label={"'Risk' Level"}
             dataKey={"riskLevel"}
             domain={[1, 12]}
             tick={false}
@@ -80,17 +108,20 @@ const InvestmentChart = ({
             strokeWidth={2}
             stroke={colors["picton-blue"][400]}
           >
-            <Label color="#fff" position={"top"}>
-              You
+            <Label
+              position={"insideTopLeft"}
+              fill={colors["picton-blue"][400]}
+            >
+              {"You: " + userRisk}
             </Label>
           </ReferenceLine>
           <ReferenceLine
             x={investmentRvol}
             strokeWidth={2}
-            stroke={colors.hollywood["600"]}
+            stroke={colors.glowstone[500]}
           >
-            <Label color="#fff" position={"top"}>
-              rVol {investmentRvol}
+            <Label fill={colors.glowstone[500]} position={"top"}>
+              {"Actual 'Riskiness': " + investmentRvol}
             </Label>
           </ReferenceLine>
         </AreaChart>
