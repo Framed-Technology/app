@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
           border: "1px solid #ccc",
         }}
       >
-        <p>'Risk' Level: {xValue}</p>
+        <p>{"'Risk' Level:" + xValue}</p>
         <p>Community votes: {yValue}</p>
       </div>
     );
