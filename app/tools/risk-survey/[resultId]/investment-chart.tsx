@@ -12,6 +12,7 @@ import {
   ReferenceLine,
   Label,
   Tooltip,
+  Legend,
 } from "recharts";
 
 type CustomTooltipProps = {
@@ -34,7 +35,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
           border: "1px solid #ccc",
         }}
       >
-        <p>{"'Risk' Level:" + xValue}</p>
+        <p>{"'Risk' Level: " + xValue}</p>
         <p>Community votes: {yValue}</p>
       </div>
     );
@@ -95,24 +96,15 @@ const InvestmentChart = ({
             domain={[1, 12]}
             tick={false}
           />
-          <YAxis
-            type="number"
-            dataKey={"count"}
-            label={"Votes"}
-            tick={false}
-            rotate={-35}
-            textAnchor="end"
+          <Legend
           />
           <ReferenceLine
             x={userRisk}
             strokeWidth={2}
             stroke={colors["picton-blue"][400]}
           >
-            <Label
-              position={"insideTopLeft"}
-              fill={colors["picton-blue"][400]}
-            >
-              {"You: " + userRisk}
+            <Label position={"insideTopLeft"} fill={colors["picton-blue"][400]}>
+              {"Your vote: " + userRisk}
             </Label>
           </ReferenceLine>
           <ReferenceLine
@@ -122,6 +114,16 @@ const InvestmentChart = ({
           >
             <Label fill={colors.glowstone[500]} position={"top"}>
               {"Actual 'Riskiness': " + investmentRvol}
+            </Label>
+          </ReferenceLine>
+          <ReferenceLine x={1} strokeWidth={0}>
+            <Label position="bottom" dx={20} opacity={0.6}>
+              Cash
+            </Label>
+          </ReferenceLine>
+          <ReferenceLine x={12} strokeWidth={0}>
+            <Label position="bottom" dx={-25} opacity={0.6}>
+              Bitcoin
             </Label>
           </ReferenceLine>
         </AreaChart>

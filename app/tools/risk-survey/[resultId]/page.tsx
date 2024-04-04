@@ -94,24 +94,10 @@ const RiskSurveyResults = async (props: Props) => {
       </Stack>
 
       <CardContainer>
-        <Stack gap={0}>
-          <Box
-            as="span"
-            flex="1"
-            textAlign="start"
-            borderWidth="1px"
-            borderStyle="solid"
-            borderColor="black"
-            borderBottom="0px"
-            padding={4}
-            bg="lily-white.100"
-          >
-            <Heading fontWeight={500} size={"lg"} textAlign={"center"} my={4}>
+        <Heading fontWeight={500} size={"lg"} textAlign={"center"} mb={2}>
               {"Your Perception vs Actual 'Riskiness'"}
             </Heading>
-          </Box>
           <InvestmentAccordion userRisks={userRisks} votes={votes} />
-        </Stack>
         <Accordion allowMultiple bg="lily-white.100">
           <AccordionItem>
             <AccordionButton
@@ -324,7 +310,7 @@ const MethodologyAccordion = ({
         >
           <Box as="span" flex="1" textAlign="start">
             <Heading size={"md"} padding={4}>
-              {"How have we calculated Actual 'Riskiness'"}
+              {"How we calculate Actual 'Riskiness'"}
             </Heading>
           </Box>
           <AccordionIcon />

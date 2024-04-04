@@ -18,7 +18,7 @@ import Image from "next/image";
 
 const toolDescriptions = [
   {
-    name: "Risk Survey",
+    name: "'Risk' Perception Survey",
     description:
       "Understand how you think about risk by framing your percieved risk against everyone else who has used this tool.",
     created: new Date("2024-03-06"),
@@ -27,7 +27,7 @@ const toolDescriptions = [
     image: platypusWalking,
   },
   {
-    name: "Risk Calculator",
+    name: "Portfolio 'Risk' Calculator",
     description:
       "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
     created: new Date("2024-03-08"),

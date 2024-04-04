@@ -63,11 +63,11 @@ const RiskCalculatorResults = async (props: Props) => {
             flexDir={"row"}
             justifyContent={"space-between"}
             alignItems={"center"}
+            gap={2}
           >
             <Flex flexDir={"column"}>
               <Heading textColor={"black"} size={"md"}>
-                {" "}
-                Realised Vol
+                Realised Volatility
               </Heading>
               <Text color={"black"} opacity={0.8} fontSize={"md"}>
                 1 year
@@ -96,6 +96,30 @@ const RiskCalculatorResults = async (props: Props) => {
             </Text>
           </Card>
         </Flex>
+        <Card
+          flexDir={{ base: "column" }}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Flex
+            flexDir={"column"}
+            gap={2}
+            textAlign={{ base: "center", md: "left" }}
+          >
+            <Heading textColor={"black"} size={"md"}>
+              How do you stack up?
+            </Heading>
+            <Text color={"black"} opacity={0.8} fontSize={"md"}>
+              Understand how your portfolio realized volatility compares to
+              others who have filled out the survey!
+            </Text>
+          </Flex>
+          <CommunityRiskReturnScatter
+            userRet={ret}
+            userRvol={rvol}
+            communityRiskReturns={allRiskReturns}
+          />
+        </Card>
         <Card>
           <Flex
             px={4}
@@ -119,31 +143,6 @@ const RiskCalculatorResults = async (props: Props) => {
             </Flex>
             <PortfolioPie allocations={portfolio} />
           </Flex>
-        </Card>
-        <Card
-          flexDir={{ base: "column", md: "row" }}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-        >
-          <Flex
-            flexDir={"column"}
-            gap={2}
-            w={{ base: "100%", md: "60%" }}
-            textAlign={{ base: "center", md: "left" }}
-          >
-            <Heading textColor={"black"} size={"md"}>
-              How do you stack up?
-            </Heading>
-            <Text color={"black"} opacity={0.8} fontSize={"md"}>
-              Understand how your portfolio realized volatility compares to
-              others who have filled out the survey!
-            </Text>
-          </Flex>
-          <CommunityRiskReturnScatter
-            userRet={ret}
-            userRvol={rvol}
-            communityRiskReturns={allRiskReturns}
-          />
         </Card>
         <Accordion allowMultiple bg="lily-white.100">
           <AccordionItem>
