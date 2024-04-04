@@ -38,14 +38,14 @@ export const dynamic = "force-dynamic";
 const methodologyDataRisk: MethodologyData[] = [
   {
     heading: "Calculation",
+    text: "",
+  },
+  {
+    heading: "Normalisation",
     text: "Consectetur adipiscing elit. Proin elementum volutpat lectus in pellentesque. Phasellus lobortis libero ut scelerisque cursus. Praesent in suscipit justo. Phasellus tempus auctor orci, id euismod arcu egestas vitae. Suspendisse rutrum ante vitae auctor varius. Proin pharetra molestie metus et bibendum. Aliquam pulvinar faucibus felis, non semper metus aliquet molestie. In hac habitasse platea dictumst. Sed ultrices eget nisi at venenatis. Nullam id nunc eu sapien consequ.",
   },
   {
-    heading: "What are you looking at",
-    text: "Consectetur adipiscing elit. Proin elementum volutpat lectus in pellentesque. Phasellus lobortis libero ut scelerisque cursus. Praesent in suscipit justo. Phasellus tempus auctor orci, id euismod arcu egestas vitae. Suspendisse rutrum ante vitae auctor varius. Proin pharetra molestie metus et bibendum. Aliquam pulvinar faucibus felis, non semper metus aliquet molestie. In hac habitasse platea dictumst. Sed ultrices eget nisi at venenatis. Nullam id nunc eu sapien consequ.",
-  },
-  {
-    heading: "What are you looking at",
+    heading: "Time frame",
     text: "Consectetur adipiscing elit. Proin elementum volutpat lectus in pellentesque. Phasellus lobortis libero ut scelerisque cursus. Praesent in suscipit justo. Phasellus tempus auctor orci, id euismod arcu egestas vitae. Suspendisse rutrum ante vitae auctor varius. Proin pharetra molestie metus et bibendum. Aliquam pulvinar faucibus felis, non semper metus aliquet molestie. In hac habitasse platea dictumst. Sed ultrices eget nisi at venenatis. Nullam id nunc eu sapien consequ.",
   },
 ];
@@ -94,37 +94,53 @@ const RiskSurveyResults = async (props: Props) => {
       </Stack>
 
       <CardContainer>
-        <Card>
-          <Flex
-            flexDir={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            w={"full"}
-            textAlign={"center"}
-          >
-            <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
-              Your Risk Map
-            </Heading>
-            <SummaryChart userRisks={userRisks} means={means}/>
-          </Flex>
-        </Card>
         <Stack gap={0}>
-          <Box as="span" flex="1" textAlign="start">
-            <Heading
-              size={"md"}
-              color="black"
-              borderWidth="1px"
-              borderStyle="solid"
-              borderColor="black"
-              borderBottom="0px"
-              padding={4}
-              bg="lily-white.100"
-            >
-              Individual Instruments
+          <Box
+            as="span"
+            flex="1"
+            textAlign="start"
+            borderWidth="1px"
+            borderStyle="solid"
+            borderColor="black"
+            borderBottom="0px"
+            padding={4}
+            bg="lily-white.100"
+          >
+            <Heading fontWeight={500} size={"lg"} textAlign={"center"} my={4}>
+              {"Your Perception vs Actual 'Riskiness'"}
             </Heading>
           </Box>
           <InvestmentAccordion userRisks={userRisks} votes={votes} />
         </Stack>
+        <Accordion allowMultiple bg="lily-white.100">
+          <AccordionItem>
+            <AccordionButton
+              borderWidth="1px"
+              borderStyle="solid"
+              borderColor="black"
+              _expanded={{
+                bg: "lily-white.200",
+                borderBottomWidth: "0px",
+              }}
+              py={0}
+            >
+              <Box as="span" flex="1" textAlign="start">
+                <Heading size={"md"} padding={4}>
+                  Summary Map
+                </Heading>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel
+              p={4}
+              borderWidth="1px"
+              borderStyle="solid"
+              borderColor="black"
+            >
+              <SummaryChart userRisks={userRisks} means={means} />
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
         <MethodologyAccordion methodologyData={methodologyDataRisk} />
         <CopyUrlButton colorScheme="hollywood" marginTop={2}>
           Copy Result Link
@@ -308,7 +324,7 @@ const MethodologyAccordion = ({
         >
           <Box as="span" flex="1" textAlign="start">
             <Heading size={"md"} padding={4}>
-              Methodology
+              {"How have we calculated Actual 'Riskiness'"}
             </Heading>
           </Box>
           <AccordionIcon />
