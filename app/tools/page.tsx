@@ -10,13 +10,12 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import platypusWalking from "../../public/platypus-walking.svg";
 import platypus from "../../public/platypus.svg";
 import Image from "next/image";
 
-export const toolDescriptions = [
+const toolDescriptions = [
   {
     name: "'Risk' Perception Survey",
     description:
@@ -57,7 +56,7 @@ const Tools = () => {
   );
 };
 
-export const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
+const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
   <Link href={tool.path}>
     <Card
       variant={"whiteShadow"}

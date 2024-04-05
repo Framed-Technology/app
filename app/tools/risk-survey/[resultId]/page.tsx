@@ -19,19 +19,19 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import Card from "@/components/ui/card";
+import SignUpCard from "@/components/ui/sign-up-card";
 import SummaryChart from "./summary-chart";
 import InvestmentChart from "./investment-chart";
 import { investmentMap } from "@/static/investments";
 import InvestmentCard from "@/components/ui/investment-card";
 import Link from "next/link";
+import Image from "next/image";
 import { FaCalculator } from "react-icons/fa";
 import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
 import { colors } from "@/theme";
-import { toolDescriptions } from "../../page";
-import { Tool } from "../../page";
 import { FaArrowRight } from "react-icons/fa";
-
+import platypus from "../../../../public/platypus-walking.svg";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +40,16 @@ type Props = {
     resultId: string;
   };
 };
+
+const sectionDescriptions = [
+  {
+    name: "Tools",
+    description:
+      "Some tools that help you conceptualise what you do and do not know. Identify the gaps in your understanding",
+    path: "/tools",
+    image: platypus,
+  },
+];
 
 const RiskSurveyResults = async (props: Props) => {
   const userRisks = await readRiskBySessionId(props.params.resultId);
@@ -191,17 +201,50 @@ const FurtherLearningSection = () => {
           gap={{ base: 4, sm: 4, lg: 6 }}
           alignItems="center"
         >
-          {toolDescriptions
-            .filter((tool) => tool.name === "Portfolio 'Risk' Calculator")
-            .map((tool, index) => (
-              <Tool key={index} tool={tool} />
-            ))}
+                 {sectionDescriptions.map((section, key) => (
+          <Section key={key} section={section} />
+        ))}
           <SignUpCard />
         </SimpleGrid>
       </Stack>
     </Flex>
   );
 };
+
+const Section = ({
+  section,
+}: {
+  section: (typeof sectionDescriptions)[number];
+}) => (
+  <Link href={section.path}>
+    <Card
+      variant={"whiteShadow"}
+      position={"relative"}
+      justifyContent={"space-between"}
+      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
+    >
+      <Flex
+        flexDir="row"
+        justifyContent="space-between"
+        style={{ flex: 1 }}
+        gap={4}
+      >
+        <Flex flexDir={"column"} gap={4}>
+          <Heading size={"md"}>{section.name}</Heading>
+          <Text fontSize={"md"}>{section.description}</Text>
+        </Flex>
+        <Flex minW={"30%"} justifyContent={"center"}>
+          <Image
+            src={section.image}
+            width={150}
+            height={150}
+            alt={`${section.image}`}
+          />
+        </Flex>
+      </Flex>
+    </Card>
+  </Link>
+);
 
 const MethodologyAccordion = () => {
   return (
@@ -279,45 +322,6 @@ const MethodologyAccordion = () => {
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
-  );
-};
-
-const SignUpCard = () => {
-  return (
-    <Link href="/courses/waitlist">
-      <Card
-        variant="gradient"
-        flexDir={{ base: "column", md: "row" }}
-        minHeight={{ md: "200px" }}
-        boxShadow="5px 5px 0 black"
-      >
-        <Flex
-          flexDir="row"
-          justifyContent="space-between"
-          alignItems="center"
-          style={{ flex: 1 }}
-          gap={12}
-        >
-          <Flex flexDir={"column"} gap={4}>
-            <Heading size={"lg"} color={"white"}>
-              Pretty off base?
-            </Heading>
-            <Text
-              fontSize={"md"}
-              fontWeight={"normal"}
-              color={"white"}
-              opacity={0.8}
-            >
-              Sign up for some courses that will put your mind at ease
-            </Text>
-          </Flex>
-            <FaArrowRight
-              size={40}
-              style={{ color: colors.glowstone[500], marginRight: "0.5rem" }}
-            />
-        </Flex>
-      </Card>
-    </Link>
   );
 };
 
