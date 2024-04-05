@@ -60,7 +60,12 @@ const PortfolioPie = ({
               />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip
+            cursor={{ strokeDasharray: "3 3" }}
+            formatter={(value: number, name: string) => {
+              return [`${name}: ${value.toFixed(2)}`];
+            }}
+          />
           <Legend />
         </PieChart>
       </ResponsiveContainer>

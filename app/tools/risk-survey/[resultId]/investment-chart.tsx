@@ -78,6 +78,9 @@ const InvestmentChart = ({
             left: 0,
             bottom: 0,
           }}
+          {...{
+            overflow: 'visible'
+          }}
         >
           <Area
             name="Community votes"
@@ -91,7 +94,6 @@ const InvestmentChart = ({
           <Tooltip content={<CustomTooltip />} />
           <XAxis
             type="number"
-            label={"'Risk' Level"}
             dataKey={"riskLevel"}
             domain={[1, 12]}
             tick={false}
@@ -103,8 +105,8 @@ const InvestmentChart = ({
             strokeWidth={2}
             stroke={colors["picton-blue"][400]}
           >
-            <Label position={"insideTopLeft"} fill={colors["picton-blue"][400]}>
-              {"Your vote: " + userRisk}
+            <Label position={"top"} dy={20} dx={-10} fill={colors["picton-blue"][400]}>
+              {"You: " + userRisk}
             </Label>
           </ReferenceLine>
           <ReferenceLine
@@ -117,13 +119,13 @@ const InvestmentChart = ({
             </Label>
           </ReferenceLine>
           <ReferenceLine x={1} strokeWidth={0}>
-            <Label position="bottom" dx={20} opacity={0.6}>
-              Cash
+            <Label position="bottom" dx={-20} opacity={0.6}>
+              {"Cash: 0"}
             </Label>
           </ReferenceLine>
           <ReferenceLine x={12} strokeWidth={0}>
-            <Label position="bottom" dx={-25} opacity={0.6}>
-              Bitcoin
+            <Label position="bottom" dx={-10} opacity={0.6}>
+              {"Bitcoin: 12"}
             </Label>
           </ReferenceLine>
         </AreaChart>
