@@ -16,7 +16,7 @@ import platypusWalking from "../../public/platypus-walking.svg";
 import platypus from "../../public/platypus.svg";
 import Image from "next/image";
 
-const toolDescriptions = [
+export const toolDescriptions = [
   {
     name: "'Risk' Perception Survey",
     description:
@@ -57,7 +57,7 @@ const Tools = () => {
   );
 };
 
-const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
+export const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
   <Link href={tool.path}>
     <Card
       variant={"whiteShadow"}
@@ -73,7 +73,7 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         gap={4}
       >
         <Flex flexDir={"column"} gap={4}>
-          <Heading size={"lg"} fontWeight={500}>
+          <Heading size={"md"}>
             {tool.name}
           </Heading>
           <Text fontSize={"md"}>{tool.description}</Text>

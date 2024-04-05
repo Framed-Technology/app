@@ -38,16 +38,16 @@ const Blog = async () => {
   );
 };
 
-const BlogPost = ({ post }: { post: Post }) => {
+export const BlogPost = ({ post }: { post: Post }) => {
   return (
     <Link href={`/blog/${post.slug}`}>
-      <Card
-        variant={"whiteShadow"}
-        position={"relative"}
-        flexDir={"row"}
-        justifyContent={"space-between"}
-        style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-      >
+  <Card
+    variant={"whiteShadow"}
+    position={"relative"}
+    flexDir={"row"}
+    justifyContent={"space-between"}
+    style={{ display: "flex", flexDirection: "column", minHeight: 200 }}
+  >
         <Flex
           flexDir="row"
           justifyContent="space-between"

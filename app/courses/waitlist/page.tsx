@@ -14,22 +14,9 @@ import Card from "@/components/ui/card";
 import { colors } from "@/theme";
 import { insertCourseInterest } from "./action";
 import Link from "next/link";
+import Image from "next/image";
 import platypus from "../../../public/platypus.svg";
 import platypusWalking from "../../../public/platypus-walking.svg";
-import Image from "next/image";
-
-const toolDescriptions = [
-  {
-    name: "Risk Calculator",
-    description:
-      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
-    created: new Date("2024-03-08"),
-    path: "/tools/rvol-calculator",
-    preview: "/tools/rvol-calculator.png",
-    image: platypus,
-  },
-];
-
 
 const CoursesWaitlist = () => {
   const [name, setName] = useState("");
@@ -149,6 +136,23 @@ const CoursesWaitlist = () => {
   );
 };
 
+const sectionDescriptions = [
+  {
+    name: "Blog",
+    description:
+      "Where we write and provide adjacent value like how to buy bitcoin or how to get a locum job in Aussie",
+    path: "/blog",
+    image: platypusWalking,
+  },
+  {
+    name: "Tools",
+    description:
+      "Some tools that help you conceptualise what you do and do not know. Identify the gaps in your understanding",
+    path: "/tools",
+    image: platypus,
+  },
+];
+
 const FurtherLearningSection = () => {
   return (
     <Flex flexDir={"column"} gap={12} marginTop={8}>
@@ -158,26 +162,31 @@ const FurtherLearningSection = () => {
           Checkout two blog posts that will give you a feel of what to expect
         </Text>
       </Stack>
-      <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ base: 4, sm: 4, lg: 6 }}>
-        <Stack gap={6}>
-          {toolDescriptions.map((tool, key) => (
-            <Tool key={key} tool={tool} />
-          ))}
-        </Stack>
-        <BlogCard />
+      <SimpleGrid
+        columns={{ sm: 1, lg: 2 }}
+        gap={{ base: 4, sm: 4, lg: 6 }}
+        alignItems="center"
+      >
+        {sectionDescriptions.map((section, key) => (
+          <Section key={key} section={section} />
+        ))}
       </SimpleGrid>
     </Flex>
   );
 };
 
-const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
-  <Link href={tool.path}>
+const Section = ({
+  section,
+}: {
+  section: (typeof sectionDescriptions)[number];
+}) => (
+  <Link href={section.path}>
     <Card
       variant={"whiteShadow"}
       position={"relative"}
       flexDir={"row"}
       justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
     >
       <Flex
         flexDir="row"
@@ -186,54 +195,20 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         gap={4}
       >
         <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>{tool.name}</Heading>
-          <Text fontSize={"md"}>{tool.description}</Text>
+          <Heading size={"md"}>{section.name}</Heading>
+          <Text fontSize={"md"}>{section.description}</Text>
         </Flex>
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
-            src={tool.image}
+            src={section.image}
             width={150}
             height={150}
-            alt={`${tool.image}`}
+            alt={`${section.image}`}
           />
         </Flex>
       </Flex>
     </Card>
   </Link>
 );
-
-const BlogCard = () => {
-  return (
-    <Card
-      variant={"whiteShadow"}
-      position={"relative"}
-      flexDir={"row"}
-      justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-    >
-      <Flex
-        flexDir="row"
-        justifyContent="space-between"
-        style={{ flex: 1 }}
-        gap={4}
-      >
-        <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>Blog Post</Heading>
-          <Text fontSize={"md"} color={"red"}>
-            Link with specific Blog-post-slug, make the blog page first
-          </Text>
-        </Flex>
-        <Flex minW={"30%"} justifyContent={"center"}>
-          <Image
-            src={platypusWalking}
-            width={150}
-            height={150}
-            alt="Magenta Platypus Walking"
-          />
-        </Flex>
-      </Flex>
-    </Card>
-  );
-};
 
 export default CoursesWaitlist;

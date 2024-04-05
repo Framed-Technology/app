@@ -28,24 +28,12 @@ import { FaCalculator } from "react-icons/fa";
 import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
 import { colors } from "@/theme";
-import { Path as PathProps } from "@/api/types";
-import platypus from "../../../../public/platypus.svg";
-import platypusWalking from "../../../../public/platypus-walking.svg";
-import Image from "next/image";
+import { toolDescriptions } from "../../page";
+import { Tool } from "../../page";
+import { FaArrowRight } from "react-icons/fa";
+
 
 export const dynamic = "force-dynamic";
-
-const toolDescriptions = [
-  {
-    name: "Risk Calculator",
-    description:
-      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
-    created: new Date("2024-03-08"),
-    path: "/tools/rvol-calculator",
-    preview: "/tools/rvol-calculator.png",
-    image: platypus,
-  },
-];
 
 type Props = {
   params: {
@@ -197,81 +185,21 @@ const FurtherLearningSection = () => {
           Checkout two blog posts that will give you a feel of what to expect
         </Text>
       </Stack>
-      <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ base: 4, sm: 4, lg: 6 }}>
-        <Stack gap={6}>
-          {toolDescriptions.map((tool, key) => (
-            <Tool key={key} tool={tool} />
-          ))}
-        </Stack>
-        <BlogCard />
-      </SimpleGrid>
+      <Stack>
+        <SimpleGrid
+          columns={{ sm: 1, lg: 2 }}
+          gap={{ base: 4, sm: 4, lg: 6 }}
+          alignItems="center"
+        >
+          {toolDescriptions
+            .filter((tool) => tool.name === "Portfolio 'Risk' Calculator")
+            .map((tool, index) => (
+              <Tool key={index} tool={tool} />
+            ))}
+          <SignUpCard />
+        </SimpleGrid>
+      </Stack>
     </Flex>
-  );
-};
-
-const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
-  <Link href={tool.path}>
-    <Card
-      variant={"whiteShadow"}
-      position={"relative"}
-      flexDir={"row"}
-      justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-    >
-      <Flex
-        flexDir="row"
-        justifyContent="space-between"
-        style={{ flex: 1 }}
-        gap={4}
-      >
-        <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>{tool.name}</Heading>
-          <Text fontSize={"md"}>{tool.description}</Text>
-        </Flex>
-        <Flex minW={"30%"} justifyContent={"center"}>
-          <Image
-            src={tool.image}
-            width={150}
-            height={150}
-            alt={`${tool.image}`}
-          />
-        </Flex>
-      </Flex>
-    </Card>
-  </Link>
-);
-
-const BlogCard = () => {
-  return (
-    <Card
-      variant={"whiteShadow"}
-      position={"relative"}
-      flexDir={"row"}
-      justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-    >
-      <Flex
-        flexDir="row"
-        justifyContent="space-between"
-        style={{ flex: 1 }}
-        gap={4}
-      >
-        <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>Blog Post</Heading>
-          <Text fontSize={"md"} color={"red"}>
-            Link with specific Blog-post-slug, make the blog page first
-          </Text>
-        </Flex>
-        <Flex minW={"30%"} justifyContent={"center"}>
-          <Image
-            src={platypusWalking}
-            width={150}
-            height={150}
-            alt="Magenta Platypus Walking"
-          />
-        </Flex>
-      </Flex>
-    </Card>
   );
 };
 
@@ -310,7 +238,9 @@ const MethodologyAccordion = () => {
               {
                 "To illustrate 'Riskiness', and the reason why we encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "
               }
-              <a href="/" className="underline">Blog Post</a>
+              <a href="/blog/risk-vs-volatility" className="underline">
+                Blog Post
+              </a>
             </Text>
             <Text fontSize={"sm"}>
               {
@@ -349,6 +279,45 @@ const MethodologyAccordion = () => {
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
+  );
+};
+
+const SignUpCard = () => {
+  return (
+    <Link href="/courses/waitlist">
+      <Card
+        variant="gradient"
+        flexDir={{ base: "column", md: "row" }}
+        minHeight={{ md: "200px" }}
+        boxShadow="5px 5px 0 black"
+      >
+        <Flex
+          flexDir="row"
+          justifyContent="space-between"
+          alignItems="center"
+          style={{ flex: 1 }}
+          gap={12}
+        >
+          <Flex flexDir={"column"} gap={4}>
+            <Heading size={"lg"} color={"white"}>
+              Pretty off base?
+            </Heading>
+            <Text
+              fontSize={"md"}
+              fontWeight={"normal"}
+              color={"white"}
+              opacity={0.8}
+            >
+              Sign up for some courses that will put your mind at ease
+            </Text>
+          </Flex>
+            <FaArrowRight
+              size={40}
+              style={{ color: colors.glowstone[500], marginRight: "0.5rem" }}
+            />
+        </Flex>
+      </Card>
+    </Link>
   );
 };
 
