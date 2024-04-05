@@ -19,16 +19,27 @@ import CommunityRiskReturnScatter from "./community-risk-return-scatter";
 import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
 import Link from "next/link";
-import { readPosts } from "../../../blog/actions";
-import { BlogPost } from "../../../blog/page";
+import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { colors } from "@/theme";
+import platypusWalking from "../../../../public/platypus-walking.svg";
+
 
 type Props = {
   params: {
     resultId: string;
   };
 };
+
+const sectionDescriptions = [
+  {
+    name: "Blog",
+    description:
+      "Where we write and provide adjacent value like how to buy bitcoin or how to get a locum job in Aussie",
+    path: "/blog",
+    image: platypusWalking,
+  },
+];
 
 const RiskCalculatorResults = async (props: Props) => {
   const { portfolio, rvol, ret } = await readPortfolioRiskReturn(
@@ -217,8 +228,6 @@ const RiskCalculatorResults = async (props: Props) => {
 };
 
 const FurtherLearningSection = async () => {
-  const postsContent = await readPosts();
-  const posts = postsContent.data.map((p) => p.attributes);
   return (
     <Flex flexDir={"column"} gap={12} marginTop={8}>
       <Stack gap={4}>
@@ -227,30 +236,64 @@ const FurtherLearningSection = async () => {
           Checkout two blog posts that will give you a feel of what to expect
         </Text>
       </Stack>
-        <SimpleGrid
-          columns={{ sm: 1, lg: 2 }}
-          gap={{ base: 4, sm: 4, lg: 6 }}
-          alignItems="center"
-        >
-          {posts
-            .filter((post) => post.title === "Risk vs Volatility")
-            .map((post, key) => (
-              <BlogPost key={key} post={post} />
-            ))}
-          <SignUpCard />
-        </SimpleGrid>
+      <SimpleGrid
+        columns={{ sm: 1, lg: 2 }}
+        gap={{ base: 4, sm: 4, lg: 6 }}
+        alignItems="center"
+      >
+        {sectionDescriptions.map((section, key) => (
+          <Section key={key} section={section} />
+        ))}
+                    <SignUpCard />
+      </SimpleGrid>
     </Flex>
   );
 };
+
+const Section = ({
+  section,
+}: {
+  section: (typeof sectionDescriptions)[number];
+}) => (
+  <Link href={section.path}>
+    <Card
+      variant={"whiteShadow"}
+      position={"relative"}
+      justifyContent={"space-between"}
+      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
+    >
+      <Flex
+        flexDir="row"
+        justifyContent="space-between"
+        style={{ flex: 1 }}
+        gap={4}
+      >
+        <Flex flexDir={"column"} gap={4}>
+          <Heading size={"md"}>{section.name}</Heading>
+          <Text fontSize={"md"}>{section.description}</Text>
+        </Flex>
+        <Flex minW={"30%"} justifyContent={"center"}>
+          <Image
+            src={section.image}
+            width={150}
+            height={150}
+            alt={`${section.image}`}
+          />
+        </Flex>
+      </Flex>
+    </Card>
+  </Link>
+);
 
 const SignUpCard = () => {
   return (
     <Link href="/courses/waitlist">
       <Card
         variant="gradient"
-        flexDir={{ base: "column", md: "row" }}
         minHeight={{ md: "200px" }}
         boxShadow="5px 5px 0 black"
+        style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
+
       >
         <Flex
           flexDir="row"

@@ -38,7 +38,7 @@ const Blog = async () => {
   );
 };
 
-export const BlogPost = ({ post }: { post: Post }) => {
+const BlogPost = ({ post }: { post: Post }) => {
   return (
     <Link href={`/blog/${post.slug}`}>
   <Card
