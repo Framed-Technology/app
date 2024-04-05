@@ -115,23 +115,23 @@ const InvestmentRiskSlider = (props: InvestmentRiskSliderProps) => {
   return (
     <Slider
       id={props.investment.id}
-      defaultValue={0}
       min={1}
       max={12}
       {...props.inputProps}
+      overflow= 'visible'
     >
       <SliderTrack rounded={"full"} h={4} bg="hollywood.50">
         <SliderFilledTrack bg="hollywood.500" />
       </SliderTrack>
       <SliderThumb h={5} w={5} />
-      <SliderMark mt={3} ml={-1} value={1}>
+      <SliderMark mt={3} ml={0} value={0}>
         <Text textColor={"black"} opacity={0.8} fontSize={"sm"}>
-          Cash
+          {"Cash: 0"}
         </Text>
       </SliderMark>
-      <SliderMark mt={3} ml={-8} value={12}>
+      <SliderMark mt={3} ml={-10} minWidth={100} value={12}>
         <Text textColor={"black"} opacity={0.8} fontSize={"sm"}>
-          Bitcoin
+        {"Bitcoin: 12"}
         </Text>
       </SliderMark>
       <SliderMark mt={-10} ml={-4} value={props.inputProps.value!}>

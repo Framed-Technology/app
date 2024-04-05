@@ -53,7 +53,7 @@ const CommunityRiskReturnScatter = ({
             name="Risk"
             unit="%"
           >
-            <Label>{"'Risk': Realised Volatility (1yr)"}</Label>
+            <Label>{"'Risk'"}</Label>
           </XAxis>
           <YAxis
             tick={false}

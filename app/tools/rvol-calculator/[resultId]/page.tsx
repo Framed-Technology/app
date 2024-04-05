@@ -104,6 +104,7 @@ const RiskCalculatorResults = async (props: Props) => {
           <Flex
             flexDir={"column"}
             gap={2}
+            mb={2}
             textAlign={{ base: "center", md: "left" }}
           >
             <Heading textColor={"black"} size={"md"}>
@@ -158,42 +159,37 @@ const RiskCalculatorResults = async (props: Props) => {
             >
               <Box as="span" flex="1" textAlign="start">
                 <Heading size={"md"} padding={4}>
-                  Methodology
+                {"How we calculate 'Risk' and Return"}
                 </Heading>
               </Box>
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel
-              p={4}
+              p={8}
               borderWidth="1px"
               borderStyle="solid"
               borderColor="black"
             >
-              <Stack flexDir={"column"} gap={2}>
-                <Heading size={"sm"}>Calculation</Heading>
-                <Text fontSize={"md"} marginBottom={2}>
-                  Consectetur adipiscing elit. Proin elementum volutpat lectus
-                  in pellentesque. Phasellus lobortis libero ut scelerisque
-                  cursus. Praesent in suscipit justo. Phasellus tempus auctor
-                  orci, id euismod arcu egestas vitae. Suspendisse rutrum ante
-                  vitae auctor varius. Proin pharetra molestie metus et
-                  bibendum. Aliquam pulvinar faucibus felis, non semper metus
-                  aliquet molestie. In hac habitasse platea dictumst. Sed
-                  ultrices eget nisi at venenatis. Nullam id nunc eu sapien
-                  consequ
+              <Stack flexDir={"column"} gap={4}>
+                <Heading size={"sm"}>Data Retrieval</Heading>
+                <Text fontSize={"sm"}>
+                  {
+                    "We use the yfinance API to get historical price data for each asset. The returns and realized volatility you see are calculated from the daily prices of the past year, starting from the date you access the form. We make some simplifications: we assume you don't change your allocation during the year, meaning you don't buy or sell any assets, and don't reinvestment any dividends."
+                  }
                 </Text>
-                <Heading size={"sm"}>What are you looking at</Heading>
-                <Text fontSize={"md"} marginBottom={2}>
-                  Consectetur adipiscing elit. Proin elementum volutpat lectus
-                  in pellentesque. Phasellus lobortis libero ut scelerisque
-                  cursus. Praesent in suscipit justo. Phasellus tempus auctor
-                  orci, id euismod arcu egestas vitae. Suspendisse rutrum ante
-                  vitae auctor varius. Proin pharetra molestie metus et
-                  bibendum. Aliquam pulvinar faucibus felis, non semper metus
-                  aliquet molestie. In hac habitasse platea dictumst. Sed
-                  ultrices eget nisi at venenatis. Nullam id nunc eu sapien
-                  consequ
-                </Text>
+                <Heading size={"sm"} mt={2}>
+                {"Portfolio Return"}
+                </Heading>
+                <Text fontSize={"sm"}>{"We first calculate the daily returns for each asset in the portfolio based on the historical price data. Daily returns measure how much an asset's price changes from one day to the next."} </Text>
+                <Text fontSize={"sm"}>{"To calculate the return for the entire portfolio, we aggregate the individual asset returns. This process involves computing a weighted average return, where the return of each asset is weighted based on its allocation within the portfolio. Essentially, assets with higher allocations contribute more to the overall return, reflecting their significance in shaping the portfolio's performance."} </Text>
+                <Heading size={"sm"} mt={2}>
+                  {"Portfolio 'Risk'"}
+                </Heading>
+                <Text fontSize={"sm"}>{"To illustrate 'Risk', and the reason why we have encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "}
+                <a href="/" className="underline">Blog Post</a> 
+                {". To calculate the realized volatility for the portfolio we first compute the covariance matrix of daily returns for its assets."} </Text>
+                <Text fontSize={"sm"}>{"Covariance is a statistical measure that describes the degree to which two random variables (in this case, the daily returns of two assets) change together. A positive covariance indicates that the variables move in the same direction, while a negative covariance suggests they move in opposite directions. A covariance matrix is a square matrix where each element represents the covariance between two variables. For a portfolio of N assets, the covariance matrix is an N x N matrix."} </Text>
+                <Text fontSize={"sm"}>{"By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The square root of the dot product of the allocation vector and the covariance matrix gives the portfolio's realised volatility."} </Text>
               </Stack>
             </AccordionPanel>
           </AccordionItem>

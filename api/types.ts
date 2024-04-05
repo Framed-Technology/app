@@ -49,6 +49,7 @@ export type Post =
       minsToRead?: number;
       thumbnail?: any;
       authorAvatar?: any;
+      authorName?: string;
     } & Content;
 
 

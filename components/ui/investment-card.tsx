@@ -15,7 +15,7 @@ const InvestmentCard = ({
     <Flex
       p={6}
       w={"full"}
-      gap={{ base: 12, md: 8}}
+      gap={{ base: 12, md: 16}}
       alignItems={"center"}
       justifyContent={{ base: "center", md: "space-between" }}
       flexDir={{ base: "column", md: "row" }}
@@ -31,7 +31,7 @@ const InvestmentCard = ({
           opacity={0.4}
           fontSize={"sm"}
         >
-          {investment.id}
+          {"Ticker: "+investment.id}
         </Text>
         <Heading
           textColor={"black"}

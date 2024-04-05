@@ -35,21 +35,6 @@ import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
-const methodologyDataRisk: MethodologyData[] = [
-  {
-    heading: "Calculation",
-    text: "",
-  },
-  {
-    heading: "Normalisation",
-    text: "Consectetur adipiscing elit. Proin elementum volutpat lectus in pellentesque. Phasellus lobortis libero ut scelerisque cursus. Praesent in suscipit justo. Phasellus tempus auctor orci, id euismod arcu egestas vitae. Suspendisse rutrum ante vitae auctor varius. Proin pharetra molestie metus et bibendum. Aliquam pulvinar faucibus felis, non semper metus aliquet molestie. In hac habitasse platea dictumst. Sed ultrices eget nisi at venenatis. Nullam id nunc eu sapien consequ.",
-  },
-  {
-    heading: "Time frame",
-    text: "Consectetur adipiscing elit. Proin elementum volutpat lectus in pellentesque. Phasellus lobortis libero ut scelerisque cursus. Praesent in suscipit justo. Phasellus tempus auctor orci, id euismod arcu egestas vitae. Suspendisse rutrum ante vitae auctor varius. Proin pharetra molestie metus et bibendum. Aliquam pulvinar faucibus felis, non semper metus aliquet molestie. In hac habitasse platea dictumst. Sed ultrices eget nisi at venenatis. Nullam id nunc eu sapien consequ.",
-  },
-];
-
 const toolDescriptions = [
   {
     name: "Risk Calculator",
@@ -95,9 +80,9 @@ const RiskSurveyResults = async (props: Props) => {
 
       <CardContainer>
         <Heading fontWeight={500} size={"lg"} textAlign={"center"} mb={2}>
-              {"Your Perception vs Actual 'Riskiness'"}
-            </Heading>
-          <InvestmentAccordion userRisks={userRisks} votes={votes} />
+          {"Your Perception vs Actual 'Riskiness'"}
+        </Heading>
+        <InvestmentAccordion userRisks={userRisks} votes={votes} />
         <Accordion allowMultiple bg="lily-white.100">
           <AccordionItem>
             <AccordionButton
@@ -127,7 +112,7 @@ const RiskSurveyResults = async (props: Props) => {
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
-        <MethodologyAccordion methodologyData={methodologyDataRisk} />
+        <MethodologyAccordion />
         <CopyUrlButton colorScheme="hollywood" marginTop={2}>
           Copy Result Link
         </CopyUrlButton>
@@ -290,11 +275,7 @@ const BlogCard = () => {
   );
 };
 
-const MethodologyAccordion = ({
-  methodologyData,
-}: {
-  methodologyData: MethodologyData[];
-}) => {
+const MethodologyAccordion = () => {
   return (
     <Accordion allowMultiple bg="lily-white.100">
       <AccordionItem>
@@ -316,33 +297,58 @@ const MethodologyAccordion = ({
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel
-          p={4}
+          padding={8}
           borderWidth="1px"
           borderStyle="solid"
           borderColor="black"
         >
-          {methodologyData.map((item, index) => (
-            <MethodologyContent key={index} content={item} />
-          ))}
+          <Stack flexDir={"column"} gap={4}>
+            <Heading size={"sm"}>
+              {"'Riskiness' vs Realized Volatility"}
+            </Heading>
+            <Text fontSize={"sm"}>
+              {
+                "To illustrate 'Riskiness', and the reason why we encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "
+              }
+              <a href="/" className="underline">Blog Post</a>
+            </Text>
+            <Text fontSize={"sm"}>
+              {
+                "Realized volatility is like a measure of how bumpy a rollercoaster ride is. Except in this case, instead of looking at a rollercoaster we are looking at different types of investments and the bumps are their price movements over a certain period. Our specified time period is from 31-Mar-2023 to 1-Apr-2024."
+              }
+            </Text>
+            <Heading size={"sm"} mt={2}>
+              Calculating Realized Volatility
+            </Heading>
+            <Text fontSize={"sm"}>
+              {
+                "We start by calculating the daily returns (how much the prices change compared to the previous day) of the corresponding example tickers for each different investment type listed above. For bitcoin we used the price in USD. And for cash we used Neos Enhanced Income Cash Alternative ETF (ticker CSHI)."
+              }
+            </Text>
+            <Text fontSize={"sm"}>
+              {
+                "Then, we find the standard deviation of these daily returns. Here's where it gets a bit more mathy but stay with me! We measure how each day's movement differs from the average movement over the year and square that difference (as we want to compare how far each movement was from the average without caring if it's above or below)."
+              }
+            </Text>
+            <Text fontSize={"sm"}>
+              {
+                "We then calculate the variance by finding the average of all these squared differences. Finally, we take the square root of the variance to get the standard deviation, which is the realized volatility."
+              }
+            </Text>
+            <Heading size={"sm"} mt={2}>
+              {
+                "Normalizing the Values on a Scale from 0 (Cash) to 12 (Bitcoin)"
+              }
+            </Heading>
+            <Text fontSize={"sm"}>
+              {
+                "To make it easier to compare the relative differences between each investment more clearly, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker CSHI) and 12 being Bitcoin’s realised volatility."
+              }
+            </Text>
+          </Stack>
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
-  );
-};
-
-type MethodologyData = {
-  heading: string;
-  text: string;
-};
-
-const MethodologyContent = ({ content }: { content: MethodologyData }) => {
-  return (
-    <Stack flexDir={"column"} gap={2}>
-      <Heading size={"sm"}>{content.heading}</Heading>
-      <Text fontSize={"md"} marginBottom={2}>
-        {content.text}
-      </Text>
-    </Stack>
   );
 };
 
