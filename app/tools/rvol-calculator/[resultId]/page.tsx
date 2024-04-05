@@ -2,6 +2,7 @@ import React from "react";
 import { readAllRiskReturns, readPortfolioRiskReturn } from "./actions";
 import PortfolioPie from "@/components/ui/portfolio-pie";
 import Card from "@/components/ui/card";
+import SignUpCard from "@/components/ui/sign-up-card";
 import {
   Box,
   Flex,
@@ -18,10 +19,11 @@ import {
 import CommunityRiskReturnScatter from "./community-risk-return-scatter";
 import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
-import platypus from "../../../../public/platypus.svg";
-import platypusWalking from "../../../../public/platypus-walking.svg";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
+import { colors } from "@/theme";
+import platypusWalking from "../../../../public/platypus-walking.svg";
 
 type Props = {
   params: {
@@ -29,14 +31,12 @@ type Props = {
   };
 };
 
-const toolDescriptions = [
+const sectionDescriptions = [
   {
-    name: "Risk Survey",
+    name: "Blog",
     description:
-      "Understand how you think about risk by framing your percieved risk against everyone else who has used this tool.",
-    created: new Date("2024-03-06"),
-    path: "/tools/risk-survey",
-    preview: "/tools/risk-survey.png",
+      "Where we write and provide adjacent value like how to buy bitcoin or how to get a locum job in Aussie",
+    path: "/blog",
     image: platypusWalking,
   },
 ];
@@ -159,7 +159,7 @@ const RiskCalculatorResults = async (props: Props) => {
             >
               <Box as="span" flex="1" textAlign="start">
                 <Heading size={"md"} padding={4}>
-                {"How we calculate 'Risk' and Return"}
+                  {"How we calculate 'Risk' and Return"}
                 </Heading>
               </Box>
               <AccordionIcon />
@@ -178,18 +178,42 @@ const RiskCalculatorResults = async (props: Props) => {
                   }
                 </Text>
                 <Heading size={"sm"} mt={2}>
-                {"Portfolio Return"}
+                  {"Portfolio Return"}
                 </Heading>
-                <Text fontSize={"sm"}>{"We first calculate the daily returns for each asset in the portfolio based on the historical price data. Daily returns measure how much an asset's price changes from one day to the next."} </Text>
-                <Text fontSize={"sm"}>{"To calculate the return for the entire portfolio, we aggregate the individual asset returns. This process involves computing a weighted average return, where the return of each asset is weighted based on its allocation within the portfolio. Essentially, assets with higher allocations contribute more to the overall return, reflecting their significance in shaping the portfolio's performance."} </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "We first calculate the daily returns for each asset in the portfolio based on the historical price data. Daily returns measure how much an asset's price changes from one day to the next."
+                  }{" "}
+                </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "To calculate the return for the entire portfolio, we aggregate the individual asset returns. This process involves computing a weighted average return, where the return of each asset is weighted based on its allocation within the portfolio. Essentially, assets with higher allocations contribute more to the overall return, reflecting their significance in shaping the portfolio's performance."
+                  }{" "}
+                </Text>
                 <Heading size={"sm"} mt={2}>
                   {"Portfolio 'Risk'"}
                 </Heading>
-                <Text fontSize={"sm"}>{"To illustrate 'Risk', and the reason why we have encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "}
-                <a href="/" className="underline">Blog Post</a> 
-                {". To calculate the realized volatility for the portfolio we first compute the covariance matrix of daily returns for its assets."} </Text>
-                <Text fontSize={"sm"}>{"Covariance is a statistical measure that describes the degree to which two random variables (in this case, the daily returns of two assets) change together. A positive covariance indicates that the variables move in the same direction, while a negative covariance suggests they move in opposite directions. A covariance matrix is a square matrix where each element represents the covariance between two variables. For a portfolio of N assets, the covariance matrix is an N x N matrix."} </Text>
-                <Text fontSize={"sm"}>{"By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The square root of the dot product of the allocation vector and the covariance matrix gives the portfolio's realised volatility."} </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "To illustrate 'Risk', and the reason why we have encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "
+                  }
+                  <a href="/blog/risk-vs-volatility" className="underline">
+                    Blog Post
+                  </a>
+                  {
+                    ". To calculate the realized volatility for the portfolio we first compute the covariance matrix of daily returns for its assets."
+                  }{" "}
+                </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "Covariance is a statistical measure that describes the degree to which two random variables (in this case, the daily returns of two assets) change together. A positive covariance indicates that the variables move in the same direction, while a negative covariance suggests they move in opposite directions. A covariance matrix is a square matrix where each element represents the covariance between two variables. For a portfolio of N assets, the covariance matrix is an N x N matrix."
+                  }{" "}
+                </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The square root of the dot product of the allocation vector and the covariance matrix gives the portfolio's realised volatility."
+                  }{" "}
+                </Text>
               </Stack>
             </AccordionPanel>
           </AccordionItem>
@@ -198,62 +222,45 @@ const RiskCalculatorResults = async (props: Props) => {
           Copy Result Link
         </CopyUrlButton>
       </CardContainer>
-      <Flex flexDir={"column"}>
-        <Heading size={"lg"} marginBottom={4} marginTop={8}>
-          Want to Learn More?
-        </Heading>
+      <FurtherLearningSection />
+    </Flex>
+  );
+};
+
+const FurtherLearningSection = async () => {
+  return (
+    <Flex flexDir={"column"} gap={12} marginTop={8}>
+      <Stack gap={4}>
+        <Heading size={"lg"}>Want to Learn More?</Heading>
         <Text fontSize="md">
           Checkout two blog posts that will give you a feel of what to expect
         </Text>
-      </Flex>
-      <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ sm: 4, lg: 6 }}>
-        <Stack gap={6}>
-          {toolDescriptions.map((tool, key) => (
-            <Tool key={key} tool={tool} />
-          ))}
-        </Stack>
-        <Card
-          variant={"whiteShadow"}
-          position={"relative"}
-          flexDir={"row"}
-          justifyContent={"space-between"}
-          style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-        >
-          <Flex
-            flexDir="row"
-            justifyContent="space-between"
-            style={{ flex: 1 }}
-            gap={4}
-          >
-            <Flex flexDir={"column"} gap={4}>
-              <Heading size={"md"}>Blog Post</Heading>
-              <Text fontSize={"md"} color={"red"}>
-                Link with specific Blog-post-slug, make the blog page first
-              </Text>
-            </Flex>
-            <Flex minW={"30%"} justifyContent={"center"}>
-              <Image
-                src={platypusWalking}
-                width={150}
-                height={150}
-                alt="Magenta Platypus Walking"
-              />
-            </Flex>
-          </Flex>
-        </Card>
+      </Stack>
+      <SimpleGrid
+        columns={{ sm: 1, lg: 2 }}
+        gap={{ base: 4, sm: 4, lg: 6 }}
+        alignItems="center"
+      >
+        {sectionDescriptions.map((section, key) => (
+          <Section key={key} section={section} />
+        ))}
+        <SignUpCard />
       </SimpleGrid>
     </Flex>
   );
 };
 
-const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
-  <Link href={tool.path}>
+const Section = ({
+  section,
+}: {
+  section: (typeof sectionDescriptions)[number];
+}) => (
+  <Link href={section.path}>
     <Card
       variant={"whiteShadow"}
       position={"relative"}
-      flexDir={"row"}
       justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
     >
       <Flex
         flexDir="row"
@@ -262,15 +269,15 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         gap={4}
       >
         <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>{tool.name}</Heading>
-          <Text fontSize={"md"}>{tool.description}</Text>
+          <Heading size={"md"}>{section.name}</Heading>
+          <Text fontSize={"md"}>{section.description}</Text>
         </Flex>
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
-            src={tool.image}
+            src={section.image}
             width={150}
             height={150}
-            alt={`${tool.image}`}
+            alt={`${section.image}`}
           />
         </Flex>
       </Flex>

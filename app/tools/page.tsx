@@ -10,7 +10,6 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import platypusWalking from "../../public/platypus-walking.svg";
 import platypus from "../../public/platypus.svg";
@@ -73,7 +72,7 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         gap={4}
       >
         <Flex flexDir={"column"} gap={4}>
-          <Heading size={"lg"} fontWeight={500}>
+          <Heading size={"md"}>
             {tool.name}
           </Heading>
           <Text fontSize={"md"}>{tool.description}</Text>
