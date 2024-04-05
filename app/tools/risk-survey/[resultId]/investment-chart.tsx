@@ -105,7 +105,7 @@ const InvestmentChart = ({
             strokeWidth={2}
             stroke={colors["picton-blue"][400]}
           >
-            <Label position={"top"} dy={20} dx={-10} fill={colors["picton-blue"][400]}>
+            <Label position={"top"} fill={colors["picton-blue"][400]}>
               {"You: " + userRisk}
             </Label>
           </ReferenceLine>
@@ -114,7 +114,7 @@ const InvestmentChart = ({
             strokeWidth={2}
             stroke={colors.glowstone[500]}
           >
-            <Label fill={colors.glowstone[500]} position={"top"}>
+            <Label fill={colors.glowstone[500]} dy={-20} position={"top"}>
               {"Actual 'Riskiness': " + investmentRvol}
             </Label>
           </ReferenceLine>
