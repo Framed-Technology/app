@@ -156,7 +156,7 @@ const RvolCalculator = () => {
       </Card>
       <Card>
         <Box position="relative">
-          <Flex gap={4} p={4} flexDir={"column"} w="full">
+          <Flex gap={4} flexDir={"column"} w="full">
             {entries.map((entry, key) => {
               return (
                 <Flex

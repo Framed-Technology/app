@@ -21,7 +21,7 @@ import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
 import Link from "next/link";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { colors } from "@/theme";
 import platypusWalking from "../../../../public/platypus-walking.svg";
 
@@ -30,16 +30,6 @@ type Props = {
     resultId: string;
   };
 };
-
-const sectionDescriptions = [
-  {
-    name: "Blog",
-    description:
-      "Where we write and provide adjacent value like how to buy bitcoin or how to get a locum job in Aussie",
-    path: "/blog",
-    image: platypusWalking,
-  },
-];
 
 const RiskCalculatorResults = async (props: Props) => {
   const { portfolio, rvol, ret } = await readPortfolioRiskReturn(
@@ -100,12 +90,14 @@ const RiskCalculatorResults = async (props: Props) => {
           flexDir={{ base: "column" }}
           justifyContent={"space-between"}
           alignItems={"center"}
+          px={{ base: 2, md: 10 }}
         >
           <Flex
             flexDir={"column"}
             gap={2}
             mb={2}
             textAlign={{ base: "center", md: "left" }}
+            px={10}
           >
             <Heading textColor={"black"} size={"md"}>
               How do you stack up?
@@ -197,8 +189,20 @@ const RiskCalculatorResults = async (props: Props) => {
                   {
                     "To illustrate 'Risk', and the reason why we have encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "
                   }
-                  <a href="/blog/risk-vs-volatility" className="underline">
-                    Blog Post
+                  <a
+                    className="hover:underline"
+                    href="https://www.morningstar.com/markets/risk-not-volatility-is-real-enemy"
+                    target="_blank"
+                  >
+                    Article
+                    <FaExternalLinkAlt
+                      style={{
+                        marginLeft: "5px",
+                        display: "inline",
+                        color: "black",
+                        opacity: 0.6,
+                      }}
+                    />
                   </a>
                   {
                     ". To calculate the realized volatility for the portfolio we first compute the covariance matrix of daily returns for its assets."
@@ -236,53 +240,9 @@ const FurtherLearningSection = async () => {
           Checkout two blog posts that will give you a feel of what to expect
         </Text>
       </Stack>
-      <SimpleGrid
-        columns={{ sm: 1, lg: 2 }}
-        gap={{ base: 4, sm: 4, lg: 6 }}
-        alignItems="center"
-      >
-        {sectionDescriptions.map((section, key) => (
-          <Section key={key} section={section} />
-        ))}
-        <SignUpCard />
-      </SimpleGrid>
+      <SignUpCard />
     </Flex>
   );
 };
-
-const Section = ({
-  section,
-}: {
-  section: (typeof sectionDescriptions)[number];
-}) => (
-  <Link href={section.path}>
-    <Card
-      variant={"whiteShadow"}
-      position={"relative"}
-      justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
-    >
-      <Flex
-        flexDir="row"
-        justifyContent="space-between"
-        style={{ flex: 1 }}
-        gap={4}
-      >
-        <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>{section.name}</Heading>
-          <Text fontSize={"md"}>{section.description}</Text>
-        </Flex>
-        <Flex minW={"30%"} justifyContent={"center"}>
-          <Image
-            src={section.image}
-            width={150}
-            height={150}
-            alt={`${section.image}`}
-          />
-        </Flex>
-      </Flex>
-    </Card>
-  </Link>
-);
 
 export default RiskCalculatorResults;
