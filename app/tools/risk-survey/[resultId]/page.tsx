@@ -30,7 +30,7 @@ import { FaCalculator } from "react-icons/fa";
 import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
 import { colors } from "@/theme";
-import { FaArrowRight } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import platypus from "../../../../public/platypus-walking.svg";
 
 export const dynamic = "force-dynamic";
@@ -43,10 +43,10 @@ type Props = {
 
 const sectionDescriptions = [
   {
-    name: "Tools",
+    name: "Portfolio 'Risk' Calculator",
     description:
-      "Some tools that help you conceptualise what you do and do not know. Identify the gaps in your understanding",
-    path: "/tools",
+      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+    path: "/tools/rvol-calculator",
     image: platypus,
   },
 ];
@@ -201,9 +201,9 @@ const FurtherLearningSection = () => {
           gap={{ base: 4, sm: 4, lg: 6 }}
           alignItems="center"
         >
-                 {sectionDescriptions.map((section, key) => (
-          <Section key={key} section={section} />
-        ))}
+          {sectionDescriptions.map((section, key) => (
+            <Section key={key} section={section} />
+          ))}
           <SignUpCard />
         </SimpleGrid>
       </Stack>
@@ -281,8 +281,20 @@ const MethodologyAccordion = () => {
               {
                 "To illustrate 'Riskiness', and the reason why we encased the word in quotes is because we used realized volatility. For an explanation on the difference between risk and volatility check out this "
               }
-              <a href="/blog/risk-vs-volatility" className="underline">
-                Blog Post
+              <a
+                className="hover:underline"
+                href="https://www.morningstar.com/markets/risk-not-volatility-is-real-enemy"
+                target="_blank"
+              >
+                  Article
+                  <FaExternalLinkAlt
+                    style={{
+                      marginLeft: "5px",
+                      display: "inline",
+                      color: "black",
+                      opacity: 0.6,
+                    }}
+                  />
               </a>
             </Text>
             <Text fontSize={"sm"}>
@@ -315,7 +327,7 @@ const MethodologyAccordion = () => {
             </Heading>
             <Text fontSize={"sm"}>
               {
-                "To make it easier to compare the relative differences between each investment more clearly, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker CSHI) and 12 being Bitcoin’s realised volatility."
+                "To make it easier to compare the relative differences between each investment more clearly, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker CSHI) and 12 being Bitcoin's realised volatility.) Cash has 0 volatility as if it's in your bank account it shouldn't change. Does this mean no risk? Well no. Here's why... "
               }
             </Text>
           </Stack>
