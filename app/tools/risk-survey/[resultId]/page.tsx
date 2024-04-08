@@ -43,9 +43,9 @@ type Props = {
 
 const sectionDescriptions = [
   {
-    name: "Portfolio 'Risk' Calculator",
+    name: "Have you own portfolio you want to put to the test?",
     description:
-      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+      "Checkout our Portfolio 'Risk' Calculator to see how much 'risk' your are taking on with your current portfolio",
     path: "/tools/rvol-calculator",
     image: platypus,
   },
@@ -60,19 +60,12 @@ const RiskSurveyResults = async (props: Props) => {
     <Flex flexDir={"column"} gap={12}>
       <Stack flexDir={"column"}>
         <Heading size={"xl"} marginBottom={4}>
-          Risk Survery Results
+          Your Risk Survery Results
         </Heading>
-        <Heading fontSize="lg" fontWeight={"normal"}>
-          See how your percieved risk stacks up to everyone else who have filled
-          out this form, and each investments{" "}
-          <a
-            href="https://www.nasdaq.com/glossary/r/realized-volatility"
-            target="_blank"
-            className="hover:underline text-hollywood-400"
-          >
-            realized volatility
-          </a>
-          .
+        <Heading fontSize="xl" fontWeight={"normal"}>
+          {
+            "Compare your risk perceptions (in blue) with each investment's actual 'riskiness' (in yellow), and other nurses' votes (in pink)."
+          }
         </Heading>
       </Stack>
 
@@ -190,10 +183,7 @@ const FurtherLearningSection = () => {
   return (
     <Flex flexDir={"column"} gap={12} marginTop={8}>
       <Stack gap={4}>
-        <Heading size={"lg"}>Want to Learn More?</Heading>
-        <Text fontSize="md">
-          Checkout two blog posts that will give you a feel of what to expect
-        </Text>
+        <Heading size={"lg"}>How did you get on?</Heading>
       </Stack>
       <Stack>
         <SimpleGrid
@@ -201,10 +191,10 @@ const FurtherLearningSection = () => {
           gap={{ base: 4, sm: 4, lg: 6 }}
           alignItems="center"
         >
+          <SignUpCard variant="surveyResult"/>
           {sectionDescriptions.map((section, key) => (
-            <Section key={key} section={section} />
-          ))}
-          <SignUpCard />
+          <Section key={key} section={section} />
+        ))}
         </SimpleGrid>
       </Stack>
     </Flex>
@@ -221,7 +211,7 @@ const Section = ({
       variant={"whiteShadow"}
       position={"relative"}
       justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
+      style={{ display: "flex", flexDirection: "column", minHeight: 260 }}
     >
       <Flex
         flexDir="row"
@@ -286,15 +276,15 @@ const MethodologyAccordion = () => {
                 href="https://www.morningstar.com/markets/risk-not-volatility-is-real-enemy"
                 target="_blank"
               >
-                  Article
-                  <FaExternalLinkAlt
-                    style={{
-                      marginLeft: "5px",
-                      display: "inline",
-                      color: "black",
-                      opacity: 0.6,
-                    }}
-                  />
+                Article
+                <FaExternalLinkAlt
+                  style={{
+                    marginLeft: "5px",
+                    display: "inline",
+                    color: "black",
+                    opacity: 0.6,
+                  }}
+                />
               </a>
             </Text>
             <Text fontSize={"sm"}>
@@ -307,7 +297,7 @@ const MethodologyAccordion = () => {
             </Heading>
             <Text fontSize={"sm"}>
               {
-                "We start by calculating the daily returns (how much the prices change compared to the previous day) of the corresponding example tickers for each different investment type listed above. For bitcoin we used the price in USD. And for cash we used Neos Enhanced Income Cash Alternative ETF (ticker CSHI)."
+                "We start by calculating the daily returns (how much the prices change compared to the previous day) for the corresponding example tickers of each different investment types listed above. For bitcoin we used the price in USD. And for cash we used Neos Enhanced Income Cash Alternative ETF (ticker: CSHI)."
               }
             </Text>
             <Text fontSize={"sm"}>
@@ -317,7 +307,7 @@ const MethodologyAccordion = () => {
             </Text>
             <Text fontSize={"sm"}>
               {
-                "We then calculate the variance by finding the average of all these squared differences. Finally, we take the square root of the variance to get the standard deviation, which is the realized volatility."
+                "We then calculate the variance by finding the average of all these squared differences. Finally, we take the square root of the variance to get the standard deviation, which is realized volatility."
               }
             </Text>
             <Heading size={"sm"} mt={2}>
@@ -327,7 +317,12 @@ const MethodologyAccordion = () => {
             </Heading>
             <Text fontSize={"sm"}>
               {
-                "To make it easier to compare the relative differences between each investment more clearly, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker CSHI) and 12 being Bitcoin's realised volatility.) Cash has 0 volatility as if it's in your bank account it shouldn't change. Does this mean no risk? Well no. Here's why... "
+                "To make it easier to compare the relative differences between each investment, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker CSHI) and 12 being Bitcoin's realised volatility.)"
+              }
+            </Text>
+            <Text fontSize={"sm"}>
+              {
+                "Note that cash typically has a volatility of 0 because when it's in a bank account, its value remains stable. This doesn't mean it's necessarily risk-free as inflation can erode purchasing power of cash over time, meaning its real value can decrease."
               }
             </Text>
           </Stack>

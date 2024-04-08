@@ -17,6 +17,7 @@ import Link from "next/link";
 import Image from "next/image";
 import platypus from "../../../public/platypus.svg";
 import platypusWalking from "../../../public/platypus-walking.svg";
+import SignUpCard from "../../../components/ui/sign-up-card";
 
 const CoursesWaitlist = () => {
   const [name, setName] = useState("");
@@ -49,87 +50,128 @@ const CoursesWaitlist = () => {
 
   return (
     <Flex flexDir={"column"} width="100%" gap={12}>
+      <Stack flexDir={"column"}>
+        <Heading size={"xl"}>Comming Soon...</Heading>
+      </Stack>
       <Card
         variant="gradient"
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column" }}
         border="0px"
         gap={8}
-        minHeight={{ md: "400px" }}
+        alignItems={"center"}
       >
-        <Stack flexDir={"column"} width="100%" justifyContent={"center"}>
-          <Heading size={"xl"} color={"white"}>
-            Courses coming soon...
-          </Heading>
-          <Heading
-            size={"md"}
-            fontWeight={"normal"}
-            color={"white"}
-            opacity={0.8}
-          >
-            This is a bit more cheeky copy that will hopefully make you trust us
-            more with your email and add it below
-          </Heading>
-        </Stack>
-        <Card
-          variant={"active"}
-          gap={4}
-          display="flex"
-          flexDirection="column"
-          width={{ base: "100%" }}
-          maxWidth={{ base: "100%", md: "45%" }}
+        <Stack
+          flexDir={"column"}
+          width="100%"
           justifyContent={"center"}
+          gap={6}
+          maxW="680px"
         >
-          {registered ? (
-            <Stack>
-              <Heading size={"lg"} textAlign={"center"}>
-                {"Thanks!"}
-              </Heading>
-              <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
-                {"You're on the wait-list"}
-              </Heading>
-              <Heading
-                size={"md"}
-                fontWeight={"normal"}
-                textAlign={"center"}
-                opacity={0.8}
-              >
-                {"We'll let you know when this is ready"}
-              </Heading>
-            </Stack>
-          ) : (
-            <>
-              <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
-                Join the waitlist
-              </Heading>
-              <Stack gap={2}>
-                <Input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                />
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email Address"
-                />
+          <Heading size={"xl"} color={"white"}>
+            {"Investment Education for Nurses"}
+          </Heading>
+          <Stack color={"white"} opacity={0.9} gap={4} fontSize={"lg"}>
+            <Text>
+              {
+                "We feel your struggle: the gruelling shifts, the emotional toll, and the feeling that the system is stacked against you."
+              }
+            </Text>
+            <Text>
+              {
+                "You pour your heart into your work, yet what do you get in return?"
+              }
+            </Text>
+            <Text>
+              {
+                "Often, it's minimal pay and a constant hustle just to make ends meet."
+              }
+            </Text>
+            <Text>
+              {
+                "No one has shown you the path to financial freedom, leaving you stranded in uncertainty about where even to start."
+              }
+            </Text>
+            <Text>
+              {"The stakes? Risking burnout without clear road to retirement."}
+            </Text>
+            <Text>
+              {
+                "We are here to help. Let us fill the gaps in your investing knowledge so that you can more confidently navigate conversations and decisions about your financial future."
+              }
+            </Text>
+            <Text>
+              {
+                "Our courses are tailor-made for nurses. They're straightforward, engaging, and accessible, and designed to fit seamlessly into your unstructured life – whether you're on a late-night shift or scrolling through your phone in bed after a rough night's sleep."
+              }
+            </Text>
+            <Text>
+              {
+                "Because Nurses deserve more than just a wage – it's time someone cared for you and your financial well-being."
+              }
+            </Text>
+          </Stack>
+        </Stack>
+        <Flex justifyContent={"center"} width={"100%"} maxW={"680px"}>
+          <Card
+            variant={"active"}
+            gap={4}
+            display="flex"
+            flexDirection="column"
+            width={"100%"}
+            justifyContent={"center"}
+          >
+            {registered ? (
+              <Stack>
+                <Heading size={"lg"} textAlign={"center"}>
+                  {"Thanks!"}
+                </Heading>
+                <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
+                  {"You're on the wait-list"}
+                </Heading>
+                <Heading
+                  size={"md"}
+                  fontWeight={"normal"}
+                  textAlign={"center"}
+                  opacity={0.8}
+                >
+                  {"We'll let you know when this is ready"}
+                </Heading>
               </Stack>
-              <Text fontSize={"xs"}>
-                By registering you consent to this website storing your
-                submitted information so that it can respond to your inquiry
-              </Text>
-              <Button
-                isDisabled={!canSubmit}
-                w="full"
-                colorScheme="hollywood"
-                onClick={onSubmit}
-              >
-                Register
-              </Button>
-            </>
-          )}
-        </Card>
+            ) : (
+              <>
+                <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
+                  Join the waitlist
+                </Heading>
+                <Stack gap={2}>
+                  <Input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Name"
+                  />
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email Address"
+                  />
+                </Stack>
+                <Text fontSize={"xs"}>
+                  By registering you consent to this website storing your
+                  submitted information so that it can respond to your inquiry
+                </Text>
+                <Button
+                  isDisabled={!canSubmit}
+                  w="full"
+                  colorScheme="hollywood"
+                  onClick={onSubmit}
+                >
+                  Register
+                </Button>
+              </>
+            )}
+          </Card>
+        </Flex>
       </Card>
       {registered && <FurtherLearningSection />}
     </Flex>
@@ -138,17 +180,10 @@ const CoursesWaitlist = () => {
 
 const sectionDescriptions = [
   {
-    name: "Blog",
+    name: "'Risk' Perception Survey",
     description:
-      "Where we write and provide adjacent value like how to buy bitcoin or how to get a locum job in Aussie",
-    path: "/blog",
-    image: platypusWalking,
-  },
-  {
-    name: "Tools",
-    description:
-      "Some tools that help you conceptualise what you do and do not know. Identify the gaps in your understanding",
-    path: "/tools",
+      "Gain insight into your how your risk perceptions of common investments compares with others in this survey.",
+    path: "/tools/risk-survey",
     image: platypus,
   },
 ];
@@ -159,7 +194,7 @@ const FurtherLearningSection = () => {
       <Stack gap={4}>
         <Heading size={"lg"}>...In the meantime...</Heading>
         <Text fontSize="md">
-          Checkout two blog posts that will give you a feel of what to expect
+          {"If you haven't already, explore our 'Risk' Perception Survey or join our supportive community of fellow Nurses on their investing education journey."}
         </Text>
       </Stack>
       <SimpleGrid
@@ -167,6 +202,7 @@ const FurtherLearningSection = () => {
         gap={{ base: 4, sm: 4, lg: 6 }}
         alignItems="center"
       >
+        <SignUpCard variant="communitySignup"/>
         {sectionDescriptions.map((section, key) => (
           <Section key={key} section={section} />
         ))}
@@ -186,7 +222,7 @@ const Section = ({
       position={"relative"}
       flexDir={"row"}
       justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 230 }}
+      style={{ display: "flex", flexDirection: "column", minHeight: 260 }}
     >
       <Flex
         flexDir="row"

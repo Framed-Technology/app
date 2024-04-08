@@ -3,6 +3,7 @@
 import { db } from "@/db";
 import { perceivedInvestmentRisk as riskTable } from "@/db/schema";
 import { sql } from "drizzle-orm";
+import { landingInterest as landingInterestTable } from "@/db/schema";
 
 export type InvestmentRisk = typeof riskTable.$inferInsert;
 
@@ -17,4 +18,10 @@ export async function readRiskSurveySubmissionCount() {
     })
     .from(riskTable);
   return res[0].count;
+}
+
+export type CommunityInterestType = typeof landingInterestTable.$inferInsert;
+
+export async function insertLandingInterest(data: CommunityInterestType) {
+  return await db.insert(landingInterestTable).values(data);
 }

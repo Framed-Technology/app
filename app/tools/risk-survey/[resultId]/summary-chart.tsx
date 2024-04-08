@@ -66,7 +66,7 @@ const SummaryChart = ({
             fillOpacity={0.6}
           />
           <Radar
-            name="Realised Volatility"
+            name={"Actual 'Riskiness'"}
             dataKey="investmentRvol"
             stroke={colors.glowstone[500]}
             fill={colors.glowstone[600]}

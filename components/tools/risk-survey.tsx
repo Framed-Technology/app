@@ -64,8 +64,8 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
         <form className="w-full h-full" onSubmit={formik.handleSubmit}>
           <CardContainer>
             <Box
-              paddingRight={{ base: 4, lg: 20 }}
-              paddingLeft={{ base: 4, lg: 20 }}
+              paddingRight={{ base: 4, lg: 4 }}
+              paddingLeft={{ base: 4, lg: 4 }}
               marginBottom={2}
             >
               <Heading
@@ -74,13 +74,13 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
                 textAlign={"center"}
                 marginBottom={4}
               >
-                Compare how you percieve risk against{" "}
-                <b className="text-hollywood-400">{submissionCount}</b> others
+                Complete the survey to unveil how your perception of risk aligns with{" "}
+                <b className="text-hollywood-400">{submissionCount}</b> other nurses and against reality
               </Heading>
               <Text fontSize={"lg"} textAlign={"center"} opacity={0.8}>
-                Rate each of the following investments riskiness on a scale from
-                Cash to NFTs to see how your percieved risk compared to everyone
-                elses
+              {"To get started, simply rate each investment's riskiness on a scale from Cash (no 'risk') to Bitcoin (the most 'risk')."}
+              <br/>
+              {"Don't worry, it's easy! Just move the sliders to reflect your comfort level with each investment type."}
               </Text>
             </Box>
             {investments.map((investment, key) => (

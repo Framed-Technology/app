@@ -122,8 +122,8 @@ const RvolCalculator = () => {
   return (
     <CardContainer>
       <Box
-        paddingRight={{ base: 4, lg: 20 }}
-        paddingLeft={{ base: 4, lg: 20 }}
+        paddingRight={{ base: 4, lg: 4 }}
+        paddingLeft={{ base: 4, lg: 4 }}
         marginBottom={2}
       >
         <Heading
@@ -132,12 +132,11 @@ const RvolCalculator = () => {
           textAlign={"center"}
           marginBottom={4}
         >
-          Compare how your portfolio ‘risk’ vs return compares
+          {"Curious about how your portfolio's 'risk' and return compares to other Nurses' portfolios and common benchmarks?"}
         </Heading>
         <Text fontSize={"lg"} textAlign={"center"} opacity={0.8}>
-          Include the holdings of each of your investments and we will show you
-          on a riskness and return scale where you sit compared to others as
-          well as common instruments like the S&P500
+          Simply input the holdings of each of your investments, click submit, and we'll show you how you stack up against others who've used this calculator and the S&P 500.
+          
         </Text>
       </Box>
       <Card>
@@ -149,7 +148,7 @@ const RvolCalculator = () => {
           textAlign={"center"}
         >
           <Heading size={"md"} textAlign={"center"}>
-            Your Portfolio Breakdown
+            Your Asset Allocation
           </Heading>
           <PortfolioPie allocations={allocations} />
         </Flex>

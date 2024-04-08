@@ -52,6 +52,11 @@ export const contacts = pgTable("contacts", {
   message: text("message").notNull(),
 })
 
+export const landingInterest = pgTable("landing_interest", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull(),
+})
+
 export const coursesInterest = pgTable("courses_interest", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -62,6 +67,7 @@ export const communityInterest = pgTable("community_interest", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
+  message: text("message"),
 })
 
 
