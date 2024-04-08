@@ -1,7 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { Flex, Text, Heading, Input, Button, Stack, SimpleGrid } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Heading,
+  Input,
+  Button,
+  Stack,
+  SimpleGrid,
+  Textarea,
+} from "@chakra-ui/react";
 import Card from "@/components/ui/card";
 import { colors } from "@/theme";
 import { insertCommunityInterest } from "./action";
@@ -9,12 +18,13 @@ import Link from "next/link";
 import platypus from "../../../public/platypus.svg";
 import platypusWalking from "../../../public/platypus-walking.svg";
 import Image from "next/image";
+import SignUpCard from "../../../components/ui/sign-up-card";
 
 const toolDescriptions = [
   {
     name: "Risk Calculator",
     description:
-      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+      "Find out if you are correct about your portfolios risk by measuring its realized volatility.",
     created: new Date("2024-03-08"),
     path: "/tools/rvol-calculator",
     preview: "/tools/rvol-calculator.png",
@@ -22,10 +32,10 @@ const toolDescriptions = [
   },
 ];
 
-
 const CommunityWaitlist = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [registered, setRegistered] = useState(false);
   const canSubmit = name && email && email.includes("@");
   const onSubmit = () => {
@@ -33,9 +43,11 @@ const CommunityWaitlist = () => {
       insertCommunityInterest({
         name,
         email,
+        message,
       });
       setName("");
       setEmail("");
+      setMessage("");
       setRegistered(true);
     } else {
       // TODO: sensible form logic (Formik)
@@ -51,90 +63,136 @@ const CommunityWaitlist = () => {
     bg: "white",
     boxShadow: "none",
   };
-
+  
+  Textarea.defaultProps = {
+    rounded: "0",
+    borderWidth: "1",
+    borderColor: "black",
+    bg: "white",
+    boxShadow: "none",
+    minHeight: "160px",
+  };
   return (
     <Flex flexDir={"column"} width="100%" gap={12}>
+      <Stack flexDir={"column"}>
+        <Heading size={"xl"}>Comming Soon...</Heading>
+      </Stack>
       <Card
         variant="gradient"
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column" }}
         border="0px"
         gap={8}
-        minHeight={{ md: "400px" }}
+        alignItems={"center"}
       >
-        <Stack flexDir={"column"} width="100%" justifyContent={"center"}>
-          <Heading size={"xl"} color={"white"}>
-            Community coming soon...
-          </Heading>
-          <Heading
-            size={"md"}
-            fontWeight={"normal"}
-            color={"white"}
-            opacity={0.8}
-          >
-            This is a bit more cheeky copy that will hopefully make you trust us
-            more with your email and add it below
-          </Heading>
-        </Stack>
-        <Card
-          variant={"active"}
-          gap={4}
-          display="flex"
-          flexDirection="column"
-          width={{ base: "100%" }}
-          maxWidth={{ base: "100%", md: "45%" }}
+        <Stack
+          flexDir={"column"}
+          width="100%"
           justifyContent={"center"}
+          gap={6}
+          maxW="680px"
         >
-          {registered ? (
-            <Stack>
-              <Heading size={"lg"} textAlign={"center"}>
-                {"Thanks!"}
-              </Heading>
-              <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
-                {"You're on the wait-list"}
-              </Heading>
-              <Heading size={"md"} fontWeight={"normal"} textAlign={"center"} opacity={0.8}>
-                {"We'll let you know when this is ready"}
-              </Heading>
-            </Stack>
-          ) : (
-            <>
-              <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
-                Join the waitlist
-              </Heading>
-              <Stack gap={2}>
-                <Input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                />
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email Address"
-                />
+          <Heading size={"xl"} color={"white"}>
+            An investing community for Nurses{" "}
+          </Heading>
+          <Stack color={"white"} opacity={0.9} gap={4} fontSize={"lg"}>
+            <Text>
+              {
+                "Connect with other nurses who get what it's like to learn about investing."
+              }
+            </Text>
+            <Text>
+              {
+                "Also, hear stories from those who've been through it all - the tough shifts, burnout, and retirement worries."
+              }
+            </Text>
+            <Text>
+              {
+                "Find out what they wish they knew back then, so you don't make the same mistakes and can navigate your own investing journey with confidence."
+              }
+            </Text>
+          </Stack>
+        </Stack>
+        <Flex justifyContent={"center"} width={"100%"} maxW={"680px"}>
+          <Card
+            variant={"active"}
+            gap={4}
+            display="flex"
+            flexDirection="column"
+            width={"100%"}
+            justifyContent={"center"}
+          >
+            {registered ? (
+              <Stack>
+                <Heading size={"lg"} textAlign={"center"}>
+                  {"Thanks!"}
+                </Heading>
+                <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
+                  {"You're on the wait-list"}
+                </Heading>
+                <Heading
+                  size={"md"}
+                  fontWeight={"normal"}
+                  textAlign={"center"}
+                  opacity={0.8}
+                >
+                  {"We'll let you know when this is ready"}
+                </Heading>
               </Stack>
-              <Text fontSize={"xs"}>
-                By registering you consent to this website storing your
-                submitted information so that it can respond to your inquiry
-              </Text>
-              <Button
-                isDisabled={!canSubmit}
-                w="full"
-                colorScheme="hollywood"
-                onClick={onSubmit}
-              >
-                Register
-              </Button>
-            </>
-          )}
-        </Card>
+            ) : (
+              <>
+                <Heading fontWeight={500} size={"lg"} textAlign={"center"}>
+                  Join the waitlist
+                </Heading>
+                <Stack gap={2}>
+                  <Input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Name"
+                  />
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email Address"
+                  />
+                  <Textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Message (optional)"
+                  />
+                </Stack>
+                <Text fontSize={"xs"}>
+                  By registering you consent to this website storing your
+                  submitted information so that it can respond to your inquiry
+                </Text>
+                <Button
+                  isDisabled={!canSubmit}
+                  w="full"
+                  colorScheme="hollywood"
+                  onClick={onSubmit}
+                >
+                  Register
+                </Button>
+              </>
+            )}
+          </Card>
+        </Flex>
       </Card>
       {registered && <FurtherLearningSection />}
     </Flex>
   );
 };
+
+const sectionDescriptions = [
+  {
+    name: "'Risk' Perception Survey",
+    description:
+      "Gain insight into your how your risk perceptions of common investments compares with others in this survey.",
+    path: "/tools/risk-survey",
+    image: platypus,
+  },
+];
 
 const FurtherLearningSection = () => {
   return (
@@ -142,29 +200,37 @@ const FurtherLearningSection = () => {
       <Stack gap={4}>
         <Heading size={"lg"}>...In the meantime...</Heading>
         <Text fontSize="md">
-          Checkout two blog posts that will give you a feel of what to expect
+          {
+            "If you haven't already, check out our 'Risk' Perception Survey or sign-up for our courses tailor-made for nurses diving into investing education."
+          }{" "}
         </Text>
       </Stack>
-      <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={{ base: 4, sm: 4, lg: 6 }}>
-        <Stack gap={6}>
-          {toolDescriptions.map((tool, key) => (
-            <Tool key={key} tool={tool} />
-          ))}
-        </Stack>
-        <BlogCard />
+      <SimpleGrid
+        columns={{ sm: 1, lg: 2 }}
+        gap={{ base: 4, sm: 4, lg: 6 }}
+        alignItems="center"
+      >
+        <SignUpCard variant="coursesSignup" />
+        {sectionDescriptions.map((section, key) => (
+          <Section key={key} section={section} />
+        ))}
       </SimpleGrid>
     </Flex>
   );
 };
 
-const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
-  <Link href={tool.path}>
+const Section = ({
+  section,
+}: {
+  section: (typeof sectionDescriptions)[number];
+}) => (
+  <Link href={section.path}>
     <Card
       variant={"whiteShadow"}
       position={"relative"}
       flexDir={"row"}
       justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+      style={{ display: "flex", flexDirection: "column", minHeight: 260 }}
     >
       <Flex
         flexDir="row"
@@ -173,54 +239,20 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         gap={4}
       >
         <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>{tool.name}</Heading>
-          <Text fontSize={"md"}>{tool.description}</Text>
+          <Heading size={"md"}>{section.name}</Heading>
+          <Text fontSize={"md"}>{section.description}</Text>
         </Flex>
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
-            src={tool.image}
+            src={section.image}
             width={150}
             height={150}
-            alt={`${tool.image}`}
+            alt={`${section.image}`}
           />
         </Flex>
       </Flex>
     </Card>
   </Link>
 );
-
-const BlogCard = () => {
-  return (
-    <Card
-      variant={"whiteShadow"}
-      position={"relative"}
-      flexDir={"row"}
-      justifyContent={"space-between"}
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-    >
-      <Flex
-        flexDir="row"
-        justifyContent="space-between"
-        style={{ flex: 1 }}
-        gap={4}
-      >
-        <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>Blog Post</Heading>
-          <Text fontSize={"md"} color={"red"}>
-            Link with specific Blog-post-slug, make the blog page first
-          </Text>
-        </Flex>
-        <Flex minW={"30%"} justifyContent={"center"}>
-          <Image
-            src={platypusWalking}
-            width={150}
-            height={150}
-            alt="Magenta Platypus Walking"
-          />
-        </Flex>
-      </Flex>
-    </Card>
-  );
-};
 
 export default CommunityWaitlist;

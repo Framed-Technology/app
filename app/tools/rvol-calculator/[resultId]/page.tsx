@@ -43,7 +43,9 @@ const RiskCalculatorResults = async (props: Props) => {
           Risk Calculator Results
         </Heading>
         <Heading fontSize="lg" fontWeight={"normal"}>
-          See how well you understand the risk of your portfolio
+          {
+            "See your portfolio's 1-year realized volatility and returns, and how this compares with other nurses below"
+          }
         </Heading>
       </Stack>
       <CardContainer>
@@ -100,11 +102,12 @@ const RiskCalculatorResults = async (props: Props) => {
             px={10}
           >
             <Heading textColor={"black"} size={"md"}>
-              How do you stack up?
+              How do your results compare?
             </Heading>
             <Text color={"black"} opacity={0.8} fontSize={"md"}>
-              Understand how your portfolio realized volatility compares to
-              others who have filled out the survey!
+              {
+                "Spot your portfolio! You're the blue dot, with other nurses (pink dots) and the S&P500 (yellow). Greater return is shown on the y-axis, while higher 'risk' on the x-axis. FYI you'll stay anonymous. Remember this is a guide - checkout the methodology for more details"
+              }
             </Text>
           </Flex>
           <CommunityRiskReturnScatter
@@ -131,7 +134,9 @@ const RiskCalculatorResults = async (props: Props) => {
                 Your Asset Allocation
               </Heading>
               <Text color={"black"} opacity={0.8} fontSize={"md"}>
-                Understand how your wealth is allocated across your assets.
+                {
+                  "This pie chart is not just aesthetically pleasing. It also allows for easy comparison with other portfolios. As you learn more about investing, revisit it to gauge if your asset mix aligns with your risk tolerance"
+                }
               </Text>
             </Flex>
             <PortfolioPie allocations={portfolio} />
@@ -166,7 +171,7 @@ const RiskCalculatorResults = async (props: Props) => {
                 <Heading size={"sm"}>Data Retrieval</Heading>
                 <Text fontSize={"sm"}>
                   {
-                    "We use the yfinance API to get historical price data for each asset. The returns and realized volatility you see are calculated from the daily prices of the past year, starting from the date you access the form. We make some simplifications: we assume you don't change your allocation during the year, meaning you don't buy or sell any assets, and don't reinvestment any dividends."
+                    "We use the yfinance API to get historical price data for each asset. The returns and realized volatility you see are calculated from the daily prices of the past year, starting from the date you access the form. We make some simplifications: we assume you don't change your allocation during the year, meaning you don't buy or sell any assets, and don't reinvestment any dividends. Note that this may not accurately reflect your actual experience."
                   }
                 </Text>
                 <Heading size={"sm"} mt={2}>
@@ -205,17 +210,27 @@ const RiskCalculatorResults = async (props: Props) => {
                     />
                   </a>
                   {
-                    ". To calculate the realized volatility for the portfolio we first compute the covariance matrix of daily returns for its assets."
+                    ". To calculate the realized volatility for the portfolio we first compute the covariance matrix (sounds complicated but it isn't) of daily returns for its assets."
                   }{" "}
                 </Text>
                 <Text fontSize={"sm"}>
                   {
-                    "Covariance is a statistical measure that describes the degree to which two random variables (in this case, the daily returns of two assets) change together. A positive covariance indicates that the variables move in the same direction, while a negative covariance suggests they move in opposite directions. A covariance matrix is a square matrix where each element represents the covariance between two variables. For a portfolio of N assets, the covariance matrix is an N x N matrix."
-                  }{" "}
+                    "A matrix is just a big square grid where each box holds a number. In our case, we put all the assets in your portfolio across the top and down the left-hand side. This way, you can see how each asset interacts with every other asset. It's kind of like those tables you see with sports teams and their scores against all the other teams."
+                  }
                 </Text>
                 <Text fontSize={"sm"}>
                   {
-                    "By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The square root of the dot product of the allocation vector and the covariance matrix gives the portfolio's realised volatility."
+                    "Covariance is a statistical measure that shows how variables, like the daily returns of two assets, change together. If the number is positive, it means the variables move in the same direction. If it's negative, they move in opposite directions."
+                  }
+                </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "In our covariance matrix, each box in this big square grid contains a number representing the covariance between two assets. For a portfolio with 10 assets, we will have 10 rows and 10 columns."
+                  }
+                </Text>
+                <Text fontSize={"sm"}>
+                  {
+                    "By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The math: the square root of the dot product of the allocation vector and the covariance matrix gives the portfolio's realised volatility."
                   }{" "}
                 </Text>
               </Stack>
@@ -236,11 +251,8 @@ const FurtherLearningSection = async () => {
     <Flex flexDir={"column"} gap={12} marginTop={8}>
       <Stack gap={4}>
         <Heading size={"lg"}>Want to Learn More?</Heading>
-        <Text fontSize="md">
-          Checkout two blog posts that will give you a feel of what to expect
-        </Text>
       </Stack>
-      <SignUpCard />
+      <SignUpCard variant="calculatorResult"/>
     </Flex>
   );
 };

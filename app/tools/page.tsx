@@ -19,7 +19,7 @@ const toolDescriptions = [
   {
     name: "'Risk' Perception Survey",
     description:
-      "Understand how you think about risk by framing your percieved risk against everyone else who has used this tool.",
+      "Gain insight into your how your risk perceptions of common investments compares with others in this survey.",
     created: new Date("2024-03-06"),
     path: "/tools/risk-survey",
     preview: "/tools/risk-survey.png",
@@ -28,7 +28,7 @@ const toolDescriptions = [
   {
     name: "Portfolio 'Risk' Calculator",
     description:
-      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+      "Find out how much 'risk' your current portfolio takes on with our easy-to-use realised volatilty calculator.",
     created: new Date("2024-03-08"),
     path: "/tools/rvol-calculator",
     preview: "/tools/rvol-calculator.png",
@@ -43,8 +43,10 @@ const Tools = () => {
         <Heading size={"2xl"} marginBottom={4}>
           Tools
         </Heading>
-        <Heading fontSize="lg" fontWeight={"normal"}>
-          Some copy to describe what this page is all about
+        <Heading fontSize="xl" fontWeight={"normal"}>
+          {
+            "Discover our user-friendly tools tailored for nurses, offering an interactive way to dive into investment thinking. Simple enough to navigate even after a grueling night shift."
+          }
         </Heading>
       </Stack>
       <Stack gap={6}>
@@ -72,9 +74,7 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         gap={4}
       >
         <Flex flexDir={"column"} gap={4}>
-          <Heading size={"md"}>
-            {tool.name}
-          </Heading>
+          <Heading size={"md"}>{tool.name}</Heading>
           <Text fontSize={"md"}>{tool.description}</Text>
         </Flex>
         <Flex minW={"30%"} justifyContent={"center"}>

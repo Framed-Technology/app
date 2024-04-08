@@ -11,12 +11,8 @@ const RiskSurveyPage = async () => {
   return (
     <Flex flexDir={"column"} gap={12}>
       <Stack flexDir={"column"}>
-        <Heading size={"xl"} marginBottom={4}>
-          Risk Survey
-        </Heading>
-        <Heading size="md" fontWeight={"normal"}>
-          Understand how you think about risk by framing your percieved risk
-          against everyone else who has used this tool.
+        <Heading size={"2xl"} marginBottom={4}>
+          {"'Risk' Perception Survey"}
         </Heading>
       </Stack>
       <RiskSurvey submissionCount={riskSurveySubmissionCount} />

@@ -6,13 +6,8 @@ const RvolCalculatorPage = () => {
   return (
     <Flex flexDir={"column"} gap={12}>
       <Stack flexDir={"column"}>
-        <Heading size={"xl"} marginBottom={4}>
+        <Heading size={"2xl"} marginBottom={4}>
           {"Portfolio 'Risk' Calculator"}
-        </Heading>
-        <Heading size="md" fontWeight={"normal"}>
-          {
-            "Find out how much 'risk' your current portfolio takes on as mesaured by realized volatility."
-          }
         </Heading>
       </Stack>
       <RvolCalculator />
