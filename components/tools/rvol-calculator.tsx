@@ -135,7 +135,7 @@ const RvolCalculator = () => {
           {"Curious about how your portfolio's 'risk' and return compares to other Nurses' portfolios and common benchmarks?"}
         </Heading>
         <Text fontSize={"lg"} textAlign={"center"} opacity={0.8}>
-          Simply input the holdings of each of your investments, click submit, and we'll show you how you stack up against others who've used this calculator and the S&P 500.
+          {"Simply input the holdings of each of your investments, click submit, and we'll show you how you stack up against others who've used this calculator and the S&P 500."}
           
         </Text>
       </Box>

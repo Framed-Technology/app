@@ -24,7 +24,7 @@ const toolDescriptions = [
   {
     name: "Risk Calculator",
     description:
-      "Find out if you're correct about your portfolios risk by measuring its realized volatility.",
+      "Find out if you are correct about your portfolios risk by measuring its realized volatility.",
     created: new Date("2024-03-08"),
     path: "/tools/rvol-calculator",
     preview: "/tools/rvol-calculator.png",
