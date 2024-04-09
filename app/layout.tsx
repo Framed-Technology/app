@@ -8,8 +8,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
 
-export const OpenSans = OpenSansFont({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "framed.",
   description: "Investment education for Nurses",
