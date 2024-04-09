@@ -91,7 +91,7 @@ const CommunityWaitlist = () => {
             </Text>
             <Text>
               {
-                "Also, hear stories from those who've been through it all - the tough shifts, burnout, and retirement worries."
+                "Also, hear stories from those who've been through it all - the tough shifts, burnout, varying paychecks and retirement worries."
               }
             </Text>
             <Text>
