@@ -74,7 +74,7 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
                 textAlign={"center"}
                 marginBottom={4}
               >
-                Complete the survey to unveil how your perception of risk aligns with{" "}
+                Complete the survey to see how your perception of risk aligns with{" "}
                 <b className="text-hollywood-400">{submissionCount}</b> others and against reality
               </Heading>
               <Text fontSize={"lg"} textAlign={"center"} opacity={0.8}>
