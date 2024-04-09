@@ -15,22 +15,10 @@ import Card from "@/components/ui/card";
 import { colors } from "@/theme";
 import { insertCommunityInterest } from "./action";
 import Link from "next/link";
-import platypus from "../../../public/platypus.svg";
-import platypusWalking from "../../../public/platypus-walking.svg";
+import platypusSurvey from "../../../public/platypus-survey.svg";
 import Image from "next/image";
 import SignUpCard from "../../../components/ui/sign-up-card";
 
-const toolDescriptions = [
-  {
-    name: "Risk Calculator",
-    description:
-      "Find out if you are correct about your portfolios risk by measuring its realized volatility.",
-    created: new Date("2024-03-08"),
-    path: "/tools/rvol-calculator",
-    preview: "/tools/rvol-calculator.png",
-    image: platypus,
-  },
-];
 
 const CommunityWaitlist = () => {
   const [name, setName] = useState("");
@@ -71,6 +59,7 @@ const CommunityWaitlist = () => {
     borderColor: "black",
     bg: "white",
     boxShadow: "none",
+    color: "black",
     minHeight: "160px",
   };
   return (
@@ -97,7 +86,7 @@ const CommunityWaitlist = () => {
           <Stack color={"black"} opacity={0.9} gap={4} fontSize={"lg"}>
             <Text>
               {
-                "Connect with other nurses who get what it's like to learn about investing."
+                "Connect with other nurses who get what it's like to learn (and miss out on learning) about investing."
               }
             </Text>
             <Text>
@@ -134,7 +123,7 @@ const CommunityWaitlist = () => {
                   textAlign={"center"}
                   opacity={0.8}
                 >
-                  {"You're on the wait-list. We'll let you know when this is ready"}
+                  {"You're on the wait-list. We'll let you know when this goes live."}
                 </Heading>
               </Stack>
             ) : (
@@ -190,7 +179,7 @@ const sectionDescriptions = [
     description:
       "Gain insight into your how your risk perceptions of common investments compares with others in this survey.",
     path: "/tools/risk-survey",
-    image: platypus,
+    image: platypusSurvey,
   },
 ];
 
@@ -245,8 +234,8 @@ const Section = ({
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
             src={section.image}
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             alt={`${section.image}`}
           />
         </Flex>
