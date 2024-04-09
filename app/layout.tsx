@@ -11,7 +11,7 @@ import Script from "next/script";
 const OpenSans = OpenSansFont({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "framed.",
+  title: "Investing Nurses.",
   description: "Investment education for Nurses",
 };
 

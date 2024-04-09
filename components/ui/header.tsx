@@ -63,7 +63,7 @@ const Logo = () => (
         alt="Magenta Platypus"
       />
       <Heading style={jetBrainsMono.style} color={"picton-blue.500"}>
-        framed.
+        Investing Nurses
       </Heading>
     </Box>
   </Link>
