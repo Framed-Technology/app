@@ -45,20 +45,21 @@ const CoursesWaitlist = () => {
     borderWidth: "1",
     borderColor: "black",
     bg: "white",
+    color: "black",
     boxShadow: "none",
   };
 
   return (
     <Flex flexDir={"column"} width="100%" gap={12}>
       <Stack flexDir={"column"}>
-        <Heading size={"xl"}>Comming Soon...</Heading>
+        <Heading size={"2xl"}>Comming Soon...</Heading>
       </Stack>
       <Card
-        variant="gradient"
         flexDir={{ base: "column" }}
-        border="0px"
         gap={8}
         alignItems={"center"}
+        boxShadow="none"
+        borderWidth={1}
       >
         <Stack
           flexDir={"column"}
@@ -67,10 +68,10 @@ const CoursesWaitlist = () => {
           gap={6}
           maxW="680px"
         >
-          <Heading size={"xl"} color={"white"}>
+          <Heading size={"xl"} color={"black"}>
             {"Investment Education for Nurses"}
           </Heading>
-          <Stack color={"white"} opacity={0.9} gap={4} fontSize={"lg"}>
+          <Stack color={"black"} opacity={0.9} gap={4} fontSize={"lg"}>
             <Text>
               {
                 "We feel your struggle: the gruelling shifts, the emotional toll, and the feeling that the system is stacked against you."
@@ -113,20 +114,19 @@ const CoursesWaitlist = () => {
         </Stack>
         <Flex justifyContent={"center"} width={"100%"} maxW={"680px"}>
           <Card
-            variant={"active"}
+            variant={"gradient"}
             gap={4}
             display="flex"
             flexDirection="column"
             width={"100%"}
             justifyContent={"center"}
+            color={"white"}
+            shadow= {"5px 5px 0 black"}
           >
             {registered ? (
               <Stack>
-                <Heading size={"lg"} textAlign={"center"}>
+                <Heading size={"md"} textAlign={"center"}>
                   {"Thanks!"}
-                </Heading>
-                <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
-                  {"You're on the wait-list"}
                 </Heading>
                 <Heading
                   size={"md"}
@@ -134,7 +134,7 @@ const CoursesWaitlist = () => {
                   textAlign={"center"}
                   opacity={0.8}
                 >
-                  {"We'll let you know when this is ready"}
+                  {"You're on the wait-list. We'll let you know when this is ready"}
                 </Heading>
               </Stack>
             ) : (
@@ -157,8 +157,9 @@ const CoursesWaitlist = () => {
                   />
                 </Stack>
                 <Text fontSize={"xs"}>
-                  By registering you consent to this website storing your
-                  submitted information so that it can respond to your inquiry
+                  {
+                    "By registering, you're giving us permission to hold onto the details you've shared with us. So we can respond to your submission."
+                  }
                 </Text>
                 <Button
                   isDisabled={!canSubmit}
@@ -166,7 +167,7 @@ const CoursesWaitlist = () => {
                   colorScheme="hollywood"
                   onClick={onSubmit}
                 >
-                  Register
+                  Register interest
                 </Button>
               </>
             )}
@@ -194,7 +195,9 @@ const FurtherLearningSection = () => {
       <Stack gap={4}>
         <Heading size={"lg"}>...In the meantime...</Heading>
         <Text fontSize="md">
-          {"If you haven't already, explore our 'Risk' Perception Survey or join our supportive community of fellow Nurses on their investing education journey."}
+          {
+            "If you haven't already, explore our 'Risk' Perception Survey or join our supportive community of fellow Nurses on their investing education journey."
+          }
         </Text>
       </Stack>
       <SimpleGrid
@@ -202,7 +205,7 @@ const FurtherLearningSection = () => {
         gap={{ base: 4, sm: 4, lg: 6 }}
         alignItems="center"
       >
-        <SignUpCard variant="communitySignup"/>
+        <SignUpCard variant="communitySignup" />
         {sectionDescriptions.map((section, key) => (
           <Section key={key} section={section} />
         ))}

@@ -28,7 +28,7 @@ const Paths = async () => {
   const paths = await readPaths();
   // return <pre>{JSON.stringify(paths, null, 2)}</pre>;
 
-// redirect('/');
+  redirect("/");
 
   return (
     <Flex flexDir={"column"} gap={12}>

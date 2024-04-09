@@ -26,12 +26,11 @@ import { investmentMap } from "@/static/investments";
 import InvestmentCard from "@/components/ui/investment-card";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCalculator } from "react-icons/fa";
 import CopyUrlButton from "@/components/ui/copy-url-button";
 import CardContainer from "@/components/ui/card-container";
 import { colors } from "@/theme";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import platypus from "../../../../public/platypus-walking.svg";
+import platypusCalculator from "../../../../public/platypus-calculator.svg";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +46,7 @@ const sectionDescriptions = [
     description:
       "Checkout our Portfolio 'Risk' Calculator to see how much 'risk' your are taking on with your current portfolio",
     path: "/tools/rvol-calculator",
-    image: platypus,
+    image: platypusCalculator,
   },
 ];
 
@@ -226,8 +225,8 @@ const Section = ({
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
             src={section.image}
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             alt={`${section.image}`}
           />
         </Flex>

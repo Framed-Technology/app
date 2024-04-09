@@ -75,7 +75,7 @@ const RiskSurvey = ({ submissionCount }: { submissionCount: number }) => {
                 marginBottom={4}
               >
                 Complete the survey to unveil how your perception of risk aligns with{" "}
-                <b className="text-hollywood-400">{submissionCount}</b> other nurses and against reality
+                <b className="text-hollywood-400">{submissionCount}</b> others and against reality
               </Heading>
               <Text fontSize={"lg"} textAlign={"center"} opacity={0.8}>
               {"To get started, simply rate each investment's riskiness on a scale from Cash (no 'risk') to Bitcoin (the most 'risk')."}

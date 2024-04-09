@@ -61,7 +61,7 @@ const CalculatorResult = () => {
           </Text>
         </Flex>
         <Link href={"/courses/waitlist"}>
-          <Button colorScheme="glowstone">
+          <Button colorScheme="hollywood">
             Sign up{" "}
             <FaArrowRight
               size={20}
@@ -104,7 +104,7 @@ const SurveyResult = () => {
           </Text>
         </Flex>
         <Link href={"/courses/waitlist"}>
-          <Button colorScheme="glowstone">
+          <Button colorScheme="hollywood">
             Sign up{" "}
             <FaArrowRight
               size={20}
@@ -147,7 +147,7 @@ const CommunitySignup = () => {
           </Text>
         </Flex>
         <Link href={"/community/waitlist"}>
-          <Button colorScheme="glowstone">
+          <Button colorScheme="hollywood">
             Sign up{" "}
             <FaArrowRight
               size={20}
@@ -188,7 +188,7 @@ const CoursesSignup = () => {
           </Text>
         </Flex>
         <Link href={"/courses/waitlist"}>
-          <Button colorScheme="glowstone">
+          <Button colorScheme="hollywood">
             Sign up{" "}
             <FaArrowRight
               size={20}

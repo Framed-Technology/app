@@ -61,9 +61,10 @@ const CommunityWaitlist = () => {
     borderWidth: "1",
     borderColor: "black",
     bg: "white",
+    color: "black",
     boxShadow: "none",
   };
-  
+
   Textarea.defaultProps = {
     rounded: "0",
     borderWidth: "1",
@@ -75,14 +76,13 @@ const CommunityWaitlist = () => {
   return (
     <Flex flexDir={"column"} width="100%" gap={12}>
       <Stack flexDir={"column"}>
-        <Heading size={"xl"}>Comming Soon...</Heading>
+        <Heading size={"2xl"}>Comming Soon...</Heading>
       </Stack>
       <Card
-        variant="gradient"
         flexDir={{ base: "column" }}
-        border="0px"
         gap={8}
         alignItems={"center"}
+        borderWidth={1}
       >
         <Stack
           flexDir={"column"}
@@ -91,10 +91,10 @@ const CommunityWaitlist = () => {
           gap={6}
           maxW="680px"
         >
-          <Heading size={"xl"} color={"white"}>
+          <Heading size={"xl"} color={"black"}>
             An investing community for Nurses{" "}
           </Heading>
-          <Stack color={"white"} opacity={0.9} gap={4} fontSize={"lg"}>
+          <Stack color={"black"} opacity={0.9} gap={4} fontSize={"lg"}>
             <Text>
               {
                 "Connect with other nurses who get what it's like to learn about investing."
@@ -114,20 +114,19 @@ const CommunityWaitlist = () => {
         </Stack>
         <Flex justifyContent={"center"} width={"100%"} maxW={"680px"}>
           <Card
-            variant={"active"}
+            variant={"gradient"}
             gap={4}
             display="flex"
             flexDirection="column"
             width={"100%"}
             justifyContent={"center"}
+            color={"white"}
+            shadow= {"5px 5px 0 black"}
           >
             {registered ? (
               <Stack>
-                <Heading size={"lg"} textAlign={"center"}>
+                <Heading size={"md"} textAlign={"center"}>
                   {"Thanks!"}
-                </Heading>
-                <Heading size={"lg"} fontWeight={"500"} textAlign={"center"}>
-                  {"You're on the wait-list"}
                 </Heading>
                 <Heading
                   size={"md"}
@@ -135,7 +134,7 @@ const CommunityWaitlist = () => {
                   textAlign={"center"}
                   opacity={0.8}
                 >
-                  {"We'll let you know when this is ready"}
+                  {"You're on the wait-list. We'll let you know when this is ready"}
                 </Heading>
               </Stack>
             ) : (
@@ -163,8 +162,9 @@ const CommunityWaitlist = () => {
                   />
                 </Stack>
                 <Text fontSize={"xs"}>
-                  By registering you consent to this website storing your
-                  submitted information so that it can respond to your inquiry
+                  {
+                    "By registering, you're giving us permission to hold onto the details you've shared with us. So we can respond to your submission."
+                  }
                 </Text>
                 <Button
                   isDisabled={!canSubmit}
@@ -172,7 +172,7 @@ const CommunityWaitlist = () => {
                   colorScheme="hollywood"
                   onClick={onSubmit}
                 >
-                  Register
+                  Register interest
                 </Button>
               </>
             )}

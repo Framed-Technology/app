@@ -17,6 +17,7 @@ import { insertLandingInterest } from "./actions";
 
 const EmailCapture = () => {
   const [email, setEmail] = useState("");
+  const [registered, setRegistered] = useState(false);
   const canSubmit = email && email.includes("@");
   const onSubmit = () => {
     if (canSubmit) {
@@ -24,6 +25,7 @@ const EmailCapture = () => {
         email,
       });
       setEmail("");
+      setRegistered(true);
     } else {
       // TODO: sensible form logic (Formik)
       // TODO: onsubmit redirect to thank you page -> checkout delete account option
@@ -37,32 +39,54 @@ const EmailCapture = () => {
     bg: "white",
     boxShadow: "none",
     borderWidth: "2px",
-    borderBottom: "0px",
   };
 
   return (
     <Flex
       flexDirection="column"
-      alignItems="center" // Center vertically on small screens
+      alignItems={{ base: "center", lg: "start" }}
+      justifyContent={{ base: "center", lg: "start" }}
       width="full"
     >
-      <Input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email Address"
-      />
-      <Button
-        isDisabled={!canSubmit}
-        w="full"
-        colorScheme="glowstone"
-        borderWidth= "2px"
-        onClick={onSubmit}
-        _disabled={{ colorScheme: "glowstone", opacity: 1,}}
-        cursor={canSubmit ? "pointer" : "not-allowed"}
-        >
-        {"Register your interest"}
-      </Button>
+      {registered ? (
+        <Flex>
+          <Text
+            fontWeight={600}
+            borderWidth="2px"
+            color={"white"}
+            borderColor="black"
+            bg={"glowstone.500"}
+            px={4}
+            py={2}
+            textAlign="left"
+            w="full"
+            maxWidth={"400px"}
+          >
+            {"Thanks for registering your interest!"}
+          </Text>
+        </Flex>
+      ) : (
+        <>
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email Address"
+          />
+          <Button
+            isDisabled={!canSubmit}
+            w="full"
+            colorScheme="glowstone"
+            borderTop="0px"
+            borderWidth="2px"
+            onClick={onSubmit}
+            _disabled={{ colorScheme: "glowstone", opacity: 1 }}
+            cursor={canSubmit ? "pointer" : "not-allowed"}
+          >
+            {"Register your interest"}
+          </Button>
+        </>
+      )}
     </Flex>
   );
 };

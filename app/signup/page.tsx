@@ -11,8 +11,10 @@ import Card from "@/components/ui/card";
 import { FaGoogle } from "react-icons/fa";
 import SignUpButton from "@/components/ui/auth/signup-button";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const SignUp = () => {
+  redirect("/");
   const { data: session } = useSession();
   const isLoggedIn = Boolean(session);
   return (
