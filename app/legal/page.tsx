@@ -5,20 +5,16 @@ import Link from "next/link";
 
 const legalPageDescriptions = [
   {
+    name: "Disclaimer",
+    path: "/legal/disclaimer",
+  },
+  {
     name: "Privacy Policy",
     path: "/legal/privacy-policy",
   },
   {
-    name: "Terms of Use",
-    path: "/legal/terms-of-use",
-  },
-  {
     name: "Cookies Policy",
     path: "/legal/cookies-policy",
-  },
-  {
-    name: "Disclaimer",
-    path: "/legal/disclaimer",
   },
 ];
 
@@ -27,10 +23,18 @@ const LegalPages = () => {
     <Flex flexDir={"column"} gap={12}>
       <Stack flexDir={"column"}>
         <Heading size={"2xl"} marginBottom={4}>
-          Legal Stuff
+          Legal Docs
         </Heading>
         <Heading fontSize="lg" fontWeight={"normal"}>
-          Some copy to describe what this page is all about
+          {
+            "Need the scoop on the legal stuff? Dive into the fine print in the docs below for all the details about how we handle your data or the ins and outs of the info we share. And if you've got any questions or just itching to get in touch, shoot an email over to "
+          }
+          <a
+            className="hover:underline"
+            href="mailto:nicolas@investingnurses.com"
+          >
+            nicolas@investingnurses.com
+          </a>{". We're all ears."}
         </Heading>
       </Stack>
       <Stack gap={6}>

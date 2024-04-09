@@ -3,7 +3,7 @@ import TermlyScriptWrapper from '../termly-script-wrapper';
 
 
 const Privacy = () => {
-  return <TermlyScriptWrapper dataId="b0c0190e-5928-4b28-b76c-8f568fde2d68"/>
+  return <TermlyScriptWrapper dataId="883e8b48-c4ef-4362-834a-eff82ff030cb"/>
 };
 
 export default Privacy;
