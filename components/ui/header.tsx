@@ -32,7 +32,7 @@ const Header = () => {
         >
           <Logo />
           <Nav />
-          <Flex
+          {/* <Flex
             gap={2}
             alignItems="center"
             right={0}
@@ -46,7 +46,7 @@ const Header = () => {
               buttonText="Sign-in"
               rightIcon={<FaUser />}
             />
-          </Flex>
+          </Flex> */}
         </Flex>
       </Flex>
     </header>
@@ -74,14 +74,14 @@ const Nav = () => (
     <Flex gap={4}>
       <Link href={"/courses/waitlist"}>
         <Button colorScheme="hollywood" shadow="5px 5px 0 black">
-          Courses Waitlist
-        </Button>
-      </Link>
-      <Link href={"/courses"}>
-        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
           Courses
         </Button>
       </Link>
+      {/* <Link href={"/courses"}>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Courses
+        </Button>
+      </Link> */}
       <Link href={"/tools"}>
         <Button colorScheme="hollywood" shadow="5px 5px 0 black">
           Tools
@@ -89,14 +89,14 @@ const Nav = () => (
       </Link>
       <Link href={"/community/waitlist"}>
         <Button colorScheme="hollywood" shadow="5px 5px 0 black">
-          Community Waitlist
-        </Button>
-      </Link>
-      <Link href={"/community"}>
-        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
           Community
         </Button>
       </Link>
+      {/* <Link href={"/community"}>
+        <Button colorScheme="hollywood" shadow="5px 5px 0 black">
+          Community
+        </Button>
+      </Link> */}
     </Flex>
   </Box>
 );

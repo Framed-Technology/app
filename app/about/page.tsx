@@ -11,6 +11,7 @@ import {
 import platypusWalking from "../../public/platypus-walking.svg";
 import platypusLogo from "../../public/platypus.svg";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const aboutPageContent: AboutPageContentProps[] = [
   {
@@ -37,6 +38,7 @@ const aboutPageContent: AboutPageContentProps[] = [
 ];
 
 const About = () => {
+  redirect("/");
   return (
     <Center>
       <Flex

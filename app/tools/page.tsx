@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
-import platypusWalking from "../../public/platypus-walking.svg";
-import platypus from "../../public/platypus.svg";
+import platypusCalculator from "../../public/platypus-calculator.svg";
+import platypusSurvey from "../../public/platypus-survey.svg";
 import Image from "next/image";
 
 const toolDescriptions = [
@@ -23,7 +23,7 @@ const toolDescriptions = [
     created: new Date("2024-03-06"),
     path: "/tools/risk-survey",
     preview: "/tools/risk-survey.png",
-    image: platypusWalking,
+    image: platypusSurvey,
   },
   {
     name: "Portfolio 'Risk' Calculator",
@@ -32,7 +32,7 @@ const toolDescriptions = [
     created: new Date("2024-03-08"),
     path: "/tools/rvol-calculator",
     preview: "/tools/rvol-calculator.png",
-    image: platypus,
+    image: platypusCalculator,
   },
 ];
 
@@ -80,8 +80,8 @@ const Tool = ({ tool }: { tool: (typeof toolDescriptions)[number] }) => (
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
             src={tool.image}
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             alt={`${tool.image}`}
           />
         </Flex>

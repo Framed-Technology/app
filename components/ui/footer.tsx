@@ -8,7 +8,7 @@ const Footer = () => {
     <Flex
       flexDir={"column"}
       h={200}
-      gap={2}
+      gap={6}
       bg={"lily-white.100"}
       borderTopWidth={2}
       borderColor={"black"}
@@ -23,10 +23,10 @@ const Footer = () => {
         alt="Magenta Platypus"
       />
       <Flex gap={4}>
-        <Link className="hover:underline" href={"/about"}>
+        {/* <Link className="hover:underline" href={"/about"}>
           About
-        </Link>
-        •
+        </Link> */}
+        {/* •
         <Link className="hover:underline" href={"/blog"}>
           Blog
         </Link>
@@ -34,10 +34,12 @@ const Footer = () => {
         <Link className="hover:underline" href={"/contact"}>
           Contact
         </Link>
-        •
+        */}
+        • 
         <Link className="hover:underline" href={"/legal"}>
           Legal
         </Link>
+        • 
       </Flex>
     </Flex>
   );

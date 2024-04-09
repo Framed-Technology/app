@@ -19,6 +19,7 @@ import {
 import Card from "@/components/ui/card";
 import { colors } from "@/theme";
 import { insertContact } from "./action";
+import { redirect } from "next/navigation";
 
 const aboutPageContent: ContactPageContentProps[] = [
   {
@@ -45,6 +46,7 @@ const aboutPageContent: ContactPageContentProps[] = [
 ];
 
 const Contact = () => {
+  redirect("/");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

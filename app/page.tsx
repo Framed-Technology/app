@@ -11,6 +11,8 @@ import EmailCapture from "../app/email-capture";
 
 const lato = Lato({ subsets: ["latin"], weight: "700" });
 
+export const dynamic = "force-dynamic";
+
 const Home = async () => {
   const riskSurveySubmissionCount = await readRiskSurveySubmissionCount();
   return (

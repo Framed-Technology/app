@@ -3,7 +3,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 
 const Community = () => {
-  // redirect('/');
+  redirect("/");
 
   return (
     <Flex flexDir={"column"}>

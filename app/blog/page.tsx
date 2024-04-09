@@ -13,8 +13,11 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const Blog = async () => {
+  redirect("/");
+
   const postsContent = await readPosts();
   const posts = postsContent.data.map((p) => p.attributes);
   return (
