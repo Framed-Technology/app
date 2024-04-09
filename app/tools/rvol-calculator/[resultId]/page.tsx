@@ -44,7 +44,7 @@ const RiskCalculatorResults = async (props: Props) => {
         </Heading>
         <Heading fontSize="lg" fontWeight={"normal"}>
           {
-            "See your portfolio's 1-year realized volatility and returns, and how this compares with other nurses below"
+            "See your portfolio's 1-year realized volatility and return, and how this compares with others below"
           }
         </Heading>
       </Stack>
@@ -230,7 +230,7 @@ const RiskCalculatorResults = async (props: Props) => {
                 </Text>
                 <Text fontSize={"sm"}>
                   {
-                    "By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The math: the square root of the dot product of the allocation vector and the covariance matrix gives the portfolio's realised volatility."
+                    "By weighting this matrix with portfolio allocations, (the percentage of each asset in the portfolio), we calculate how the combined movements influence the overall volatility. The math: The portfolio's realized volatility is determined by taking the square root of the weighted allocations' dot product with the covariance matrix of returns, reflecting the portfolio's risk as the standard deviation of its returns."
                   }{" "}
                 </Text>
               </Stack>

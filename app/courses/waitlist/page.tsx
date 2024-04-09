@@ -15,8 +15,7 @@ import { colors } from "@/theme";
 import { insertCourseInterest } from "./action";
 import Link from "next/link";
 import Image from "next/image";
-import platypus from "../../../public/platypus.svg";
-import platypusWalking from "../../../public/platypus-walking.svg";
+import platypusSurvey from "../../../public/platypus-survey.svg";
 import SignUpCard from "../../../components/ui/sign-up-card";
 
 const CoursesWaitlist = () => {
@@ -74,7 +73,7 @@ const CoursesWaitlist = () => {
           <Stack color={"black"} opacity={0.9} gap={4} fontSize={"lg"}>
             <Text>
               {
-                "We feel your struggle: the gruelling shifts, the emotional toll, and the feeling that the system is stacked against you."
+                "We feel your struggle. The gruelling shifts, the emotional toll, and the feeling that the system is stacked against you."
               }
             </Text>
             <Text>
@@ -93,7 +92,7 @@ const CoursesWaitlist = () => {
               }
             </Text>
             <Text>
-              {"The stakes? Risking burnout without clear road to retirement."}
+              {"The stakes? Risking burnout without a clear road to retirement."}
             </Text>
             <Text>
               {
@@ -102,7 +101,7 @@ const CoursesWaitlist = () => {
             </Text>
             <Text>
               {
-                "Our courses are tailor-made for nurses. They're straightforward, engaging, and accessible, and designed to fit seamlessly into your unstructured life – whether you're on a late-night shift or scrolling through your phone in bed after a rough night's sleep."
+                "Our courses are tailor-made for nurses. They're straightforward, engaging, and accessible. Designed to fit seamlessly into your unstructured life – whether you're on a late-night shift or scrolling through your phone in bed after a rough night's sleep."
               }
             </Text>
             <Text>
@@ -134,7 +133,7 @@ const CoursesWaitlist = () => {
                   textAlign={"center"}
                   opacity={0.8}
                 >
-                  {"You're on the wait-list. We'll let you know when this is ready"}
+                  {"You're on the wait-list. We'll let you know when this goes live."}
                 </Heading>
               </Stack>
             ) : (
@@ -185,7 +184,7 @@ const sectionDescriptions = [
     description:
       "Gain insight into your how your risk perceptions of common investments compares with others in this survey.",
     path: "/tools/risk-survey",
-    image: platypus,
+    image: platypusSurvey,
   },
 ];
 
@@ -240,8 +239,8 @@ const Section = ({
         <Flex minW={"30%"} justifyContent={"center"}>
           <Image
             src={section.image}
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             alt={`${section.image}`}
           />
         </Flex>

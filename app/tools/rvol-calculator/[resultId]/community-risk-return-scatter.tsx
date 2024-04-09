@@ -26,7 +26,7 @@ type Props = {
 };
 
 const sAndPFiveHundred = [
-  { rvol: 1, ret: 10 },
+  { rvol: 0.73, ret: 28.57 },
 ];
 
 const CommunityRiskReturnScatter = ({

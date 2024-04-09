@@ -42,9 +42,9 @@ type Props = {
 
 const sectionDescriptions = [
   {
-    name: "Have you own portfolio you want to put to the test?",
+    name: "Have your own portfolio that you want to put to the test?",
     description:
-      "Checkout our Portfolio 'Risk' Calculator to see how much 'risk' your are taking on with your current portfolio",
+      "Checkout our Portfolio 'Risk' Calculator to see how much 'risk' your are taking on with your current portfolio.",
     path: "/tools/rvol-calculator",
     image: platypusCalculator,
   },
@@ -284,7 +284,7 @@ const MethodologyAccordion = () => {
                     opacity: 0.6,
                   }}
                 />
-              </a>
+              </a>.
             </Text>
             <Text fontSize={"sm"}>
               {
@@ -296,7 +296,7 @@ const MethodologyAccordion = () => {
             </Heading>
             <Text fontSize={"sm"}>
               {
-                "We start by calculating the daily returns (how much the prices change compared to the previous day) for the corresponding example tickers of each different investment types listed above. For bitcoin we used the price in USD. And for cash we used Neos Enhanced Income Cash Alternative ETF (ticker: CSHI)."
+                "We start by calculating the daily returns (how much the prices change compared to the previous day) for the corresponding example tickers for each of the different investment types listed above. For bitcoin we used the price in USD. And for cash we used Neos Enhanced Income Cash Alternative ETF (ticker: CSHI)."
               }
             </Text>
             <Text fontSize={"sm"}>
@@ -311,17 +311,17 @@ const MethodologyAccordion = () => {
             </Text>
             <Heading size={"sm"} mt={2}>
               {
-                "Normalizing the Values on a Scale from 0 (Cash) to 12 (Bitcoin)"
+                "Normalizing the values on a scale from 0 (Cash) to 12 (Bitcoin)"
               }
             </Heading>
             <Text fontSize={"sm"}>
               {
-                "To make it easier to compare the relative differences between each investment, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker CSHI) and 12 being Bitcoin's realised volatility.)"
+                "To make it easier to compare the relative differences between each investment, we mapped the relative volatility values to a scale from 0 to 12 (with 0 being the volatility of cash (ticker: CSHI) and 12 being Bitcoin's realised volatility.)"
               }
             </Text>
             <Text fontSize={"sm"}>
               {
-                "Note that cash typically has a volatility of 0 because when it's in a bank account, its value remains stable. This doesn't mean it's necessarily risk-free as inflation can erode purchasing power of cash over time, meaning its real value can decrease."
+                "Note that cash typically has a volatility of 0 because when it's in a bank account, its value remains stable. This doesn't necessarily mean that it is risk-free as inflation can erode purchasing power of cash over time, meaning its real value can decrease."
               }
             </Text>
           </Stack>

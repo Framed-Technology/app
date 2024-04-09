@@ -5,6 +5,7 @@ import "katex/dist/katex.min.css";
 import Image from "next/image";
 import platypusLogo from "../../../public/platypus.svg";
 import ArticleScroll from "./article-scroll";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: {
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const Article = async (props: Props) => {
+  redirect("/");
   const path = await readPathBySlug(props.params.slug);
 
   if (path.data.length !== 1) {
