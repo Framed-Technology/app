@@ -8,7 +8,7 @@ const Community = () => {
   return (
     <Flex flexDir={"column"}>
       <Heading>Community</Heading>
-      <Text>Comming soon</Text>
+      <Text>Coming soon</Text>
     </Flex>
   );
 };

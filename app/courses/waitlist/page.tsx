@@ -51,7 +51,7 @@ const CoursesWaitlist = () => {
   return (
     <Flex flexDir={"column"} width="100%" gap={12}>
       <Stack flexDir={"column"}>
-        <Heading size={"2xl"}>Comming Soon...</Heading>
+        <Heading size={"2xl"}>Coming Soon...</Heading>
       </Stack>
       <Card
         flexDir={{ base: "column" }}
