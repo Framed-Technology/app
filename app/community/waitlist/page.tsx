@@ -91,12 +91,12 @@ const CommunityWaitlist = () => {
             </Text>
             <Text>
               {
-                "Hear stories from those who've been through it all - the tough shifts, burnout, varying paychecks and retirement worries. And the common pursuit of home ownership."
+                "Hear stories from those who've been through it all - the tough shifts, burnout, fluctuating paychecks, fretting over retirement, and chasing the dream of owning a home."
               }
             </Text>
             <Text>
               {
-                "Find out what they wish they knew back then, so you don't make the same mistakes and can navigate your own investing journey with confidence."
+                "Learn from each other's experiences, so you can sidestep making the same mistakes and navigate your own investing journey with confidence."
               }
             </Text>
           </Stack>
