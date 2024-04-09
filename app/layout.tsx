@@ -7,11 +7,12 @@ import Header from "@/components/ui/header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react"
 
 const OpenSans = OpenSansFont({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Investing Nurses.",
+  title: "Investing Nurses",
   description: "Investment education for Nurses",
 };
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <div className="flex-1 h-full max-w-[1100px] black m-auto px-4 pt-[80px] pb-[100px] lg:pt-[100px] lg:pb-[120px] w-full">
               {children}
               <SpeedInsights />
+              <Analytics />
             </div>
             <Footer />
           </Flex>
