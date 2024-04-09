@@ -81,16 +81,19 @@ const Home = async () => {
 const Interest = () => (
   <Flex
     justifyContent={{ base: "center", lg: "end" }}
-    alignItems={"center"}
-    maxW={{ base: "100%", lg: "100%" }}
+    alignItems="center"
+    maxW="100%"
     flexDir={{ base: "column", lg: "row" }}
   >
-    <Image
-      src={platypusWalking}
-      alt="Platypus Walking"
-      width={400}
-      height={400}
-    />
+    <div className="image-container">
+      <Image
+        src={platypusWalking}
+        alt="Platypus Walking"
+        layout="responsive"
+        width={400}
+        height={400}
+      />
+    </div>
   </Flex>
 );
 
@@ -112,7 +115,7 @@ const Attention = () => (
     >
       We Help Nurses Understand Investing
     </Heading>
-    <Text fontSize={{ base: "sm", md: "md", lg: "xl" }} fontWeight={"normal"}>
+    <Text fontSize={{ base: "md", md: "md", lg: "xl" }} fontWeight={"normal"}>
       {
         "Don't let financial uncertainty contribute to your already sleepless night"
       }

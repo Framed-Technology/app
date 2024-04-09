@@ -16,3 +16,14 @@ body {
 :root {
   --gradient: linear-gradient(90deg, rgba(111,84,162,1) 0%, rgba(178,118,203,1) 50%, rgba(220,42,145,1) 100%);
 }
+
+.image-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 600px) {
+  .image-container {
+    max-width:260px;
+  }
+}
