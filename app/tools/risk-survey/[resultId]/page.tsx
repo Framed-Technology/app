@@ -44,7 +44,7 @@ const sectionDescriptions = [
   {
     name: "Have your own portfolio that you want to put to the test?",
     description:
-      "Checkout our Portfolio 'Risk' Calculator to see how much 'risk' your are taking on with your current portfolio.",
+      "Checkout our Portfolio 'Risk' Calculator to see how much 'risk' you are taking on with your current portfolio.",
     path: "/tools/rvol-calculator",
     image: platypusCalculator,
   },

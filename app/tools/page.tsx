@@ -28,7 +28,7 @@ const toolDescriptions = [
   {
     name: "Portfolio 'Risk' Calculator",
     description:
-      "Find out how much 'risk' your current portfolio takes on with our easy-to-use realised volatilty calculator.",
+      "Have your own portfolio that you want to put to the test? Checkout how much 'risk' you are taking on in your current portfolio with our easy-to-use realised volatilty calculator.",
     created: new Date("2024-03-08"),
     path: "/tools/rvol-calculator",
     preview: "/tools/rvol-calculator.png",
